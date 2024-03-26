@@ -1,10 +1,10 @@
 # SAE JeuxOlympiques
 
 ### groupe 1B
-DANTEC Malo
-FAMILIAR Enzo
-MULIKIHAAMEA Leone
-NISOL Alexis
+DANTEC Malo  
+FAMILIAR Enzo  
+MULIKIHAAMEA Leone  
+NISOL Alexis  
 
 ### Compilation
 javac -d ./bin ./src/*.java
