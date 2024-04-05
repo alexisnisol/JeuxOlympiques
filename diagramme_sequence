@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-04-03T17:53:25.938Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="doLuFqAjs6BJyas-KjCO" version="23.1.2" type="github">
+<mxfile host="app.diagrams.net" modified="2024-04-05T11:59:12.802Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0" etag="tm-NpyWpCESGI7TtcYvP" version="24.2.2" type="github">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1674" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -101,6 +101,9 @@
         </mxCell>
         <mxCell id="oZe7aHcIexyiN1yxi-A--12" value="nbPointsRemporter" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="110" y="250" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hUsetOSvxvCNnJhV7-kN-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Synthèse :&lt;br&gt;&lt;/h1&gt;&lt;p&gt;Tout d&#39;abord nous allons dans la classe JeuxOlympiques pour récupérer les points de l’athlète que nous allons faire participer, nous le créons dans l&#39;appel de la fonction recupererResultat(), ensuite nous faisons participer l&#39;athlète de la classe Athlète en réuperant le sport dans la CompétitionIndividuelle en appelant la fonction getSport() qui fais réference à la liste de sport ensuite on fait dérouler la compétition et récupere les nombres de points remporter dans la compétition du sport de l&#39;athlète et renvoyer les points à l&#39;athlète qui a participer et renvoie ensuite les points de l&#39;athlète que l&#39;on a fait participer.&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="59" y="410" width="740" height="310" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
