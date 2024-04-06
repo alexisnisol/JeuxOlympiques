@@ -1,9 +1,9 @@
 # SAE JeuxOlympiques
 
 ### groupe 1B
-DANTEC Malo  
+DANTEC Malo (Non participation)
 FAMILIAR Enzo  
-MULIKIHAAMEA Leone  
+MULIKIHAAMEA Leone (Non participation)
 NISOL Alexis  
 
 ### Compilation
