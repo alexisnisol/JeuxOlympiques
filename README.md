@@ -2,8 +2,11 @@
 
 ### groupe 1B
 DANTEC Malo (Non participation)
+
 FAMILIAR Enzo  
+
 MULIKIHAAMEA Leone (Non participation)
+
 NISOL Alexis  
 
 ### Compilation
