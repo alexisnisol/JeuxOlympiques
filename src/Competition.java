@@ -5,12 +5,14 @@ public abstract class Competition {
     private int nbParticipant;
     private String sexe;
     private List<Participant> lesParticipants;
+    private Sport sport;
     
     
-    public Competition(int nbParticipant, String sexe, List<Participant> lesParticipants) {
+    public Competition(int nbParticipant, String sexe, List<Participant> lesParticipants,Sport sport) {
         this.nbParticipant = nbParticipant;
         this.sexe = sexe;
         this.lesParticipants = new ArrayList<>();
+        this.sport = sport;
     }
 
 
@@ -26,6 +28,12 @@ public abstract class Competition {
 
     public List<Participant> getParticipants() {
         return lesParticipants;
+        
+    }
+
+
+    public Sport getSport() {
+        return sport;
     }
 
 }

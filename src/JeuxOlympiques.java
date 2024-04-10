@@ -62,6 +62,7 @@ public class JeuxOlympiques {
     }
 
     public void enregistrerParticipant(Participant participant, Competition competition){
+        // throws et throw à faire 
         for (Competition competition1 : lesCompetitions) {
             if (competition == competition1){
                 competition.getParticipants().add(participant);
