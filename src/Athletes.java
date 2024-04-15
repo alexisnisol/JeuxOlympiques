@@ -10,6 +10,7 @@ public class Athletes implements Participant{
     private int totalMedailles;
     private Pays pays;
     private Equipes equipe;
+    private Competition competitionActuelle;
 
     public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, String medailles, int totalMedailles, Pays pays, Equipes equipe){
         this.nom = nom;
@@ -22,6 +23,7 @@ public class Athletes implements Participant{
         this.totalMedailles = totalMedailles;
         this.pays = pays;
         this.equipe = equipe;
+        this.competitionActuelle = null;
     }
 
     /**
@@ -102,6 +104,23 @@ public class Athletes implements Participant{
     public Pays getPays() {
         return this.pays;
     }
+
+    /**
+     * Getter de la compétition actuelle, en tant que Participant
+     * @return la compétition, null si il n'y a pas de compétition en cours.
+     */
+    public Competition getCompetitionActuelle(){
+        return this.competitionActuelle;
+    }
+
+    /**
+     * Setter de la compétition actuelle en tant que Participant.
+     * @param competition la compétition actuelle.
+     */
+    public void setCompetitionActuelle(Competition competition){
+        this.competitionActuelle = competition;
+    }
+
 
 
     @Override

@@ -10,7 +10,8 @@ public class Equipes implements Participant{
     private int totalMedailles;
     private List<Athletes> listeAthletes;
     private Pays pays;
-    
+    private Competition competitionActuelle;
+
     public Equipes(String nomEquipe, int tailleMax, boolean enRelais, String medailles, int totalMedailles, Pays pays) {
         this.nomEquipe = nomEquipe;
         this.tailleMax = tailleMax;
@@ -19,6 +20,7 @@ public class Equipes implements Participant{
         this.totalMedailles = totalMedailles;
         this.pays = pays;
         this.listeAthletes = new ArrayList<>();
+        this.competitionActuelle = null;
     }
 
     /**
@@ -117,6 +119,21 @@ public class Equipes implements Participant{
         this.pays = pays;
     }
 
+    /**
+     * Getter de la compétition actuelle, en tant que Participant
+     * @return la compétition, null si il n'y a pas de compétition en cours.
+     */
+    public Competition getCompetitionActuelle(){
+        return this.competitionActuelle;
+    }
+
+    /**
+     * Setter de la compétition actuelle en tant que Participant.
+     * @param competition la compétition actuelle.
+     */
+    public void setCompetitionActuelle(Competition competition){
+        this.competitionActuelle = competition;
+    }
 
     /**
      * Calcul la force totale de l'équipe : somme des forces de tous les athlètes
