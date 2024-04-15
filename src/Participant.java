@@ -11,7 +11,14 @@ public interface Participant {
      * @return le nom du participant
      */
     public String obtenirNom();
+    
+        /**
+     * Méthode permettant d'obtenir le nom du participant.
+     * @return le sexe du participant
+     */
+    public Sexe obtenirSexe();
 
+    
     //TODO : Obtenir le sexe du participant (nécessite une implémentation dans Equipes et Athletes)
     //TODO : Obtenir le pays du participant (nécessite une implémentation dans Equipes et Athletes)
     //TODO : Obtenir l'équipe du participant (nécessite une implémentation dans Equipes et Athletes)
