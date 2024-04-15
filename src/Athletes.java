@@ -133,5 +133,10 @@ public class Athletes implements Participant{
     public String obtenirNom() {
         return this.sexe.getAbreviation() + " " + this.nom + " " + this.prenom;
     }
+
+    @Override
+    public Sexe obtenirSexe(){
+        return this.getSexe();
+    }
     
 }
