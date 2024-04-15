@@ -172,7 +172,7 @@ public class Equipes implements Participant{
     }
 
     @Override
-    public void participer() {
+    public int participer() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'participer'");
     }

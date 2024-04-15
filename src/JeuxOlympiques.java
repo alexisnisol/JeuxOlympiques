@@ -1,5 +1,7 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class JeuxOlympiques {
 
@@ -91,5 +93,43 @@ public class JeuxOlympiques {
      */
     public List<Participant> classementMedaillesOr(){
         return null;
-    }    
+    }
+
+    /**
+     * Cette fonction permet de retourner les valeurs du csv en instance de JeuxOlympiques, Compétition et Participant
+     * @param path : le chemin du fichier csv
+     * @return les valeurs du csv en instance de JeuxOlympiques, Compétition, Participant etc.
+     */
+    public static JeuxOlympiques convertFromArrayCsv(List<String> records){
+        List<Competition> competitions = new ArrayList<>();
+        List<Equipes> equipes = new ArrayList<>();
+        List<Pays> pays = new ArrayList<>();
+        List<Participant> participants = new ArrayList<>();
+
+        return null; //TODO: à faire
+    }
+
+    public static List<String> fromCsv(String path) {
+        List<String> liste = new ArrayList<String>();
+        try {
+            Scanner rowScanner = new Scanner(path);
+            rowScanner.useDelimiter(",");
+            while (rowScanner.hasNext()) {
+                liste.add(rowScanner.next());
+                System.out.println(rowScanner.next());
+            }
+            rowScanner.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return liste;
+    }
+
+    @Override
+    public String toString() {
+        return "JeuxOlympiques{" +
+                "annee=" + this.annee +
+                ", nbEpreuves=" + this.nbEpreuves +
+                ", lesCompetitions=" + this.lesCompetitions + "}";
+    }
 }
