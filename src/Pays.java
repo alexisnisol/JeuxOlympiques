@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Pays {
     private String nom;
-    private List<Athlètes> listAthlètes;
+    private List<Athletes> listAthlètes;
     private List<Equipes> listEquipes;
 
     public Pays(String nom){
