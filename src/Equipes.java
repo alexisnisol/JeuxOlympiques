@@ -22,22 +22,6 @@ public class Equipes implements Participant{
     }
 
     /**
-     * Retourne le nom de l'équipe.
-     * @return le nom de l'équipe
-     */
-    public String getNomEquipe() {
-        return nomEquipe;
-    }
-
-    /**
-     * Définie le nom de l'équipe.
-     * @param nomEquipe le nom de l'équipe
-     */
-    public void setNomEquipe(String nomEquipe) {
-        this.nomEquipe = nomEquipe;
-    }
-
-    /**
      * Retourne la taille maximale de l'équipe.
      * @return la taille maximale de l'équipe
      */
@@ -176,9 +160,12 @@ public class Equipes implements Participant{
         throw new UnsupportedOperationException("Unimplemented method 'participer'");
     }
 
+    /**
+     * Retourne le nom de l'équipe.
+     * @return le nom de l'équipe
+     */
     @Override
     public String obtenirNom() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenirNom'");
+        return this.nomEquipe;
     }
 }
