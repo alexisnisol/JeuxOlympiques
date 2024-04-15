@@ -50,6 +50,7 @@ public abstract class Competition {
         //TODO : vérifier que le participant n'est pas déjà inscrit
         //TODO : vérifier que le participant est bien inscrit à la bonne compétition
         //TODO : Définir la compétition actuel du participant
+        //TODO : Vérifier que la taille max de participants pour l'épreuve n'est pas dépassé (si c'est le cas, lever une exception) => Vérifier lorsqu'on ajoute une Equipes entière, et lorsqu'on ajoute un Athlete
         this.lesParticipants.add(participant);
     }
 
