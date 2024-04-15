@@ -59,4 +59,13 @@ public abstract class Competition {
         return sport;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o==null){return false;}
+        if (o == this) {return true; } 
+        if (!(o instanceof Competition)) {return false;}
+
+        Competition c = (Competition) o;
+        return c.lesParticipants == this.lesParticipants;
+    }
 }
