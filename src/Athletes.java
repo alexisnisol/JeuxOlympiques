@@ -2,7 +2,7 @@ public class Athletes implements Participant{
 
     private String nom;
     private String prenom;
-    private String sexe;
+    private Sexe sexe;
     private int force;
     private int endurance;
     private int agilite;
@@ -11,7 +11,7 @@ public class Athletes implements Participant{
     private Pays pays;
     private Equipes equipe;
 
-    public Athletes(String nom, String prenom, String sexe, int force, int endurance, int agilite, String medailles, int totalMedailles, Pays pays, Equipes equipe){
+    public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, String medailles, int totalMedailles, Pays pays, Equipes equipe){
         this.nom = nom;
         this.prenom = prenom;
         this.agilite = agilite;
@@ -44,7 +44,7 @@ public class Athletes implements Participant{
      * getter du sexe
      * @return le sexe
      */
-    public String getSexe() {
+    public Sexe getSexe() {
         return this.sexe;
     }
 
@@ -105,15 +105,14 @@ public class Athletes implements Participant{
 
 
     @Override
-    public void participer() {
+    public int participer() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'participer'");
     }
 
     @Override
     public String obtenirNom() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenirNom'");
+        return this.sexe.getAbreviation() + " " + this.nom + " " + this.prenom;
     }
     
 }
