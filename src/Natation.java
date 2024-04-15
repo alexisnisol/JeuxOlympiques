@@ -7,5 +7,12 @@ public class Natation extends Sport{
         this.distance = distance;
     }
 
+    /**
+     * getter de la distance à faire sur ce sport
+     * @return la distance
+     */
+    public int getDistance(){
+        return this.distance;
+    }
     
 }

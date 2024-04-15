@@ -6,7 +6,11 @@ public abstract class Sport {
         this.coeff = coeff;
     }
     
-    public float getcoeff(){
+    /**
+     * getter du coeff du sport
+     * @return le coeff
+     */
+    public float getCoeff(){
         return this.coeff;
     }
 }
