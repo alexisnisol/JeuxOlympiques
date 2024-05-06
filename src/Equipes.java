@@ -104,14 +104,6 @@ public class Equipes implements Participant{
     }
 
     /**
-     * Getter du pays de l'équipe
-     * @return le pays de l'équipe
-     */
-    public Pays getPays() {
-        return pays;
-    }
-
-    /**
      * Setter du pays de l'équipe
      * @param pays le pays de l'équipe
      */
@@ -185,4 +177,41 @@ public class Equipes implements Participant{
     public String obtenirNom() {
         return this.nomEquipe;
     }
+
+    @Override
+    public Sexe obtenirSexe(){
+        int nbHomme = 0;
+        for(Athletes athetes : this.listeAthletes){
+            if (athetes.obtenirSexe() == Sexe.HOMME){
+                ++nbHomme;
+            }else{
+                --nbHomme;
+            }
+        }
+        if (nbHomme >= 0){
+            return Sexe.HOMME;
+        }
+        return Sexe.FEMME;
+    }
+
+    /**
+     * Getter du pays de l'équipe
+     * @return le pays
+     */
+    @Override
+    public Pays obtenirPays() {
+        return this.pays;
+    }
+
+    /**
+     * Getter de l'équipe
+     * @return l'équipe
+     */
+    @Override
+    public Equipes obtenirEquipes() {
+        return this;
+    }
+
+    
+    
 }
