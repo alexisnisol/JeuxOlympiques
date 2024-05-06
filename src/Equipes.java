@@ -30,7 +30,7 @@ public class Equipes implements Participant{
      * @return la taille maximale de l'équipe
      */
     public int getTailleMax() {
-        return tailleMax;
+        return this.tailleMax;
     }
 
     /**
@@ -40,6 +40,15 @@ public class Equipes implements Participant{
     public void setTailleMax(int tailleMax) {
         this.tailleMax = tailleMax;
     }
+
+    /**
+     * Retourne la taille actuelle de l'équipe.
+     * @return la taille actuelle de l'équipe
+     */
+    public int getTaille() {
+        return this.listeAthletes.size();
+    }
+
 
     /**
      * Retourne si l'équipe est une équipe relais.
@@ -102,6 +111,7 @@ public class Equipes implements Participant{
      * @param athlete l'athlète à ajouter
      */
     public void addAthlete(Athletes athlete){
+        //TODO : VERIFIER TAILLE MAX DE L'EQUIPE
         this.listeAthletes.add(athlete);
     }
 
@@ -117,6 +127,7 @@ public class Equipes implements Participant{
      * Getter de la compétition actuelle, en tant que Participant
      * @return la compétition, null si il n'y a pas de compétition en cours.
      */
+    @Override
     public Competition getCompetitionActuelle(){
         return this.competitionActuelle;
     }
@@ -125,6 +136,7 @@ public class Equipes implements Participant{
      * Setter de la compétition actuelle en tant que Participant.
      * @param competition la compétition actuelle.
      */
+    @Override
     public void setCompetitionActuelle(Competition competition){
         this.competitionActuelle = competition;
     }
