@@ -41,15 +41,7 @@ public class Athletes implements Participant{
     public String getPrenom() {
         return this.prenom;
     }
-
-    /**
-     * getter du sexe
-     * @return le sexe
-     */
-    public Sexe getSexe() {
-        return this.sexe;
-    }
-
+    
     /**
      * getter des médailles
      * @return les médailles
@@ -91,21 +83,6 @@ public class Athletes implements Participant{
     }
 
     /**
-     * getter de l'équipe
-     * @return l'équipe
-     */
-    public Equipes getEquipes() {
-        return this.equipe;
-    }
-
-    /** getter du pays
-     * @return le pays
-     */
-    public Pays getPays() {
-        return this.pays;
-    }
-
-    /**
      * Getter de la compétition actuelle, en tant que Participant
      * @return la compétition, null si il n'y a pas de compétition en cours.
      */
@@ -134,9 +111,31 @@ public class Athletes implements Participant{
         return this.sexe.getAbreviation() + " " + this.nom + " " + this.prenom;
     }
 
+    /**
+     * getter du sexe de l'Athlète
+     * @return le sexe de l'Athlète
+     */
     @Override
     public Sexe obtenirSexe(){
-        return this.getSexe();
+        return this.sexe;
+    }
+
+    /**
+     * getter du pays de l'Athlète
+     * @return le pays de l'Athlète
+     */
+    @Override
+    public Pays obtenirPays() {
+        return this.pays;
+    }
+
+    /**
+     * getter de l'équipe de l'Athlète
+     * @return l'équipe de l'Athlète
+     */
+    @Override
+    public Equipes obtenirEquipes() {
+        return this.equipe;
     }
     
 }
