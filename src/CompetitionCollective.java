@@ -1,9 +1,7 @@
-import java.util.List;
-
 public class CompetitionCollective extends Competition{
 
-    public CompetitionCollective(int nbParticipant, String sexe, List<Participant> lesParticipants, Sport sport) {
-        super(nbParticipant, sexe, lesParticipants,sport);
+    public CompetitionCollective(int nbParticipant, Sexe sexe, Sport sport) {
+        super(nbParticipant, sexe, sport);
     }
     
 }
