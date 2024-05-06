@@ -87,6 +87,7 @@ public class Athletes implements Participant{
      * Getter de la compétition actuelle, en tant que Participant
      * @return la compétition, null si il n'y a pas de compétition en cours.
      */
+    @Override
     public Competition getCompetitionActuelle(){
         return this.competitionActuelle;
     }
@@ -95,10 +96,10 @@ public class Athletes implements Participant{
      * Setter de la compétition actuelle en tant que Participant.
      * @param competition la compétition actuelle.
      */
+    @Override
     public void setCompetitionActuelle(Competition competition){
         this.competitionActuelle = competition;
     }
-
 
 
     @Override

@@ -29,5 +29,18 @@ public interface Participant {
      * @return l'équipe du participant
      */
     public Equipes obtenirEquipes();
+
+    /**
+     * Getter de la compétition actuelle, en tant que Participant
+     * @return la compétition, null si il n'y a pas de compétition en cours.
+     */
+    public Competition getCompetitionActuelle();
+
+    /**
+     * Setter de la compétition actuelle en tant que Participant.
+     * @param competition la compétition actuelle.
+     */
+    public void setCompetitionActuelle(Competition competition);
+
 } 
     
