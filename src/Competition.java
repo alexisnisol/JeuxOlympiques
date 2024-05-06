@@ -66,6 +66,6 @@ public abstract class Competition {
         if (!(o instanceof Competition)) {return false;}
 
         Competition c = (Competition) o;
-        return c.lesParticipants == this.lesParticipants;
+        return c.lesParticipants.equals(this.lesParticipants);
     }
 }
