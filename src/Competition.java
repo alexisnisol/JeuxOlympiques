@@ -3,12 +3,12 @@ import java.util.List;
 
 public abstract class Competition {
     private int nbParticipantsNecessaire;
-    private String sexe;
+    private Sexe sexe;
     private List<Participant> lesParticipants;
     private Sport sport;
     
     
-    public Competition(int nbParticipantsNecessaire, String sexe, List<Participant> lesParticipants,Sport sport) {
+    public Competition(int nbParticipantsNecessaire, Sexe sexe, Sport sport) {
         this.nbParticipantsNecessaire = nbParticipantsNecessaire;
         this.sexe = sexe;
         this.lesParticipants = new ArrayList<>();
@@ -28,7 +28,7 @@ public abstract class Competition {
      * Retourne le sexe de la compétition
      * @return le sexe de la compétition : Masculine ou Féminine
      */
-    public String getSexe() {
+    public Sexe getSexe() {
         return this.sexe;
     }
 
@@ -44,13 +44,31 @@ public abstract class Competition {
     /**
      * Ajoute un participant à la liste des participants de la compétition
      * @param participant le participant à ajouter
+     * @throws SexeCompetitionException 
+     * @throws ParticipantDejaPresentException 
+     * @throws ParticipantOccupeException
+     * @throws CompetitionPleineException
      */
-    public void enregistrerParticipant(Participant participant){
-        //TODO : vérifier que le participant est bien du bon sexe
-        //TODO : vérifier que le participant n'est pas déjà inscrit
-        //TODO : vérifier que le participant est bien inscrit à la bonne compétition
-        //TODO : Définir la compétition actuel du participant
-        //TODO : Vérifier que la taille max de participants pour l'épreuve n'est pas dépassé (si c'est le cas, lever une exception) => Vérifier lorsqu'on ajoute une Equipes entière, et lorsqu'on ajoute un Athlete
+    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException{
+        if(participant.obtenirSexe() != this.sexe){
+            throw new SexeCompetitionException();
+        }
+        if(this.lesParticipants.contains(participant)){ //NECESSITE UN EQUALS DANS PARTICIPANT : Participant est une interface -> Faire les equals dans Athletes/Equipes ?
+            throw new ParticipantDejaPresentException();
+        }
+        if(participant.getCompetitionActuelle() != null){
+            throw new ParticipantOccupeException();
+        }
+
+        int nbParticipant = 1; //1 étant l'athlète si le participant n'est pas une équipe.
+        if(participant instanceof Equipes){
+            nbParticipant = ((Equipes)participant).getTaille();
+        }
+        if(this.lesParticipants.size() + nbParticipant > nbParticipantsNecessaire){
+            throw new CompetitionPleineException();
+        }
+
+        participant.setCompetitionActuelle(this);
         this.lesParticipants.add(participant);
     }
 
