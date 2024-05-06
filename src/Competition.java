@@ -45,7 +45,7 @@ public abstract class Competition {
      * Ajoute un participant à la liste des participants de la compétition
      * @param participant le participant à ajouter
      */
-    public void addParticipant(Participant participant){
+    public void enregistrerParticipant(Participant participant){
         //TODO : vérifier que le participant est bien du bon sexe
         //TODO : vérifier que le participant n'est pas déjà inscrit
         //TODO : vérifier que le participant est bien inscrit à la bonne compétition

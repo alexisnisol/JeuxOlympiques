@@ -72,15 +72,6 @@ public class JeuxOlympiques {
         lesCompetitions.add(competition);
     }
 
-    public void enregistrerParticipant(Participant participant, Competition competition){
-        //TODO: throws et throw à faire 
-        for (Competition competition1 : lesCompetitions) {
-            if (competition.equals(competition1)){ //TODO : equals à faire dans Competition
-                competition.getParticipants().add(participant);
-            }
-        }
-    }
-
     /**
      * Cette fonction permet de retourner le classement des participants par les médailles
      */
