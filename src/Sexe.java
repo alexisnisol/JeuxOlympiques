@@ -2,7 +2,7 @@ public enum Sexe {
     HOMME("M."),
     FEMME("Mme.");
 
-    private String abreviation;
+    private final String abreviation;
 
     /**
      * Constructeur de l'énumération Sexe
