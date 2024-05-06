@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestEquipes {
+public class TestParticipants {
     private Equipes equipe;
     private Athletes athlete1;
     private Athletes athlete2;
