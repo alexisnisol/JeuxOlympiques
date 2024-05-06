@@ -28,8 +28,27 @@ public class Pays {
         this.listEquipes.add(equipe);
     }
 
+    /**
+     * Getter du nom du pays
+     * @return le nom du pays
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Getter de la liste des Athletes du Pays
+     * @return la liste des Athlètes
+     */
+    public List<Athletes> getAthletes(){
+        return this.listAthletes;
+    
+    }
+    /**
+     * Getter de la liste des équipes du Pays
+     * @return la liste des Equipes
+     */
+    public List<Equipes> getEquipes(){
+        return this.listEquipes;
+    }
 }
