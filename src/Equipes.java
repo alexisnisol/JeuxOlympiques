@@ -21,6 +21,8 @@ public class Equipes implements Participant{
         this.pays = pays;
         this.listeAthletes = new ArrayList<>();
         this.competitionActuelle = null;
+
+        this.pays.addEquipe(this);
     }
 
     /**

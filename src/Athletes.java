@@ -24,6 +24,7 @@ public class Athletes implements Participant{
         this.pays = pays;
         this.equipe = equipe;
         this.competitionActuelle = null;
+        this.pays.addAthlete(this);
     }
 
     /**
@@ -41,7 +42,7 @@ public class Athletes implements Participant{
     public String getPrenom() {
         return this.prenom;
     }
-    
+
     /**
      * getter des médailles
      * @return les médailles
