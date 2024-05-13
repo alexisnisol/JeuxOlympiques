@@ -109,9 +109,16 @@ public class Equipes implements Participant{
     /**
      * Ajoute un athlète à la liste des athlètes de l'équipe
      * @param athlete l'athlète à ajouter
+     * @throws EquipePleineException 
+     * @throws ParticipantDejaPresentException 
      */
-    public void addAthlete(Athletes athlete){
-        //TODO : VERIFIER TAILLE MAX DE L'EQUIPE
+    public void addAthlete(Athletes athlete) throws EquipePleineException, ParticipantDejaPresentException{
+        if (this.listeAthletes.size() + 1 > this.tailleMax){
+            throw new EquipePleineException();
+        }
+        if (this.listeAthletes.contains(athlete)){
+            throw new ParticipantDejaPresentException();
+        }
         this.listeAthletes.add(athlete);
     }
 
@@ -227,5 +234,17 @@ public class Equipes implements Participant{
     }
 
     
-    
+    @Override
+    public boolean equals(Object o){
+        if (o==null){return false;}
+        if (o == this) {return true; } 
+        if (!(o instanceof Equipes)) {return false;}
+
+        Equipes equipe = (Equipes) o;
+        return this.nomEquipe.equals(equipe.nomEquipe) &&
+        this.tailleMax == equipe.tailleMax &&
+        this.enRelais == equipe.enRelais &&
+        this.pays.equals(equipe.pays) &&
+        this.competitionActuelle.equals(equipe.competitionActuelle);
+    }
 }
