@@ -2,21 +2,20 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestParticipants {
     private Equipes equipe;
     private Athletes athlete1;
     private Athletes athlete2;
+    private Athletes athlete3;
     private Pays pays;
 
     @Before
     public void setUp() {
         pays = new Pays("France");
         equipe = new Equipes("Équipe de test", 5, false, "", 0, pays);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, pays, equipe);
-        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, pays, equipe);
+        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, pays);
+        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, pays);
+        athlete3 = new Athletes("Test2", "Test2", Sexe.FEMME, 30, 35, 40, "", 0, pays);
     }
 
     @Test
@@ -28,10 +27,13 @@ public class TestParticipants {
     public void testObtenirSexe() {
         assertEquals(Sexe.HOMME, equipe.obtenirSexe());
         Equipes equipeFemme = new Equipes("Équipe de test2", 5, false, "", 0, pays);
-        equipeFemme.addAthlete(athlete1);
-        equipeFemme.addAthlete(athlete2);
-        equipeFemme.addAthlete(athlete2);
-        assertEquals(Sexe.FEMME, equipeFemme.obtenirSexe());
+
+        athlete1.rejoindreEquipe(equipeFemme); // HOMME
+        assertEquals(Sexe.HOMME, equipeFemme.obtenirSexe());
+        athlete2.rejoindreEquipe(equipeFemme); // FEMME
+        assertEquals(Sexe.HOMME, equipeFemme.obtenirSexe()); // Si il y a autant de femme que d'homme, alors le sexe de l'équipe est masculin.
+        athlete3.rejoindreEquipe(equipeFemme); // FEMME
+        assertEquals(Sexe.FEMME, equipeFemme.obtenirSexe()); // Si il y a plus de femme que d'homme, on récupère le sexe le plus présent dans l'équipe pour définir le sexe de l'équipe.
     }
 
     @Test
