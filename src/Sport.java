@@ -13,4 +13,6 @@ public abstract class Sport {
     public float getCoeff(){
         return this.coeff;
     }
+
+    //TODO : Faire le equals
 }
