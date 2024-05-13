@@ -51,4 +51,14 @@ public class Pays {
     public List<Equipes> getEquipes(){
         return this.listEquipes;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o==null){return false;}
+        if (o == this) {return true; } 
+        if (!(o instanceof Pays)) {return false;}
+
+        Pays pays = (Pays) o;
+        return this.nom.equals(pays.nom);
+    }
 }
