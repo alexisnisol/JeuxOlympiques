@@ -84,6 +84,9 @@ public abstract class Competition {
         if (!(o instanceof Competition)) {return false;}
 
         Competition c = (Competition) o;
-        return c.lesParticipants.equals(this.lesParticipants);
+        return this.sexe.equals(c.sexe) && 
+        this.nbParticipantsNecessaire == c.nbParticipantsNecessaire &&
+        this.sport.equals(c.sport) &&
+        this.lesParticipants.equals(c.lesParticipants); //NECESSITE UN EQUALS DANS PARTICIPANT : Participant est une interface -> Faire les equals dans Athletes/Equipes ?
     }
 }
