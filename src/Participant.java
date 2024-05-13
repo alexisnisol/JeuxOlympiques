@@ -42,5 +42,12 @@ public interface Participant {
      */
     public void setCompetitionActuelle(Competition competition);
 
+    /**
+     * Renvoie le nombre de médailles remportées par le participant.
+     *
+     * @return le nombre de médailles remportées par le participant
+     */
+    public String getMedailles();
+
 } 
     

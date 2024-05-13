@@ -12,7 +12,7 @@ public class Athletes implements Participant{
     private Equipes equipe;
     private Competition competitionActuelle;
 
-    public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, String medailles, int totalMedailles, Pays pays){
+    public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, String medailles, int totalMedailles, Pays pays, Equipes equipe){
         this.nom = nom;
         this.prenom = prenom;
         this.agilite = agilite;
@@ -22,22 +22,9 @@ public class Athletes implements Participant{
         this.medailles = medailles;
         this.totalMedailles = totalMedailles;
         this.pays = pays;
+        this.equipe = equipe;
         this.competitionActuelle = null;
-        this.equipe = null;
         this.pays.addAthlete(this);
-    }
-
-    public boolean rejoindreEquipe(Equipes equipe){
-        try {
-            this.equipe = equipe;
-            this.equipe.addAthlete(this);
-            return true;
-        } catch (EquipePleineException e) {
-            e.printStackTrace();
-        } catch (ParticipantDejaPresentException e){
-            e.printStackTrace();
-        }
-        return false;
     }
 
     /**
@@ -117,8 +104,8 @@ public class Athletes implements Participant{
 
     @Override
     public int participer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'participer'");
+        return 0;
+         //TODO : A FAIRE
     }
 
     @Override
@@ -153,23 +140,4 @@ public class Athletes implements Participant{
         return this.equipe;
     }
     
-    @Override
-    public boolean equals(Object o) {
-        if (o==null){return false;}
-        if (o == this) {return true; } 
-        if (!(o instanceof Athletes)) {return false;}
-
-        Athletes athlete = (Athletes) o;
-        return this.nom.equals(athlete.nom) &&
-        this.prenom.equals(athlete.prenom) &&
-        this.sexe == athlete.sexe &&
-        this.force == athlete.force &&
-        this.endurance == athlete.endurance &&
-        this.agilite == athlete.agilite &&
-        this.medailles.equals(athlete.medailles) &&
-        this.totalMedailles == athlete.totalMedailles &&
-        this.pays.equals(athlete.pays) &&
-        (this.equipe == null && athlete.equipe == null || this.equipe != null && this.equipe.equals(athlete.equipe)) &&
-        (this.competitionActuelle == null && athlete.competitionActuelle == null || this.competitionActuelle != null && this.competitionActuelle.equals(athlete.competitionActuelle));
-    }
 }

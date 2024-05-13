@@ -52,7 +52,11 @@ public class JeuxOlympiques {
      * @param participant : participant d'une competition ou du jeux olympiques
      */
     public void enregistrerResultat(Participant participant){
-        
+        for (Competition competition : lesCompetitions) {
+            if (participant.getCompetitionActuelle() == competition) {
+                competition.lesParticipants.add(participant);
+            }
+        }
     }
     
     /**
@@ -61,7 +65,7 @@ public class JeuxOlympiques {
      * @return on retourne donc ses résultats dans toute ses compétitions
      */
     public int recupererResultat(Participant participant){
-        return 0;
+        return participant.getResultat();
     }
 
     /**
@@ -73,18 +77,50 @@ public class JeuxOlympiques {
     }
 
     /**
-     * Cette fonction permet de retourner le classement des participants par les médailles
-     */
-    public List<Participant> classementMedailles(){
-        return null;
-    }
-
-    /**
      * Cette fonction permet de retourner le classement des participants ayant des médailles d'or
      */
     public List<Participant> classementMedaillesOr(){
-        return null;
+        List<Participant> medaillesOr = new ArrayList<>();
+        for (Competition compet : lesCompetitions) {
+            for (Participant participant : compet.getParticipants()) {
+                if (participant.getMedailles() == "Or") {
+                    medaillesOr.add(participant);
+                }
+            }
+        }
+        return medaillesOr;
+        }
+
+
+    /**
+     * Cette fonction permet de retourner le classement des participants par les médailles
+     */
+    public List<Participant> classementMedailles(){
+        List<Participant> classement = new ArrayList<>();
+        for (Competition compet : lesCompetitions) {
+            for (Participant participant : compet.getParticipants()) {
+                if (participant.getMedailles() == "Bronze") {
+                    classement.add(participant);
+                }
+            }
+        }
+        for (Competition compet : lesCompetitions) {
+            for (Participant participant : compet.getParticipants()) {
+                if (participant.getMedailles() == "Argent") {
+                    classement.add(participant);
+                }
+            }
+        }
+        for (Competition compet : lesCompetitions) {
+            for (Participant participant : compet.getParticipants()) {
+                if (participant.getMedailles() == "Or") {
+                    classement.add(participant);
+                }
+            }
+        }
+        return classement;
     }
+
 
     /**
      * Cette fonction permet de retourner les valeurs du csv en instance de JeuxOlympiques, Compétition et Participant
