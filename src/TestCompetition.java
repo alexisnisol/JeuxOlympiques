@@ -29,11 +29,15 @@ public class TestCompetition {
         equipe2 = new Equipes("Équipe de test 2", 10, true, "", 0, france);
         equipe3 = new Equipes("Équipe de test 3", 5, false, "", 0, france);
         equipe4 = new Equipes("Équipe de test 4", 10, true, "", 0, usa);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, france, equipe1);
-        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, usa, equipe4);
+        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        athlete1.rejoindreEquipe(equipe1);
+        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, usa);
+        athlete2.rejoindreEquipe(equipe4);
         
-        athlete3 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, france, equipe1);
-        athlete4 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, france, equipe1);
+        athlete3 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        athlete3.rejoindreEquipe(equipe1);
+        athlete4 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        athlete4.rejoindreEquipe(equipe1);
 
         competition1 = new CompetitionCollective(2, Sexe.HOMME, new Athletisme(4, 1000));
         competition2 = new CompetitionIndividuelle(2, Sexe.HOMME, new Natation(4, 1000));
@@ -121,7 +125,19 @@ public class TestCompetition {
 
         assertTrue(thrown);
 
-        //TODO : Faire le test avec une équipe d'athlètes
+
+        try {
+            this.competition1.enregistrerParticipant(equipe1);
+            thrown = false;
+        } 
+        catch (ParticipantOccupeException e) {}
+        catch (SexeCompetitionException e) {}
+        catch (ParticipantDejaPresentException e) {} 
+        catch (CompetitionPleineException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+
     }
 
 }
