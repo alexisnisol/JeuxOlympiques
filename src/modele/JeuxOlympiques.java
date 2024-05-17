@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+package modele;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,7 +54,7 @@ public class JeuxOlympiques {
     public void enregistrerResultat(Participant participant){
         for (Competition competition : lesCompetitions) {
             if (participant.getCompetitionActuelle() == competition) {
-                competition.lesParticipants.add(participant);
+                competition.getParticipants().add(participant);
             }
         }
     }
@@ -65,7 +65,8 @@ public class JeuxOlympiques {
      * @return on retourne donc ses résultats dans toute ses compétitions
      */
     public int recupererResultat(Participant participant){
-        return participant.getResultat();
+        //return participant.getResultat();
+        return 0;
     }
 
     /**
@@ -128,10 +129,10 @@ public class JeuxOlympiques {
      * @return les valeurs du csv en instance de JeuxOlympiques, Compétition, Participant etc.
      */
     public static JeuxOlympiques convertFromArrayCsv(List<String> records){
-        List<Competition> competitions = new ArrayList<>();
+        /*List<Competition> competitions = new ArrayList<>();
         List<Equipes> equipes = new ArrayList<>();
         List<Pays> pays = new ArrayList<>();
-        List<Participant> participants = new ArrayList<>();
+        List<Participant> participants = new ArrayList<>();*/
 
         return null; //TODO: à faire
     }

@@ -1,10 +1,22 @@
+package tests;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import modele.Athletes;
+import modele.sports.Athletisme;
+import modele.Competition;
+import modele.CompetitionCollective;
+import modele.CompetitionIndividuelle;
+import modele.exceptions.CompetitionPleineException;
+import modele.Equipes;
+import modele.sports.Natation;
+import modele.exceptions.ParticipantDejaPresentException;
+import modele.exceptions.ParticipantOccupeException;
+import modele.Pays;
+import modele.Sexe;
+import modele.exceptions.SexeCompetitionException;
+
+import static org.junit.Assert.*;
 
 public class TestCompetition {
     private Equipes equipe1;

@@ -1,3 +1,8 @@
+package modele;
+
+import modele.exceptions.EquipePleineException;
+import modele.exceptions.ParticipantDejaPresentException;
+
 public class Athletes implements Participant{
 
     private String nom;

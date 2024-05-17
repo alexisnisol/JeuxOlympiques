@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-public class VUE extends Application {
+public class Vue extends Application {
 
     @Override
     public void start(Stage primaryStage) {

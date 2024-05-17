@@ -1,8 +1,9 @@
-public class Natation extends Sport{
-    
+package modele.sports;
+public class Athletisme extends Sport{
+
     private int distance;
 
-    public Natation(float coeff, int distance) {
+    public Athletisme(float coeff, int distance) {
         super(coeff);
         this.distance = distance;
     }

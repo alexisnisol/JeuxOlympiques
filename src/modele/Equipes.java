@@ -1,5 +1,9 @@
+package modele;
 import java.util.ArrayList;
 import java.util.List;
+
+import modele.exceptions.EquipePleineException;
+import modele.exceptions.ParticipantDejaPresentException;
 
 public class Equipes implements Participant{
     

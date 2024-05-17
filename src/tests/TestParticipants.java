@@ -1,5 +1,12 @@
+package tests;
 import org.junit.Before;
 import org.junit.Test;
+
+import modele.Athletes;
+import modele.Equipes;
+import modele.Pays;
+import modele.Sexe;
+
 import static org.junit.Assert.*;
 
 public class TestParticipants {

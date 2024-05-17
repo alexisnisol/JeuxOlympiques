@@ -1,10 +1,14 @@
+package tests;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
+import modele.Athletes;
+import modele.Equipes;
+import modele.Pays;
+import modele.Sexe;
 import java.util.Arrays;
-import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class TestPays {
     private Equipes equipe1;

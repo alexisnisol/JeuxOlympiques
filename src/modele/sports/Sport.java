@@ -1,3 +1,4 @@
+package modele.sports;
 public abstract class Sport {
     
     private float coeff;

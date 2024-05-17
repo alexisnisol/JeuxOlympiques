@@ -1,3 +1,4 @@
+package modele;
 public enum Sexe {
     HOMME("M."),
     FEMME("Mme.");

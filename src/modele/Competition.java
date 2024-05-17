@@ -1,5 +1,12 @@
+package modele;
 import java.util.ArrayList;
 import java.util.List;
+
+import modele.exceptions.CompetitionPleineException;
+import modele.exceptions.ParticipantDejaPresentException;
+import modele.exceptions.ParticipantOccupeException;
+import modele.exceptions.SexeCompetitionException;
+import modele.sports.Sport;
 
 public abstract class Competition {
     private int nbParticipantsNecessaire;

@@ -1,3 +1,4 @@
+package modele.sports;
 public class Escrime extends Sport{
 
     private TypeEscrime type;

@@ -1,3 +1,4 @@
+package modele;
 public interface Participant {
 
     /**
