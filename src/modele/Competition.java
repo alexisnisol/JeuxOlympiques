@@ -1,8 +1,12 @@
 package modele;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import modele.exceptions.CompetitionPleineException;
+import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.exceptions.SexeCompetitionException;
@@ -56,7 +60,7 @@ public abstract class Competition {
      * @throws ParticipantOccupeException
      * @throws CompetitionPleineException
      */
-    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException{
+    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException, MauvaisParticipantException{
         if(participant.obtenirSexe() != this.sexe){
             throw new SexeCompetitionException();
         }
@@ -68,15 +72,67 @@ public abstract class Competition {
         }
 
         int nbParticipant = 1; //1 étant l'athlète si le participant n'est pas une équipe.
-        if(participant instanceof Equipes){
+        /*if(participant instanceof Equipes){
             nbParticipant = ((Equipes)participant).getTaille();
-        }
+        }*/
         if(this.lesParticipants.size() + nbParticipant > nbParticipantsNecessaire){
             throw new CompetitionPleineException();
         }
 
-        participant.setCompetitionActuelle(this);
+        /*if(participant instanceof Equipes){
+            for(Athletes a : ((Equipes)participant).getListeAthletes()){
+                a.setCompetitionActuelle(this);
+            }
+        }else{*/
+            participant.setCompetitionActuelle(this);
+        //}
+
         this.lesParticipants.add(participant);
+    }
+
+
+    private boolean estPleine(){
+        System.out.println(this.lesParticipants.size());
+        return this.lesParticipants.size() == this.nbParticipantsNecessaire;
+    }
+
+
+    /**
+     * Joue la compétition, détermine les gagnants et termine la compétition.
+     * @return la liste des participants, ordonnée par leur classement
+     */
+    public List<Participant> jouer() {
+        if(this.estPleine()){
+            List<Participant> gagnants = this.calculerPlacement();
+
+            if(gagnants.size() > 0) gagnants.get(0).getClassement().ajouterMedailleOr();
+            if(gagnants.size() > 1) gagnants.get(1).getClassement().ajouterMedailleArgent();
+            if(gagnants.size() > 2) gagnants.get(2).getClassement().ajouterMedailleBronze();
+            return gagnants;
+        }
+        return null;
+    }
+
+    /**
+     * Calcule les gagnants de la compétition
+     */
+    private List<Participant> calculerPlacement(){
+        for(Participant p : this.lesParticipants){
+            p.participer();
+        }
+
+        List<Participant> place = new ArrayList<>(this.lesParticipants);
+
+        Collections.sort(place, new ComparePerformance());
+        return place;
+    }
+
+    private boolean finirCompetition(){
+        for(Participant p : this.lesParticipants){
+            p.setCompetitionActuelle(null);
+        }
+        this.lesParticipants.clear();
+        return true;
     }
 
 
