@@ -1,6 +1,8 @@
 package modele;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class JeuxOlympiques {
@@ -40,33 +42,19 @@ public class JeuxOlympiques {
     }
     
     /**
-     * Cette Fonction permet de demarrer une competition de la liste de compétitions
-     * 
-     */
-    public void demarrerCompetition(){
-
-    }
-
-    /**
-     * Cette fonction permet d'enregistrer le résultat d'un participant dans les jeux olympiques
-     * @param participant : participant d'une competition ou du jeux olympiques
-     */
-    public void enregistrerResultat(Participant participant){
-        for (Competition competition : lesCompetitions) {
-            if (participant.getCompetitionActuelle() == competition) {
-                competition.getParticipants().add(participant);
-            }
-        }
-    }
-    
-    /**
      * La fonction permet de recuperer le ou les résultats de l'athlète dans toute les compétitions auquelles il a participer
      * @param Participant : le participant que l'on souhaite connaître le résultat 
      * @return on retourne donc ses résultats dans toute ses compétitions
      */
-    public int recupererResultat(Participant participant){
+    public Classement recupererResultat(Participant participant){
         //return participant.getResultat();
-        return 0;
+        return participant.getClassement();
+    }
+
+    public void lancerJeuxOlympiques(){
+        for(Competition competition : lesCompetitions){
+            competition.jouer();
+        }
     }
 
     /**
@@ -78,48 +66,27 @@ public class JeuxOlympiques {
     }
 
     /**
-     * Cette fonction permet de retourner le classement des participants ayant des médailles d'or
-     */
-    public List<Participant> classementMedaillesOr(){
-        List<Participant> medaillesOr = new ArrayList<>();
-        for (Competition compet : lesCompetitions) {
-            for (Participant participant : compet.getParticipants()) {
-                if (participant.getMedailles() == "Or") {
-                    medaillesOr.add(participant);
-                }
-            }
-        }
-        return medaillesOr;
-        }
-
-
-    /**
      * Cette fonction permet de retourner le classement des participants par les médailles
      */
-    public List<Participant> classementMedailles(){
-        List<Participant> classement = new ArrayList<>();
-        for (Competition compet : lesCompetitions) {
-            for (Participant participant : compet.getParticipants()) {
-                if (participant.getMedailles() == "Bronze") {
-                    classement.add(participant);
+    public Map<Pays, Classement> classementMedailles(){
+        Map<Pays, Classement> classementParPays = new HashMap<>();
+        Classement classementPays;
+        for (Competition competition : lesCompetitions){
+            for (Participant participant : competition.getParticipants()){
+                Pays pays = participant.obtenirPays();
+                if(!classementParPays.containsKey(pays)){
+                    classementPays = new Classement();
+                    classementParPays.put(pays, classementPays);
                 }
+
+                classementPays = classementParPays.get(pays);
+                classementPays.ajouterMedailleOr(participant.getClassement().getMedaillesOr());
+                classementPays.ajouterMedailleArgent(participant.getClassement().getMedaillesArgent());
+                classementPays.ajouterMedailleBronze(participant.getClassement().getMedaillesBronze());
+                classementParPays.put(pays, classementPays);
             }
         }
-        for (Competition compet : lesCompetitions) {
-            for (Participant participant : compet.getParticipants()) {
-                if (participant.getMedailles() == "Argent") {
-                    classement.add(participant);
-                }
-            }
-        }
-        for (Competition compet : lesCompetitions) {
-            for (Participant participant : compet.getParticipants()) {
-                if (participant.getMedailles() == "Or") {
-                    classement.add(participant);
-                }
-            }
-        }
-        return classement;
+        return classementParPays;
     }
 
 
