@@ -62,4 +62,15 @@ public class Pays {
         Pays pays = (Pays) o;
         return this.nom.equals(pays.nom);
     }
+
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return this.nom;
+    }
+    
 }
