@@ -5,7 +5,7 @@ public interface Participant {
      * Méthode permettant à un participant de participer à une compétition.
      * @return le score du participant
      */
-    public int participer();
+    public float participer() throws IllegalStateException;
     
     /**
      * Méthode permettant d'obtenir le nom du participant.
@@ -44,11 +44,19 @@ public interface Participant {
     public void setCompetitionActuelle(Competition competition);
 
     /**
-     * Renvoie le nombre de médailles remportées par le participant.
+     * Renvoie le nombre de médailles d'or remportées par le participant.
      *
-     * @return le nombre de médailles remportées par le participant
+     * @return le nombre de médailles d'or remportées par le participant
      */
-    public String getMedailles();
+    public Classement getClassement();
+
+    public int getForce();
+
+    public int getAgilite();
+
+    public int getEndurance();
+
+    public float getPerformance();
 
 } 
     
