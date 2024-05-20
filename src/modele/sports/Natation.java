@@ -1,4 +1,7 @@
 package modele.sports;
+
+import modele.Participant;
+
 public class Natation extends Sport{
     
     private int distance;
@@ -14,6 +17,11 @@ public class Natation extends Sport{
      */
     public int getDistance(){
         return this.distance;
+    }
+
+    @Override
+    public float calculerPerformance(Participant participant) {
+        return ((participant.getAgilite()*3) + (participant.getEndurance()*3) + participant.getForce()) * this.getCoeff();
     }
     
 }

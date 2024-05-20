@@ -1,4 +1,7 @@
 package modele.sports;
+
+import modele.Participant;
+
 public class Escrime extends Sport{
 
     private TypeEscrime type;
@@ -14,5 +17,10 @@ public class Escrime extends Sport{
      */
     public TypeEscrime getType(){
         return this.type;
+    }
+
+    @Override
+    public float calculerPerformance(Participant participant) {
+        return ((participant.getAgilite()*2) + (participant.getEndurance()*2) + (participant.getForce()*5)) * this.getCoeff();
     }
 }
