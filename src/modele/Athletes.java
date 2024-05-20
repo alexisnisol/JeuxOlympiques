@@ -11,24 +11,23 @@ public class Athletes implements Participant{
     private int force;
     private int endurance;
     private int agilite;
-    private String medailles;
-    private int totalMedailles;
+    private Classement classement;
     private Pays pays;
     private Equipes equipe;
     private Competition competitionActuelle;
+    private float performanceActuelle;
 
-    public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, String medailles, int totalMedailles, Pays pays){
+    public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, Pays pays){
         this.nom = nom;
         this.prenom = prenom;
         this.agilite = agilite;
         this.endurance = endurance; 
         this.sexe = sexe;
         this.force = force;
-        this.medailles = medailles;
-        this.totalMedailles = totalMedailles;
         this.pays = pays;
         this.competitionActuelle = null;
         this.equipe = null;
+        this.classement = new Classement();
         this.pays.addAthlete(this);
     }
 
@@ -65,14 +64,16 @@ public class Athletes implements Participant{
      * getter des médailles
      * @return les médailles
      */
-    public String getMedailles() {
-        return this.medailles;
+    @Override
+    public Classement getClassement() {
+        return this.classement;
     }
-
+    
     /**
      * getter de la force
      * @return la force
      */
+    @Override
     public int getForce() {
         return this.force;
     }
@@ -81,6 +82,7 @@ public class Athletes implements Participant{
      * getter de l'endurance
      * @return l'endurance
      */
+    @Override
     public int getEndurance() {
         return this.endurance;
     }
@@ -89,16 +91,9 @@ public class Athletes implements Participant{
      * getter de l'agilité
      * @return l'agilité
      */
+    @Override
     public int getAgilite() {
         return this.agilite;
-    }
-
-    /**
-     * getter du nombre total des médailles
-     * @return les médailles
-     */
-    public int getTotalMedailles() {
-        return this.totalMedailles;
     }
 
     /**
@@ -121,9 +116,12 @@ public class Athletes implements Participant{
 
 
     @Override
-    public int participer() {
-        // TODO A FAIRE, calc coeff sport par stats de lathletes (forces, endurances, agilite)
-        return 0;
+    public float participer() throws IllegalStateException{
+        if(this.competitionActuelle == null){
+            throw new IllegalStateException("L'athlète ne participe à aucune compétition");
+        }
+        this.performanceActuelle = this.competitionActuelle.getSport().calculerPerformance(this);
+        return this.performanceActuelle;
     }
 
     @Override
@@ -157,6 +155,11 @@ public class Athletes implements Participant{
     public Equipes obtenirEquipes() {
         return this.equipe;
     }
+
+    @Override
+    public float getPerformance() {
+        return this.performanceActuelle;
+    }
     
     @Override
     public boolean equals(Object o) {
@@ -171,10 +174,19 @@ public class Athletes implements Participant{
         this.force == athlete.force &&
         this.endurance == athlete.endurance &&
         this.agilite == athlete.agilite &&
-        this.medailles.equals(athlete.medailles) &&
-        this.totalMedailles == athlete.totalMedailles &&
+        this.classement.equals(athlete.classement) &&
         this.pays.equals(athlete.pays) &&
         (this.equipe == null && athlete.equipe == null || this.equipe != null && this.equipe.equals(athlete.equipe)) &&
         (this.competitionActuelle == null && athlete.competitionActuelle == null || this.competitionActuelle != null && this.competitionActuelle.equals(athlete.competitionActuelle));
+    }
+
+    @Override
+    public int hashCode() {
+        return this.nom.hashCode() + this.prenom.hashCode() + this.sexe.hashCode() + this.force + this.endurance + this.agilite + this.pays.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return this.obtenirNom() + ": Pays (" + this.obtenirPays() + "), Agilite(" + this.getAgilite() + "), Endurance(" + this.getEndurance() + "), Force(" + this.getForce() + "), Performance(" + this.getPerformance() + "), Classement (" + this.getClassement() + ")";
     }
 }

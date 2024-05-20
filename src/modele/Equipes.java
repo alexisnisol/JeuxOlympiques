@@ -10,22 +10,21 @@ public class Equipes implements Participant{
     private String nomEquipe;
     private int tailleMax;
     private boolean enRelais;
-    private String medailles;
-    private int totalMedailles;
+    private Classement classement;
     private List<Athletes> listeAthletes;
     private Pays pays;
     private Competition competitionActuelle;
+    private float performanceActuelle;
+    
 
-    public Equipes(String nomEquipe, int tailleMax, boolean enRelais, String medailles, int totalMedailles, Pays pays) {
+    public Equipes(String nomEquipe, int tailleMax, boolean enRelais, Pays pays) {
         this.nomEquipe = nomEquipe;
         this.tailleMax = tailleMax;
         this.enRelais = enRelais;
-        this.medailles = medailles;
-        this.totalMedailles = totalMedailles;
         this.pays = pays;
         this.listeAthletes = new ArrayList<>();
         this.competitionActuelle = null;
-
+        this.classement = new Classement();
         this.pays.addEquipe(this);
     }
 
@@ -71,35 +70,12 @@ public class Equipes implements Participant{
     }
 
     /**
-     * Getter des médailles de l'équipe
-     * @return les médailles de l'équipe
+     * getter des médailles
+     * @return les médailles
      */
-    public String getMedailles() {
-        return medailles;
-    }
-
-    /**
-     * Setter des médailles de l'équipe
-     * @param medailles les médailles de l'équipe
-     */
-    public void setMedailles(String medailles) {
-        this.medailles = medailles;
-    }
-
-    /**
-     * Getter du total de médailles de l'équipe
-     * @return le total de médailles de l'équipe
-     */
-    public int getTotalMedailles() {
-        return totalMedailles;
-    }
-
-    /**
-     * Setter du total de médailles de l'équipe
-     * @param totalMedailles le total de médailles de l'équipe
-     */
-    public void setTotalMedailles(int totalMedailles) {
-        this.totalMedailles = totalMedailles;
+    @Override
+    public Classement getClassement() {
+        return this.classement;
     }
 
     /**
@@ -156,7 +132,8 @@ public class Equipes implements Participant{
      * Calcul la force totale de l'équipe : somme des forces de tous les athlètes
      * @return la force totale de l'équipe
      */
-    public int getTotalForce(){
+    @Override
+    public int getForce(){
         int totalForce = 0;
         for (Athletes ath : this.listeAthletes) {
             totalForce += ath.getForce();
@@ -168,7 +145,8 @@ public class Equipes implements Participant{
      * Calcul l'agilité totale de l'équipe : somme des agilités de tous les athlètes
      * @return l'agilité totale de l'équipe
      */
-    public int getTotalAgilite(){
+    @Override
+    public int getAgilite(){
         int totalAgilite = 0;
         for (Athletes ath : this.listeAthletes) {
             totalAgilite += ath.getAgilite();
@@ -180,7 +158,8 @@ public class Equipes implements Participant{
      * Calcul l'endurance totale de l'équipe : somme des endurances de tous les athlètes
      * @return l'endurance totale de l'équipe
      */
-    public int getTotalEndurance(){
+    @Override
+    public int getEndurance(){
         int totalEndurance = 0;
         for (Athletes ath : this.listeAthletes) {
             totalEndurance += ath.getEndurance();
@@ -189,9 +168,12 @@ public class Equipes implements Participant{
     }
 
     @Override
-    public int participer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'participer'");
+    public float participer() throws IllegalStateException{
+        if(this.competitionActuelle == null){
+            throw new IllegalStateException("L'athlète ne participe à aucune compétition");
+        }
+        this.performanceActuelle = this.competitionActuelle.getSport().calculerPerformance(this);
+        return this.performanceActuelle;
     }
 
     /**
@@ -239,6 +221,12 @@ public class Equipes implements Participant{
 
     
     @Override
+    public float getPerformance() {
+        return this.performanceActuelle;
+    }
+
+    
+    @Override
     public boolean equals(Object o){
         if (o==null){return false;}
         if (o == this) {return true; } 
@@ -251,4 +239,16 @@ public class Equipes implements Participant{
         this.pays.equals(equipe.pays) &&
         this.competitionActuelle.equals(equipe.competitionActuelle);
     }
+
+    @Override
+    public int hashCode() {
+        return this.nomEquipe.hashCode() + this.tailleMax + (this.enRelais ? 34 : 17) + this.pays.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Equipes [nomEquipe=" + nomEquipe + ", tailleMax=" + tailleMax + ", enRelais=" + enRelais + ", pays=" + pays
+                + ", competitionActuelle=" + competitionActuelle + ", performanceActuelle=" + performanceActuelle + "]";
+    }
+
 }
