@@ -92,7 +92,6 @@ public abstract class Competition {
 
 
     private boolean estPleine(){
-        System.out.println(this.lesParticipants.size());
         return this.lesParticipants.size() == this.nbParticipantsNecessaire;
     }
 
