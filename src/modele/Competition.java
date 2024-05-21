@@ -64,7 +64,7 @@ public abstract class Competition {
         if(participant.obtenirSexe() != this.sexe){
             throw new SexeCompetitionException();
         }
-        if(this.lesParticipants.contains(participant)){ //NECESSITE UN EQUALS DANS PARTICIPANT : Participant est une interface -> Faire les equals dans Athletes/Equipes ?
+        if(this.lesParticipants.contains(participant)){
             throw new ParticipantDejaPresentException();
         }
         if(participant.getCompetitionActuelle() != null){
