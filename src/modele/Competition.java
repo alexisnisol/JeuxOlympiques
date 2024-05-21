@@ -150,6 +150,6 @@ public abstract class Competition {
         return this.sexe.equals(c.sexe) && 
         this.nbParticipantsNecessaire == c.nbParticipantsNecessaire &&
         this.sport.equals(c.sport) &&
-        this.lesParticipants.equals(c.lesParticipants); //NECESSITE UN EQUALS DANS PARTICIPANT : Participant est une interface -> Faire les equals dans Athletes/Equipes ?
+        this.lesParticipants.equals(c.lesParticipants);
     }
 }
