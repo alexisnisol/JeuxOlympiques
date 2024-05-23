@@ -5,7 +5,7 @@ DANTEC Malo (Non participation)
 
 FAMILIAR Enzo  
 
-MULIKIHAAMEA Leone
+MULIKIHAAMEA Leone (Non participation)
 
 NISOL Alexis  
 
