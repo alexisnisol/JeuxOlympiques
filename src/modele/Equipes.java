@@ -4,11 +4,13 @@ import java.util.List;
 
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.ParticipantDejaPresentException;
+import modele.sports.Sport;
 
 public class Equipes implements Participant{
     
     private String nomEquipe;
     private int tailleMax;
+    private Sport sport;
     private boolean enRelais;
     private Classement classement;
     private List<Athletes> listeAthletes;
@@ -17,9 +19,10 @@ public class Equipes implements Participant{
     private float performanceActuelle;
     
 
-    public Equipes(String nomEquipe, int tailleMax, boolean enRelais, Pays pays) {
+    public Equipes(String nomEquipe, Sport sport, int tailleMax, boolean enRelais, Pays pays) {
         this.nomEquipe = nomEquipe;
         this.tailleMax = tailleMax;
+        this.sport = sport;
         this.enRelais = enRelais;
         this.pays = pays;
         this.listeAthletes = new ArrayList<>();
@@ -50,6 +53,14 @@ public class Equipes implements Participant{
      */
     public int getTaille() {
         return this.listeAthletes.size();
+    }
+
+    /**
+     * Retourne le sport de l'équipe.
+     * @return le sport de l'équipe.
+     */
+    public Sport getSport() {
+        return this.sport;
     }
 
 
@@ -100,6 +111,10 @@ public class Equipes implements Participant{
             throw new ParticipantDejaPresentException();
         }
         this.listeAthletes.add(athlete);
+    }
+
+    public boolean estPleine(){
+        return this.listeAthletes.size() == this.tailleMax;
     }
 
     /**
@@ -224,7 +239,6 @@ public class Equipes implements Participant{
     public float getPerformance() {
         return this.performanceActuelle;
     }
-
     
     @Override
     public boolean equals(Object o){
@@ -234,10 +248,10 @@ public class Equipes implements Participant{
 
         Equipes equipe = (Equipes) o;
         return this.nomEquipe.equals(equipe.nomEquipe) &&
+        this.sport.equals(equipe.sport) &&
         this.tailleMax == equipe.tailleMax &&
         this.enRelais == equipe.enRelais &&
-        this.pays.equals(equipe.pays) &&
-        this.competitionActuelle.equals(equipe.competitionActuelle);
+        this.pays.equals(equipe.pays);
     }
 
     @Override
@@ -247,8 +261,7 @@ public class Equipes implements Participant{
 
     @Override
     public String toString() {
-        return "Equipes [nomEquipe=" + nomEquipe + ", tailleMax=" + tailleMax + ", enRelais=" + enRelais + ", pays=" + pays
-                + ", competitionActuelle=" + competitionActuelle + ", performanceActuelle=" + performanceActuelle + "]";
+        return "L'équipe " + this.nomEquipe + " de " + this.pays.getNom() + " en " + this.sport.getNom() + " a " + this.listeAthletes.size() + " athlètes.";
     }
 
 }
