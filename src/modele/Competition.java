@@ -151,4 +151,14 @@ public abstract class Competition {
         this.sport.equals(c.sport) &&
         this.lesParticipants.equals(c.lesParticipants);
     }
+
+    @Override
+    public int hashCode() {
+        return this.sexe.hashCode() + this.nbParticipantsNecessaire + this.sport.hashCode() + this.lesParticipants.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Compétition : " + this.sport + " " + this.sexe + " " + this.nbParticipantsNecessaire + " participants";
+    }
 }
