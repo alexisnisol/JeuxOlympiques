@@ -13,10 +13,10 @@ import modele.exceptions.SexeCompetitionException;
 import modele.sports.Sport;
 
 public abstract class Competition {
-    private int nbParticipantsNecessaire;
-    private Sexe sexe;
-    private List<Participant> lesParticipants;
-    private Sport sport;
+    protected int nbParticipantsNecessaire;
+    protected Sexe sexe;
+    protected List<Participant> lesParticipants;
+    protected Sport sport;
     
     
     public Competition(int nbParticipantsNecessaire, Sexe sexe, Sport sport) {
@@ -91,7 +91,7 @@ public abstract class Competition {
     }
 
 
-    private boolean estPleine(){
+    public boolean estPleine(){
         return this.lesParticipants.size() == this.nbParticipantsNecessaire;
     }
 
@@ -101,15 +101,15 @@ public abstract class Competition {
      * @return la liste des participants, ordonnée par leur classement
      */
     public List<Participant> jouer() {
-        if(this.estPleine()){
-            List<Participant> gagnants = this.calculerPlacement();
+        //if(this.estPleine()){
+        List<Participant> gagnants = this.calculerPlacement();
 
-            if(gagnants.size() > 0) gagnants.get(0).getClassement().ajouterMedailleOr();
-            if(gagnants.size() > 1) gagnants.get(1).getClassement().ajouterMedailleArgent();
-            if(gagnants.size() > 2) gagnants.get(2).getClassement().ajouterMedailleBronze();
-            return gagnants;
-        }
-        return null;
+        if(gagnants.size() > 0) gagnants.get(0).getClassement().ajouterMedailleOr();
+        if(gagnants.size() > 1) gagnants.get(1).getClassement().ajouterMedailleArgent();
+        if(gagnants.size() > 2) gagnants.get(2).getClassement().ajouterMedailleBronze();
+        return gagnants;
+        //}
+        //return null;
     }
 
     /**
@@ -147,8 +147,16 @@ public abstract class Competition {
 
         Competition c = (Competition) o;
         return this.sexe.equals(c.sexe) && 
-        this.nbParticipantsNecessaire == c.nbParticipantsNecessaire &&
-        this.sport.equals(c.sport) &&
-        this.lesParticipants.equals(c.lesParticipants);
+        this.sport.equals(c.sport);
+    }
+
+    @Override
+    public int hashCode(){
+        return this.sexe.hashCode() + this.sport.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Competition [" + lesParticipants.size() + "/" + this.nbParticipantsNecessaire + " Participants, sexe=" + sexe + ", sport=" + sport + "]";
     }
 }
