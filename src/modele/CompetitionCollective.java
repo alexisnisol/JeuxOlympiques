@@ -22,4 +22,10 @@ public class CompetitionCollective extends Competition{
         super.enregistrerParticipant(participant);
     }
 
+    
+    @Override
+    public String toString() {
+        return "La Competition Collective " + this.sexe + " de " + sport.getNom() + " a " + lesParticipants.size() + "/" + this.nbParticipantsNecessaire + " Participants";
+    }
+
 }

@@ -22,4 +22,8 @@ public class CompetitionIndividuelle extends Competition {
         super.enregistrerParticipant(participant);
     }
 
+    @Override
+    public String toString() {
+        return "La Competition Individuelle " + this.sexe + " de " + sport.getNom() + " a " + lesParticipants.size() + "/" + this.nbParticipantsNecessaire + " Participants";
+    }
 }
