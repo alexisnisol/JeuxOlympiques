@@ -174,7 +174,6 @@ public class Athletes implements Participant{
         this.force == athlete.force &&
         this.endurance == athlete.endurance &&
         this.agilite == athlete.agilite &&
-        this.classement.equals(athlete.classement) &&
         this.pays.equals(athlete.pays) &&
         (this.equipe == null && athlete.equipe == null || this.equipe != null && this.equipe.equals(athlete.equipe)) &&
         (this.competitionActuelle == null && athlete.competitionActuelle == null || this.competitionActuelle != null && this.competitionActuelle.equals(athlete.competitionActuelle));
