@@ -70,7 +70,7 @@ public class Pays {
 
     @Override
     public String toString() {
-        return this.nom;
+        return this.nom + " : " + this.listAthletes.size() + " athletes, " + this.listEquipes.size() + " équipes";
     }
     
 }
