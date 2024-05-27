@@ -19,10 +19,10 @@ public class TestParticipants {
     @Before
     public void setUp() {
         pays = new Pays("France");
-        equipe = new Equipes("Équipe de test", 5, false, "", 0, pays);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, pays);
-        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, pays);
-        athlete3 = new Athletes("Test2", "Test2", Sexe.FEMME, 30, 35, 40, "", 0, pays);
+        equipe = new Equipes("Équipe de test", 5, false, pays);
+        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, pays);
+        athlete3 = new Athletes("Test2", "Test2", Sexe.FEMME, 30, 35, 40, pays);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class TestParticipants {
     @Test
     public void testObtenirSexe() {
         assertEquals(Sexe.HOMME, equipe.obtenirSexe());
-        Equipes equipeFemme = new Equipes("Équipe de test2", 5, false, "", 0, pays);
+        Equipes equipeFemme = new Equipes("Équipe de test2", 5, false, pays);
 
         athlete1.rejoindreEquipe(equipeFemme); // HOMME
         assertEquals(Sexe.HOMME, equipeFemme.obtenirSexe());

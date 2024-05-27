@@ -70,7 +70,7 @@ public class Pays {
 
     @Override
     public String toString() {
-        return this.nom;
+        return "Pays : " + this.nom + " avec " + this.listAthletes.size() + " athlètes et " + this.listEquipes.size() + " équipes.";
     }
     
 }

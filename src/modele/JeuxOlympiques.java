@@ -122,9 +122,6 @@ public class JeuxOlympiques {
 
     @Override
     public String toString() {
-        return "JeuxOlympiques{" +
-                "annee=" + this.annee +
-                ", nbEpreuves=" + this.nbEpreuves +
-                ", lesCompetitions=" + this.lesCompetitions + "}";
+        return "Les jeux olympiques de " + this.annee + " ont " + this.nbEpreuves + " épreuves." + "\n" + "Les compétitions sont : " + this.lesCompetitions + "\n";
     }
 }

@@ -247,8 +247,10 @@ public class Equipes implements Participant{
 
     @Override
     public String toString() {
-        return "Equipes [nomEquipe=" + nomEquipe + ", tailleMax=" + tailleMax + ", enRelais=" + enRelais + ", pays=" + pays
-                + ", competitionActuelle=" + competitionActuelle + ", performanceActuelle=" + performanceActuelle + "]";
+        return "Equipe : " + this.nomEquipe + " (" + this.pays + ")" + " Elle contient " + this.listeAthletes.size() + "athlètes" + " et participe à la compétition : " 
+        + this.competitionActuelle + " avec une performance de " + this.performanceActuelle+ " points"+ " et est classée : " + this.classement.toString()+ "."
+        + " Elle est composée de : " + this.listeAthletes.toString() + "."+ " Elle est en relais : " + this.enRelais + "."+ " Taille maximale : " + this.tailleMax + "."
+        + " Force totale : " + this.getForce() + "." + " Agilité totale : " + this.getAgilite() + "." + " Endurance totale : " + this.getEndurance() + ".";
     }
 
 }

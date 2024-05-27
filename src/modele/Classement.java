@@ -55,7 +55,7 @@ public class Classement {
 
     @Override
     public String toString() {
-        return "Classement{" + "medaillesOr=" + medaillesOr + ", medaillesArgent=" + medaillesArgent + ", medaillesBronze=" + medaillesBronze + '}';
+        return "Voici le classement : " + this.medaillesOr + " médailles d'or, " + this.medaillesArgent + " médailles d'argent, " + this.medaillesBronze + " médailles de bronze.";
     }
 
     @Override

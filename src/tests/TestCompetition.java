@@ -8,6 +8,7 @@ import modele.Competition;
 import modele.CompetitionCollective;
 import modele.CompetitionIndividuelle;
 import modele.exceptions.CompetitionPleineException;
+import modele.exceptions.MauvaisParticipantException;
 import modele.Equipes;
 import modele.sports.Natation;
 import modele.exceptions.ParticipantDejaPresentException;
@@ -37,18 +38,18 @@ public class TestCompetition {
         france = new Pays("France");
         usa = new Pays("Etats Unis");
 
-        equipe1 = new Equipes("Équipe de test", 5, false, "", 0, france);
-        equipe2 = new Equipes("Équipe de test 2", 10, true, "", 0, france);
-        equipe3 = new Equipes("Équipe de test 3", 5, false, "", 0, france);
-        equipe4 = new Equipes("Équipe de test 4", 10, true, "", 0, usa);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        equipe1 = new Equipes("Équipe de test", 5, false, france);
+        equipe2 = new Equipes("Équipe de test 2", 10, true, france);
+        equipe3 = new Equipes("Équipe de test 3", 5, false, france);
+        equipe4 = new Equipes("Équipe de test 4", 10, true, usa);
+        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, france);
         athlete1.rejoindreEquipe(equipe1);
-        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, usa);
+        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, usa);
         athlete2.rejoindreEquipe(equipe4);
         
-        athlete3 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        athlete3 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, france);
         athlete3.rejoindreEquipe(equipe1);
-        athlete4 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        athlete4 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, france);
         athlete4.rejoindreEquipe(equipe1);
 
         competition1 = new CompetitionCollective(2, Sexe.HOMME, new Athletisme(4, 1000));
@@ -57,7 +58,7 @@ public class TestCompetition {
 
 
     @Test
-    public void testEnregistrerParticipant() {
+    public void testEnregistrerParticipant() throws MauvaisParticipantException {
         boolean thrown;
         try {
             this.competition1.enregistrerParticipant(athlete1);

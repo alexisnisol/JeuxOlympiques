@@ -187,6 +187,7 @@ public class Athletes implements Participant{
 
     @Override
     public String toString() {
-        return this.obtenirNom() + ": Pays (" + this.obtenirPays() + "), Agilite(" + this.getAgilite() + "), Endurance(" + this.getEndurance() + "), Force(" + this.getForce() + "), Performance(" + this.getPerformance() + "), Classement (" + this.getClassement() + ")";
+        return this.nom + " " +this.prenom + " (" + this.sexe + ") " + " Pays : " + this.pays + " Equipe : " + this.equipe + " Performance : " + this.performanceActuelle + " Classement : " + this.classement
+        + " Force : " + this.force + " Endurance : " + this.endurance + " Agilité : " + this.agilite+ "\n" + "Compétition actuelle : " + this.competitionActuelle + "\n" + "Performance actuelle : " + this.performanceActuelle;
     }
 }

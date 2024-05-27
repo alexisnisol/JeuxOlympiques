@@ -17,8 +17,8 @@ public class TestAthletes {
     @Before
     public void setUp() {
         pays = new Pays("France");
-        equipe = new Equipes("Équipe de test", 5, false, "", 0, pays);
-        athlete = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, pays);
+        equipe = new Equipes("Équipe de test", 5, false, pays);
+        athlete = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete.rejoindreEquipe(equipe);
     }
 
