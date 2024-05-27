@@ -6,8 +6,8 @@ public class Athletisme extends Sport{
 
     private int distance;
 
-    public Athletisme(float coeff, int distance) {
-        super(coeff);
+    public Athletisme(String nom, boolean enEquipe, int distance, int taille) {
+        super(nom, enEquipe, taille);
         this.distance = distance;
     }
 
@@ -21,7 +21,7 @@ public class Athletisme extends Sport{
 
     @Override
     public float calculerPerformance(Participant participant) {
-        return ((participant.getAgilite()*2) + (participant.getEndurance()*5) + participant.getForce()) * this.getCoeff();
+        return ((participant.getAgilite()*2) + (participant.getEndurance()*5) + participant.getForce());
     }
     
 }

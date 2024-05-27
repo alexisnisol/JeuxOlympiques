@@ -6,8 +6,8 @@ public class Escrime extends Sport{
 
     private TypeEscrime type;
 
-    public Escrime(float coeff,TypeEscrime type) {
-        super(coeff);
+    public Escrime(String nom, boolean enEquipe, TypeEscrime type, int taille) {
+        super(nom, enEquipe, taille);
         this.type = type;
     }
 
@@ -21,6 +21,6 @@ public class Escrime extends Sport{
 
     @Override
     public float calculerPerformance(Participant participant) {
-        return ((participant.getAgilite()*2) + (participant.getEndurance()*2) + (participant.getForce()*5)) * this.getCoeff();
+        return ((participant.getAgilite()*2) + (participant.getEndurance()*2) + (participant.getForce()*5));
     }
 }
