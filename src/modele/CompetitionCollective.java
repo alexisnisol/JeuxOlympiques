@@ -1,6 +1,5 @@
 package modele;
 
-import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
@@ -9,13 +8,13 @@ import modele.sports.Sport;
 
 public class CompetitionCollective extends Competition{
 
-    public CompetitionCollective(int nbParticipant, Sexe sexe, Sport sport) {
-        super(nbParticipant, sexe, sport);
+    public CompetitionCollective(Sexe sexe, Sport sport) {
+        super(sexe, sport);
     }
     
     
     @Override
-    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException, MauvaisParticipantException{
+    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, MauvaisParticipantException{
         if(participant instanceof Athletes){
             throw new MauvaisParticipantException();
         }
@@ -25,7 +24,7 @@ public class CompetitionCollective extends Competition{
     
     @Override
     public String toString() {
-        return "La Competition Collective " + this.sexe + " de " + sport.getNom() + " a " + lesParticipants.size() + "/" + this.nbParticipantsNecessaire + " Participants";
+        return "La Competition Collective " + this.sexe + " de " + sport.getNom() + " a " + lesParticipants.size() + " Participants";
     }
 
 }

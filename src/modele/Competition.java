@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
@@ -13,26 +12,15 @@ import modele.exceptions.SexeCompetitionException;
 import modele.sports.Sport;
 
 public abstract class Competition {
-    protected int nbParticipantsNecessaire;
     protected Sexe sexe;
     protected List<Participant> lesParticipants;
     protected Sport sport;
     
     
-    public Competition(int nbParticipantsNecessaire, Sexe sexe, Sport sport) {
-        this.nbParticipantsNecessaire = nbParticipantsNecessaire;
+    public Competition(Sexe sexe, Sport sport) {
         this.sexe = sexe;
         this.lesParticipants = new ArrayList<>();
         this.sport = sport;
-    }
-
-
-    /**
-     * Retourne le nombre de participants nécessaire pour la compétition
-     * @return le nombre de participants
-     */
-    public int getNbParticipantsNecessaire() {
-        return this.nbParticipantsNecessaire;
     }
 
     /**
@@ -42,7 +30,6 @@ public abstract class Competition {
     public Sexe getSexe() {
         return this.sexe;
     }
-
 
     /**
      * Retourne la liste des participants de la compétition
@@ -60,7 +47,7 @@ public abstract class Competition {
      * @throws ParticipantOccupeException
      * @throws CompetitionPleineException
      */
-    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException, MauvaisParticipantException{
+    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, MauvaisParticipantException{
         if(participant.obtenirSexe() != this.sexe){
             throw new SexeCompetitionException();
         }
@@ -71,13 +58,6 @@ public abstract class Competition {
             throw new ParticipantOccupeException();
         }
 
-        int nbParticipant = 1; //1 étant l'athlète si le participant n'est pas une équipe.
-        /*if(participant instanceof Equipes){
-            nbParticipant = ((Equipes)participant).getTaille();
-        }*/
-        if(this.lesParticipants.size() + nbParticipant > nbParticipantsNecessaire){
-            throw new CompetitionPleineException();
-        }
 
         /*if(participant instanceof Equipes){
             for(Athletes a : ((Equipes)participant).getListeAthletes()){
@@ -89,12 +69,6 @@ public abstract class Competition {
 
         this.lesParticipants.add(participant);
     }
-
-
-    public boolean estPleine(){
-        return this.lesParticipants.size() == this.nbParticipantsNecessaire;
-    }
-
 
     /**
      * Joue la compétition, détermine les gagnants et termine la compétition.
@@ -157,6 +131,6 @@ public abstract class Competition {
 
     @Override
     public String toString() {
-        return "Competition [" + lesParticipants.size() + "/" + this.nbParticipantsNecessaire + " Participants, sexe=" + sexe + ", sport=" + sport + "]";
+        return "Competition [" + lesParticipants.size() + " Participants, sexe=" + sexe + ", sport=" + sport.getNom() + "]";
     }
 }

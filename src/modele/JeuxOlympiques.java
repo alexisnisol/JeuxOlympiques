@@ -4,13 +4,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-
-import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
@@ -184,7 +179,7 @@ public class JeuxOlympiques {
             Athletes athlete1 = entry.getKey();
             Sport sport = entry.getValue();
             if(!sport.isEnEquipe()){
-                CompetitionIndividuelle competition = new CompetitionIndividuelle(400, athlete1.obtenirSexe(), sport);
+                CompetitionIndividuelle competition = new CompetitionIndividuelle(athlete1.obtenirSexe(), sport);
                 genererCompetition(competition, athlete1, competitions);
             }
         }
@@ -193,7 +188,7 @@ public class JeuxOlympiques {
          * On crée les compétitions collectives en fonction des équipes générées en amont, à la lecture du csv.
          */
         for(Equipes equipe : listeEquipes){
-            CompetitionCollective competition = new CompetitionCollective(400, equipe.obtenirSexe(), equipe.getSport());
+            CompetitionCollective competition = new CompetitionCollective(equipe.obtenirSexe(), equipe.getSport());
             genererCompetition(competition, equipe, competitions);
         }
 
@@ -223,7 +218,7 @@ public class JeuxOlympiques {
                 competition.enregistrerParticipant(participant);
                 competitions.set(index, competition);
             }
-        }  catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | CompetitionPleineException | MauvaisParticipantException e) {
+        }  catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException e) {
             System.out.println("Impossible d'ajouter le participant " + participant + " à la compétition " + competition);
         }
     }

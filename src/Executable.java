@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Map;
 
 import modele.Athletes;
 import modele.Competition;
@@ -27,14 +26,15 @@ public class Executable {
         Athletes c = new Athletes("John", "Doe", Sexe.HOMME, 8, 20, 13, usa);
         Athletes d = new Athletes("AA", "BB", Sexe.HOMME, 10, 8, 10, usa);
         
-        Equipes e1 = new Equipes("Equipe1", 3, false, france);
+        VolleyBall sport = new VolleyBall("VolleyBall", false, 6);
+        Equipes e1 = new Equipes("Equipe1", sport, 3, false, france);
         a.rejoindreEquipe(e1);
         b.rejoindreEquipe(e1);
-        Equipes e2 = new Equipes("Equipe2", 3, false, france);
+        Equipes e2 = new Equipes("Equipe2", sport, 3, false, france);
         c.rejoindreEquipe(e2);
         d.rejoindreEquipe(e2);
 
-        Competition compet = new CompetitionIndividuelle(3, Sexe.HOMME, new Athletisme(5, 100));
+        Competition compet = new CompetitionIndividuelle(Sexe.HOMME, new Athletisme("Athletisme", false, 100, -1));
         jo.enregistrerCompetition(compet);
         try {
             compet.enregistrerParticipant(a);
@@ -55,7 +55,7 @@ public class Executable {
         List<Participant> resCompet = compet.jouer();
         System.out.println(resCompet);
         
-        Competition competCollective = new CompetitionCollective(2, Sexe.HOMME, new VolleyBall(2));
+        Competition competCollective = new CompetitionCollective(Sexe.HOMME, sport);
         jo.enregistrerCompetition(competCollective);
         try {
             competCollective.enregistrerParticipant(e1);
