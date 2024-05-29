@@ -6,8 +6,8 @@ public class Natation extends Sport{
     
     private int distance;
 
-    public Natation(float coeff, int distance) {
-        super(coeff);
+    public Natation(String nom, boolean enEquipe, int distance, int taille) {
+        super(nom, enEquipe, taille);
         this.distance = distance;
     }
 
@@ -21,7 +21,7 @@ public class Natation extends Sport{
 
     @Override
     public float calculerPerformance(Participant participant) {
-        return ((participant.getAgilite()*3) + (participant.getEndurance()*3) + participant.getForce()) * this.getCoeff();
+        return ((participant.getAgilite()*3) + (participant.getEndurance()*3) + participant.getForce());
     }
     
 }

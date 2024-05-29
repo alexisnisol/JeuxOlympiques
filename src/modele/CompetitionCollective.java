@@ -9,17 +9,23 @@ import modele.sports.Sport;
 
 public class CompetitionCollective extends Competition{
 
-    public CompetitionCollective(int nbParticipant, Sexe sexe, Sport sport) {
-        super(nbParticipant, sexe, sport);
+    public CompetitionCollective(Sexe sexe, Sport sport) {
+        super(sexe, sport);
     }
     
     
     @Override
-    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException, MauvaisParticipantException{
+    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, MauvaisParticipantException, CompetitionPleineException{
         if(participant instanceof Athletes){
             throw new MauvaisParticipantException();
         }
         super.enregistrerParticipant(participant);
+    }
+
+    
+    @Override
+    public String toString() {
+        return "La Competition Collective " + this.sexe + " de " + sport.getNom() + " a " + lesParticipants.size() + " Participants";
     }
 
 }

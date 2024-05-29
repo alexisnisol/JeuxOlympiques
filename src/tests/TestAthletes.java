@@ -6,6 +6,9 @@ import modele.Athletes;
 import modele.Equipes;
 import modele.Pays;
 import modele.Sexe;
+import modele.sports.Sport;
+import modele.sports.VolleyBall;
+
 import static org.junit.Assert.*;
 
 
@@ -17,10 +20,11 @@ public class TestAthletes {
 
     @Before
     public void setUp() {
-        pays = new Pays("France"); // Crée un objet Pays avec le nom "France"
-        equipe = new Equipes("Équipe de test", 5, false, pays); // Crée un objet Equipes avec le nom "Équipe de test", 5 membres, pas de capitaine et le pays "France"
-        athlete = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays); // Crée un objet Athletes avec le nom "Doe", le prénom "John", le sexe "HOMME", la force 50, l'endurance 60, l'agilité 70 et le pays "France"
-        athlete.rejoindreEquipe(equipe); // Ajoute l'objet Equipes à l'objet Athletes
+        pays = new Pays("France");
+        VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
+        equipe = new Equipes("Équipe de test", sport, 5, false, pays);
+        athlete = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete.rejoindreEquipe(equipe);
     }
 
     @Test

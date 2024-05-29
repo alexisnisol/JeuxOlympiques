@@ -4,28 +4,46 @@ import modele.Participant;
 
 public abstract class Sport {
     
-    private float coeff;
+    private String nom;
+    private boolean enEquipe;
+    private int taille;
 
-    public Sport(float coeff){
-        this.coeff = coeff;
-    }
-    
-    /**
-     * getter du coeff du sport
-     * @return le coeff
-     */
-    public float getCoeff(){
-        return this.coeff;
+    public Sport(String nom, boolean enEquipe, int taille){
+        this.nom = nom;
+        this.enEquipe = enEquipe;
+        this.taille = taille;
     }
 
     public abstract float calculerPerformance(Participant participant);
 
+    public String getNom() {
+        return nom;
+    }
+
+    public boolean isEnEquipe() {
+        return enEquipe;
+    }
+
+    public int getTaille() {
+        return taille;
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (o==null){return false;}
-        if (o == this) {return true; } 
-        if (!(o instanceof Sport)) {return false;}
-        Sport s = (Sport) o;
-        return this.coeff == s.coeff;
+    public boolean equals(Object object){
+        if (object == null) return false;
+        if (object == this) return true;
+        if (!(object instanceof Sport)) return false;
+        Sport sport = (Sport) object;
+        return this.nom.equals(sport.getNom());
+    }
+
+    @Override
+    public int hashCode(){
+        return this.nom.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Sport [nom=" + nom + ", enEquipe=" + enEquipe + "]";
     }
 }
