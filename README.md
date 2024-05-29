@@ -3,9 +3,7 @@
 ### groupe 1B
 
 NISOL Alexis  
-FAMILIAR Enzo  
-MULIKIHAAMEA Leone (Non participation)  
-DANTEC Malo (Non participation)
+FAMILIAR Enzo
 
 
 ### Compilation
