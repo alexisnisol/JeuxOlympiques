@@ -1,6 +1,4 @@
 import java.util.List;
-import java.util.Map;
-
 import modele.Athletes;
 import modele.Competition;
 import modele.CompetitionCollective;
@@ -17,7 +15,7 @@ public class Executable {
 
     public static void main(String[] args) {
         JeuxOlympiques jo = new JeuxOlympiques(2024, 10);
-        System.out.println(jo);
+        
 
         Pays france = new Pays("France");
         Pays usa = new Pays("USA");
@@ -53,7 +51,7 @@ public class Executable {
         }
 
         List<Participant> resCompet = compet.jouer();
-        System.out.println(resCompet);
+        //System.out.println(resCompet);
         
         Competition competCollective = new CompetitionCollective(2, Sexe.HOMME, new VolleyBall(2));
         jo.enregistrerCompetition(competCollective);
@@ -69,7 +67,7 @@ public class Executable {
         }
 
         resCompet = competCollective.jouer();
-        System.out.println(resCompet);
+        //System.out.println(resCompet);
 
         System.out.println("CLASSEMENT MEDAILLES : " + jo.classementMedailles());
 
