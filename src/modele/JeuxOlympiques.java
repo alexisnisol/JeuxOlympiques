@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+import modele.sports.Athletisme;
+import modele.sports.VolleyBall;
+import modele.sports.Sport;
+import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
@@ -218,7 +223,7 @@ public class JeuxOlympiques {
                 competition.enregistrerParticipant(participant);
                 competitions.set(index, competition);
             }
-        }  catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException e) {
+        }  catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException |CompetitionPleineException e) {
             System.out.println("Impossible d'ajouter le participant " + participant + " à la compétition " + competition);
         }
     }
@@ -300,9 +305,6 @@ public class JeuxOlympiques {
 
     @Override
     public String toString() {
-        return "JeuxOlympiques{" +
-                "annee=" + this.annee +
-                ", nbEpreuves=" + this.nbEpreuves +
-                ", lesCompetitions=" + this.lesCompetitions + "}";
+        return "Les jeux olympiques de " + this.annee + " ont " + this.nbEpreuves + " épreuves." + "\n" + "Les compétitions sont : " + this.lesCompetitions + "\n";
     }
 }

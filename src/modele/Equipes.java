@@ -1,10 +1,12 @@
 package modele;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.sports.Sport;
+
+
 
 public class Equipes implements Participant{
     
@@ -261,7 +263,10 @@ public class Equipes implements Participant{
 
     @Override
     public String toString() {
-        return "L'équipe " + this.nomEquipe + " de " + this.pays.getNom() + " en " + this.sport.getNom() + " a " + this.listeAthletes.size() + " athlètes.";
+        return "Equipe : " + this.nomEquipe + " (" + this.pays + ")" + " Elle contient " + this.listeAthletes.size() + "athlètes" + " et participe à la compétition : " 
+        + this.competitionActuelle + " avec une performance de " + this.performanceActuelle+ " points"+ " et est classée : " + this.classement.toString()+ "."
+        + " Elle est composée de : " + this.listeAthletes.toString() + "."+ " Elle est en relais : " + this.enRelais + "."+ " Taille maximale : " + this.tailleMax + "."
+        + " Force totale : " + this.getForce() + "." + " Agilité totale : " + this.getAgilite() + "." + " Endurance totale : " + this.getEndurance() + ".";
     }
 
 }

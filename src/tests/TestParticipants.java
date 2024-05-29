@@ -46,6 +46,11 @@ public class TestParticipants {
         assertEquals(Sexe.FEMME, equipeFemme.obtenirSexe()); // Si il y a plus de femme que d'homme, on récupère le sexe le plus présent dans l'équipe pour définir le sexe de l'équipe.
     }
 
+    /*
+     * Permet de tester la méthode obtenirPays de la classe Equipes.
+     * On vérifie que le pays de l'équipe est bien celui attendu.
+     * On vérifie que le pays de l'athlète est bien celui attendu.
+     */
     @Test
     public void testObtenirPays() {
         assertEquals(pays, equipe.obtenirPays());
@@ -55,6 +60,11 @@ public class TestParticipants {
     }
 
 
+    /*
+     * Permet de tester la méthode obtenirEquipes de la classe Athletes.
+     * On vérifie que l'équipe de l'athlète est bien celle attendue.
+     * On vérifie que l'équipe de l'équipe est bien celle attendue.
+     */
     @Test
     public void testObtenirEquipe() {
         assertEquals(equipe, equipe.obtenirEquipes());

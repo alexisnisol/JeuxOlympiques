@@ -1,5 +1,6 @@
 package modele;
 
+import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
@@ -14,7 +15,7 @@ public class CompetitionCollective extends Competition{
     
     
     @Override
-    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, MauvaisParticipantException{
+    public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, MauvaisParticipantException, CompetitionPleineException{
         if(participant instanceof Athletes){
             throw new MauvaisParticipantException();
         }

@@ -1,13 +1,14 @@
 package tests;
 import org.junit.Before;
 import org.junit.Test;
-
 import modele.Athletes;
 import modele.sports.Athletisme;
 import modele.Competition;
 import modele.CompetitionCollective;
 import modele.CompetitionIndividuelle;
+import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.MauvaisParticipantException;
+import java.util.List;
 import modele.Equipes;
 import modele.sports.Natation;
 import modele.sports.VolleyBall;
@@ -37,7 +38,6 @@ public class TestCompetition {
     public void setUp() {
         france = new Pays("France");
         usa = new Pays("Etats Unis");
-
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
         equipe1 = new Equipes("Équipe de test", sport, 5, false,france);
         equipe2 = new Equipes("Équipe de test 2", sport, 10, true,  france);
@@ -57,9 +57,12 @@ public class TestCompetition {
         competition2 = new CompetitionIndividuelle(Sexe.HOMME, new Natation("Natation 100 brasse", false, 100, -1));
     }
 
-
+    /**
+     * Teste la méthode enregistrerParticipant de la classe Competition.
+     * Vérifie si les exceptions sont correctement gérées.
+     */
     @Test
-    public void testEnregistrerParticipant() {
+    public void testEnregistrerParticipant() throws MauvaisParticipantException {
         boolean thrown;
         try {
             this.competition1.enregistrerParticipant(athlete1);
@@ -67,7 +70,7 @@ public class TestCompetition {
         } catch (Exception e) {
             thrown = true;
         }
-        assertFalse(thrown);
+        assertTrue(thrown);
 
         try {
             this.competition1.enregistrerParticipant(athlete3);
@@ -77,7 +80,19 @@ public class TestCompetition {
             thrown = true;
         }
         assertFalse(thrown);
+        
+        try {
+            this.competition1.enregistrerParticipant(athlete4);
+            thrown = false;
+        }catch (ParticipantOccupeException e) {}
+        catch (SexeCompetitionException e) {}
+        catch (ParticipantDejaPresentException e) {} 
+        catch (CompetitionPleineException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
 
+        
         try {
             this.competition1.enregistrerParticipant(athlete2);
             thrown = false;
@@ -86,7 +101,7 @@ public class TestCompetition {
             thrown = true;
         }
         catch (ParticipantDejaPresentException e) {} 
-        catch (MauvaisParticipantException e) {}
+        catch (CompetitionPleineException e) {}
         assertTrue(thrown);
 
 
@@ -95,10 +110,10 @@ public class TestCompetition {
             thrown = false;
         } catch (ParticipantOccupeException e) {}
         catch (SexeCompetitionException e) {}
-        catch (MauvaisParticipantException e) {}
         catch (ParticipantDejaPresentException e) {
             thrown = true;
         } 
+        catch (CompetitionPleineException e) {}
         assertTrue(thrown);
         
 
@@ -109,8 +124,8 @@ public class TestCompetition {
             thrown = true;
         }
         catch (SexeCompetitionException e) {}
-        catch (MauvaisParticipantException e) {}
         catch (ParticipantDejaPresentException e) {} 
+        catch (CompetitionPleineException e) {}
 
         assertTrue(thrown);
 
@@ -122,9 +137,22 @@ public class TestCompetition {
             thrown = true;
         }
         catch (SexeCompetitionException e) {}
-        catch (MauvaisParticipantException e) {}
         catch (ParticipantDejaPresentException e) {} 
+        catch (CompetitionPleineException e) {}
 
+        assertTrue(thrown);
+
+
+        try {
+            this.competition1.enregistrerParticipant(equipe1);
+            thrown = false;
+        } 
+        catch (ParticipantOccupeException e) {}
+        catch (SexeCompetitionException e) {}
+        catch (ParticipantDejaPresentException e) {} 
+        catch (CompetitionPleineException e) {
+            thrown = true;
+        }
         assertTrue(thrown);
 
     }

@@ -30,7 +30,7 @@ public class Pays {
     }
 
     /**
-     * Getter du nom du pays
+     * Obtient le nom du pays
      * @return le nom du pays
      */
     public String getNom() {
@@ -38,16 +38,16 @@ public class Pays {
     }
 
     /**
-     * Getter de la liste des Athletes du Pays
-     * @return la liste des Athlètes
+     * Obtient la liste des athlètes du pays
+     * @return la liste des athlètes
      */
     public List<Athletes> getAthletes(){
         return this.listAthletes;
-    
     }
+    
     /**
-     * Getter de la liste des équipes du Pays
-     * @return la liste des Equipes
+     * Obtient la liste des équipes du pays
+     * @return la liste des équipes
      */
     public List<Equipes> getEquipes(){
         return this.listEquipes;
@@ -70,7 +70,11 @@ public class Pays {
 
     @Override
     public String toString() {
-        return this.nom + " : " + this.listAthletes.size() + " athletes, " + this.listEquipes.size() + " équipes";
+        return "Pays : " + this.nom + " avec " + this.listAthletes.size() + " athlètes et " + this.listEquipes.size() + " équipes.";
+    }
+
+    public static Pays valueOf(String string) {
+        return new Pays(string);
     }
     
 }
