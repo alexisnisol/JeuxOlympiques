@@ -6,10 +6,8 @@ import modele.exceptions.EquipePleineException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.sports.Sport;
 
+public class Equipes implements Participant {
 
-
-public class Equipes implements Participant{
-    
     private String nomEquipe;
     private int tailleMax;
     private Sport sport;
@@ -19,7 +17,6 @@ public class Equipes implements Participant{
     private Pays pays;
     private Competition competitionActuelle;
     private float performanceActuelle;
-    
 
     public Equipes(String nomEquipe, Sport sport, int tailleMax, boolean enRelais, Pays pays) {
         this.nomEquipe = nomEquipe;
@@ -35,6 +32,7 @@ public class Equipes implements Participant{
 
     /**
      * Retourne la taille maximale de l'équipe.
+     * 
      * @return la taille maximale de l'équipe
      */
     public int getTailleMax() {
@@ -43,6 +41,7 @@ public class Equipes implements Participant{
 
     /**
      * Définie la taille maximale de l'équipe.
+     * 
      * @param tailleMax la taille maximale de l'équipe
      */
     public void setTailleMax(int tailleMax) {
@@ -51,6 +50,7 @@ public class Equipes implements Participant{
 
     /**
      * Retourne la taille actuelle de l'équipe.
+     * 
      * @return la taille actuelle de l'équipe
      */
     public int getTaille() {
@@ -59,15 +59,16 @@ public class Equipes implements Participant{
 
     /**
      * Retourne le sport de l'équipe.
+     * 
      * @return le sport de l'équipe.
      */
     public Sport getSport() {
         return this.sport;
     }
 
-
     /**
      * Retourne si l'équipe est une équipe relais.
+     * 
      * @return l'attribut enRelais
      */
     public boolean isEnRelais() {
@@ -76,6 +77,7 @@ public class Equipes implements Participant{
 
     /**
      * Définie une équipe comme une équipe relais.
+     * 
      * @param enRelais l'attribut enRelais
      */
     public void setEnRelais(boolean enRelais) {
@@ -84,6 +86,7 @@ public class Equipes implements Participant{
 
     /**
      * getter des médailles
+     * 
      * @return les médailles
      */
     @Override
@@ -93,6 +96,7 @@ public class Equipes implements Participant{
 
     /**
      * Getter de la liste des athlètes de l'équipe
+     * 
      * @return la liste des athlètes de l'équipe
      */
     public List<Athletes> getListeAthletes() {
@@ -101,26 +105,28 @@ public class Equipes implements Participant{
 
     /**
      * Ajoute un athlète à la liste des athlètes de l'équipe
+     * 
      * @param athlete l'athlète à ajouter
-     * @throws EquipePleineException 
-     * @throws ParticipantDejaPresentException 
+     * @throws EquipePleineException
+     * @throws ParticipantDejaPresentException
      */
-    public void addAthlete(Athletes athlete) throws EquipePleineException, ParticipantDejaPresentException{
-        if (this.listeAthletes.size() + 1 > this.tailleMax){
+    public void addAthlete(Athletes athlete) throws EquipePleineException, ParticipantDejaPresentException {
+        if (this.listeAthletes.size() + 1 > this.tailleMax) {
             throw new EquipePleineException();
         }
-        if (this.listeAthletes.contains(athlete)){
+        if (this.listeAthletes.contains(athlete)) {
             throw new ParticipantDejaPresentException();
         }
         this.listeAthletes.add(athlete);
     }
 
-    public boolean estPleine(){
+    public boolean estPleine() {
         return this.listeAthletes.size() == this.tailleMax;
     }
 
     /**
      * Setter du pays de l'équipe
+     * 
      * @param pays le pays de l'équipe
      */
     public void setPays(Pays pays) {
@@ -129,28 +135,31 @@ public class Equipes implements Participant{
 
     /**
      * Getter de la compétition actuelle, en tant que Participant
+     * 
      * @return la compétition, null si il n'y a pas de compétition en cours.
      */
     @Override
-    public Competition getCompetitionActuelle(){
+    public Competition getCompetitionActuelle() {
         return this.competitionActuelle;
     }
 
     /**
      * Setter de la compétition actuelle en tant que Participant.
+     * 
      * @param competition la compétition actuelle.
      */
     @Override
-    public void setCompetitionActuelle(Competition competition){
+    public void setCompetitionActuelle(Competition competition) {
         this.competitionActuelle = competition;
     }
 
     /**
      * Calcul la force totale de l'équipe : somme des forces de tous les athlètes
+     * 
      * @return la force totale de l'équipe
      */
     @Override
-    public int getForce(){
+    public int getForce() {
         int totalForce = 0;
         for (Athletes ath : this.listeAthletes) {
             totalForce += ath.getForce();
@@ -160,10 +169,11 @@ public class Equipes implements Participant{
 
     /**
      * Calcul l'agilité totale de l'équipe : somme des agilités de tous les athlètes
+     * 
      * @return l'agilité totale de l'équipe
      */
     @Override
-    public int getAgilite(){
+    public int getAgilite() {
         int totalAgilite = 0;
         for (Athletes ath : this.listeAthletes) {
             totalAgilite += ath.getAgilite();
@@ -172,11 +182,13 @@ public class Equipes implements Participant{
     }
 
     /**
-     * Calcul l'endurance totale de l'équipe : somme des endurances de tous les athlètes
+     * Calcul l'endurance totale de l'équipe : somme des endurances de tous les
+     * athlètes
+     * 
      * @return l'endurance totale de l'équipe
      */
     @Override
-    public int getEndurance(){
+    public int getEndurance() {
         int totalEndurance = 0;
         for (Athletes ath : this.listeAthletes) {
             totalEndurance += ath.getEndurance();
@@ -185,8 +197,8 @@ public class Equipes implements Participant{
     }
 
     @Override
-    public float participer() throws IllegalStateException{
-        if(this.competitionActuelle == null){
+    public float participer() throws IllegalStateException {
+        if (this.competitionActuelle == null) {
             throw new IllegalStateException("L'athlète ne participe à aucune compétition");
         }
         this.performanceActuelle = this.competitionActuelle.getSport().calculerPerformance(this);
@@ -195,6 +207,7 @@ public class Equipes implements Participant{
 
     /**
      * Retourne le nom de l'équipe.
+     * 
      * @return le nom de l'équipe
      */
     @Override
@@ -203,16 +216,16 @@ public class Equipes implements Participant{
     }
 
     @Override
-    public Sexe obtenirSexe(){
+    public Sexe obtenirSexe() {
         int nbHomme = 0;
-        for(Athletes athetes : this.listeAthletes){
-            if (athetes.obtenirSexe() == Sexe.HOMME){
+        for (Athletes athetes : this.listeAthletes) {
+            if (athetes.obtenirSexe() == Sexe.HOMME) {
                 ++nbHomme;
-            }else{
+            } else {
                 --nbHomme;
             }
         }
-        if (nbHomme >= 0){
+        if (nbHomme >= 0) {
             return Sexe.HOMME;
         }
         return Sexe.FEMME;
@@ -220,6 +233,7 @@ public class Equipes implements Participant{
 
     /**
      * Getter du pays de l'équipe
+     * 
      * @return le pays
      */
     @Override
@@ -229,6 +243,7 @@ public class Equipes implements Participant{
 
     /**
      * Getter de l'équipe
+     * 
      * @return l'équipe
      */
     @Override
@@ -236,24 +251,41 @@ public class Equipes implements Participant{
         return this;
     }
 
-    
     @Override
     public float getPerformance() {
         return this.performanceActuelle;
     }
-    
+
     @Override
-    public boolean equals(Object o){
-        if (o==null){return false;}
-        if (o == this) {return true; } 
-        if (!(o instanceof Equipes)) {return false;}
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Equipes)) {
+            return false;
+        }
 
         Equipes equipe = (Equipes) o;
         return this.nomEquipe.equals(equipe.nomEquipe) &&
-        this.sport.equals(equipe.sport) &&
-        this.tailleMax == equipe.tailleMax &&
-        this.enRelais == equipe.enRelais &&
-        this.pays.equals(equipe.pays);
+                this.sport.equals(equipe.sport) &&
+                this.tailleMax == equipe.tailleMax &&
+                this.enRelais == equipe.enRelais &&
+                this.pays.equals(equipe.pays);
+    }
+
+    public String athletesToString() {
+        StringBuilder sb = new StringBuilder();
+        for (Athletes athlete : this.listeAthletes) {
+            sb.append(athlete.getNom()).append(" ").append(athlete.getPrenom()).append(", ");
+        }
+        // Supprime la dernière virgule et l'espace
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 2);
+        }
+        return sb.toString();
     }
 
     @Override
@@ -263,10 +295,14 @@ public class Equipes implements Participant{
 
     @Override
     public String toString() {
-        return "Equipe : " + this.nomEquipe + " (" + this.pays + ")" + " Elle contient " + this.listeAthletes.size() + "athlètes" + " et participe à la compétition : " 
-        + this.competitionActuelle + " avec une performance de " + this.performanceActuelle+ " points"+ " et est classée : " + this.classement.toString()+ "."
-        + " Elle est composée de : " + this.listeAthletes.toString() + "."+ " Elle est en relais : " + this.enRelais + "."+ " Taille maximale : " + this.tailleMax + "."
-        + " Force totale : " + this.getForce() + "." + " Agilité totale : " + this.getAgilite() + "." + " Endurance totale : " + this.getEndurance() + ".";
+        return "Equipe : " + this.nomEquipe + " (" + this.pays + ")" + " Elle contient " + this.listeAthletes.size()
+                + " athlètes" + " et participe à la compétition : "
+                + this.competitionActuelle + " avec une performance de " + this.performanceActuelle + " points"
+                + " et  " + this.classement + "."
+                + " Elle est composée de : " + athletesToString() + " Est-Elle en relais : " + this.enRelais + "."
+                + " Taille maximale : " + this.tailleMax + "."
+                + " Force totale : " + this.getForce() + "." + " Agilité totale : " + this.getAgilite() + "."
+                + " Endurance totale : " + this.getEndurance() + ".";
     }
 
 }

@@ -1,4 +1,5 @@
 package tests;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,12 +22,8 @@ public class TestEquipes {
     @Before
     public void setUp() {
         pays = new Pays("France");
-<<<<<<< HEAD
-        equipe = new Equipes("Équipe de test", 2, false, pays);
-=======
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
         equipe = new Equipes("Équipe de test", sport, 6, false, pays);
->>>>>>> 505a9788af72db63b868c487446a8f2699a84abf
         athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete1bis = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete2 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, pays);
@@ -35,7 +32,7 @@ public class TestEquipes {
 
     @Test
     public void testGetTailleMax() {
-        assertEquals(2, equipe.getTailleMax());
+        assertEquals(6, equipe.getTailleMax());
     }
 
     @Test
@@ -59,8 +56,11 @@ public class TestEquipes {
     public void testRejoindreEquipe() {
         assertTrue(athlete1.rejoindreEquipe(equipe));
         assertFalse(athlete1.rejoindreEquipe(equipe)); // ParticipantDejaPresentException
-        assertFalse(athlete1bis.rejoindreEquipe(equipe)); // ParticipantDejaPresentException : même si l'objet est différent, il est considéré comme identique à l'aide de la méthode equals.
+        assertFalse(athlete1bis.rejoindreEquipe(equipe)); // ParticipantDejaPresentException : même si l'objet est
+                                                          // différent, il est considéré comme identique à l'aide de la
+                                                          // méthode equals.
         assertTrue(athlete2.rejoindreEquipe(equipe));
+        equipe.setTailleMax(2);
         assertFalse(athlete3.rejoindreEquipe(equipe)); // EquipePleineException
     }
 

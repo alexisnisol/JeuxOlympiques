@@ -1,4 +1,5 @@
 package modele;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Scanner;
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
-import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
@@ -38,6 +38,7 @@ public class JeuxOlympiques {
 
     /**
      * Cette fonction permet de retourner l'année des jeux olympiques
+     * 
      * @return l'année des jeux olympiques
      */
     public int getAnnee() {
@@ -46,6 +47,7 @@ public class JeuxOlympiques {
 
     /**
      * Cette fonction permet de retourner le nombre d'épreuves des jeux olympiques
+     * 
      * @return le nombre d'épreuves des jeux olympiques
      */
     public int getNbEpreuves() {
@@ -53,47 +55,54 @@ public class JeuxOlympiques {
     }
 
     /**
-     * Cette fonction permet de retourner la liste des compétitions des jeux olympiques
+     * Cette fonction permet de retourner la liste des compétitions des jeux
+     * olympiques
+     * 
      * @return la liste des compétitions des jeux olympiques
      */
     public List<Competition> getLesCompetitions() {
         return lesCompetitions;
     }
-    
+
     /**
-     * La fonction permet de recuperer le ou les résultats de l'athlète dans toute les compétitions auquelles il a participer
-     * @param Participant : le participant que l'on souhaite connaître le résultat 
+     * La fonction permet de recuperer le ou les résultats de l'athlète dans toute
+     * les compétitions auquelles il a participer
+     * 
+     * @param Participant : le participant que l'on souhaite connaître le résultat
      * @return on retourne donc ses résultats dans toute ses compétitions
      */
-    public Classement recupererResultat(Participant participant){
-        //return participant.getResultat();
+    public Classement recupererResultat(Participant participant) {
+        // return participant.getResultat();
         return participant.getClassement();
     }
 
-    public void lancerJeuxOlympiques(){
-        for(Competition competition : lesCompetitions){
+    public void lancerJeuxOlympiques() {
+        for (Competition competition : lesCompetitions) {
             competition.jouer();
         }
     }
 
     /**
      * Cette fonction permet d'enregistrer une competition dans les jeux olympiques
-     * @param competition : competition que l'on souhaite ajouter dans les jeux olympiques 
+     * 
+     * @param competition : competition que l'on souhaite ajouter dans les jeux
+     *                    olympiques
      */
-    public void enregistrerCompetition(Competition competition){
+    public void enregistrerCompetition(Competition competition) {
         lesCompetitions.add(competition);
     }
 
     /**
-     * Cette fonction permet de retourner le classement des participants par les médailles
+     * Cette fonction permet de retourner le classement des participants par les
+     * médailles
      */
-    public Map<Pays, Classement> classementMedailles(){
+    public Map<Pays, Classement> classementMedailles() {
         Map<Pays, Classement> classementParPays = new HashMap<>();
         Classement classementPays;
-        for (Competition competition : lesCompetitions){
-            for (Participant participant : competition.getParticipants()){
+        for (Competition competition : lesCompetitions) {
+            for (Participant participant : competition.getParticipants()) {
                 Pays pays = participant.obtenirPays();
-                if(!classementParPays.containsKey(pays)){
+                if (!classementParPays.containsKey(pays)) {
                     classementPays = new Classement();
                     classementParPays.put(pays, classementPays);
                 }
@@ -108,14 +117,14 @@ public class JeuxOlympiques {
         return classementParPays;
     }
 
-
     /**
      * Cette fonction permet de convertir les valeurs du csv en jeux olympiques
-     * @param annee : l'année des jeux olympiques
+     * 
+     * @param annee   : l'année des jeux olympiques
      * @param records : les valeurs du csv en liste de liste de string
      * @return les jeux olympiques
      */
-    public static JeuxOlympiques convertFromArrayCsv(int annee, List<List<String>> records){
+    public static JeuxOlympiques convertFromArrayCsv(int annee, List<List<String>> records) {
         List<Competition> competitions = new ArrayList<>();
         List<Equipes> listeEquipes = new ArrayList<>();
         List<Pays> listePays = new ArrayList<>();
@@ -123,20 +132,21 @@ public class JeuxOlympiques {
 
         Map<Athletes, Sport> athletesSport = new HashMap<>();
 
-
         Athletes athlete;
         Pays paysJoueur;
-        for(List<String> joueur : records){
+        for (List<String> joueur : records) {
 
             /*
              * On crée un pays pour l'athlète
              * On crée un athlète
              */
             paysJoueur = new Pays(joueur.get(3));
-            athlete = new Athletes(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)), Integer.parseInt(joueur.get(5)), Integer.parseInt(joueur.get(6)), Integer.parseInt(joueur.get(7)), paysJoueur);
-            if(!listePays.contains(paysJoueur)){
+            athlete = new Athletes(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)),
+                    Integer.parseInt(joueur.get(5)), Integer.parseInt(joueur.get(6)), Integer.parseInt(joueur.get(7)),
+                    paysJoueur);
+            if (!listePays.contains(paysJoueur)) {
                 listePays.add(paysJoueur);
-            }else {
+            } else {
                 int indexPays = listePays.indexOf(paysJoueur);
                 paysJoueur = listePays.get(indexPays);
                 paysJoueur.addAthlete(athlete);
@@ -146,24 +156,25 @@ public class JeuxOlympiques {
 
             String sportStr = joueur.get(4);
             Sport sport = getSportFromName(sportStr);
-            if(sport == null){
+            if (sport == null) {
                 throw new IllegalArgumentException("Le sport " + sportStr + " n'existe pas");
             }
 
             /**
              * Si le sport est en équipe, on ajoute l'athlète à une équipe
              */
-            if(sport.isEnEquipe()){
+            if (sport.isEnEquipe()) {
                 Equipes equipe = getEquipeDispo(listePays, sport, athlete);
-                if(equipe == null){
-                    equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false, paysJoueur);
+                if (equipe == null) {
+                    equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
+                            paysJoueur);
                     try {
                         equipe.addAthlete(athlete);
                     } catch (EquipePleineException | ParticipantDejaPresentException e) {
                         e.printStackTrace();
                     }
                     listeEquipes.add(equipe);
-                }else{
+                } else {
                     try {
                         equipe.addAthlete(athlete);
                     } catch (EquipePleineException e) {
@@ -178,21 +189,23 @@ public class JeuxOlympiques {
         }
 
         /**
-         * On crée les compétitions individuelles en fonction des sports des athlètes dans le jeu de données
+         * On crée les compétitions individuelles en fonction des sports des athlètes
+         * dans le jeu de données
          */
-        for(Map.Entry<Athletes, Sport> entry : athletesSport.entrySet()){
+        for (Map.Entry<Athletes, Sport> entry : athletesSport.entrySet()) {
             Athletes athlete1 = entry.getKey();
             Sport sport = entry.getValue();
-            if(!sport.isEnEquipe()){
+            if (!sport.isEnEquipe()) {
                 CompetitionIndividuelle competition = new CompetitionIndividuelle(athlete1.obtenirSexe(), sport);
                 genererCompetition(competition, athlete1, competitions);
             }
         }
 
         /**
-         * On crée les compétitions collectives en fonction des équipes générées en amont, à la lecture du csv.
+         * On crée les compétitions collectives en fonction des équipes générées en
+         * amont, à la lecture du csv.
          */
-        for(Equipes equipe : listeEquipes){
+        for (Equipes equipe : listeEquipes) {
             CompetitionCollective competition = new CompetitionCollective(equipe.obtenirSexe(), equipe.getSport());
             genererCompetition(competition, equipe, competitions);
         }
@@ -208,13 +221,15 @@ public class JeuxOlympiques {
 
     /**
      * Cette fonction permet de générer une compétition en fonction d'un participant
-     * @param competition : la compétition à générer
-     * @param participant : le participant à ajouter à la compétition
+     * 
+     * @param competition  : la compétition à générer
+     * @param participant  : le participant à ajouter à la compétition
      * @param competitions : la liste des compétitions
      */
-    private static void genererCompetition(Competition competition, Participant participant, List<Competition> competitions){
+    private static void genererCompetition(Competition competition, Participant participant,
+            List<Competition> competitions) {
         try {
-            if(!competitions.contains(competition)){
+            if (!competitions.contains(competition)) {
                 competition.enregistrerParticipant(participant);
                 competitions.add(competition);
             } else {
@@ -223,25 +238,30 @@ public class JeuxOlympiques {
                 competition.enregistrerParticipant(participant);
                 competitions.set(index, competition);
             }
-        }  catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException |CompetitionPleineException e) {
-            System.out.println("Impossible d'ajouter le participant " + participant + " à la compétition " + competition);
+        } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException
+                | MauvaisParticipantException e) {
+            System.out
+                    .println("Impossible d'ajouter le participant " + participant + " à la compétition " + competition);
         }
     }
 
     /**
-     * Cette fonction permet de retourner une équipe disponible pour un sport donné, un pays donné et un athlète donné
+     * Cette fonction permet de retourner une équipe disponible pour un sport donné,
+     * un pays donné et un athlète donné
+     * 
      * @param listePays : la liste des pays
-     * @param sport : le sport
-     * @param athlete : l'athlète, membre d'un pays
-     * @return une équipe disponible pour un sport donné, un pays donné et un athlète donné, null si aucune équipe n'est disponible
+     * @param sport     : le sport
+     * @param athlete   : l'athlète, membre d'un pays
+     * @return une équipe disponible pour un sport donné, un pays donné et un
+     *         athlète donné, null si aucune équipe n'est disponible
      */
-    public static Equipes getEquipeDispo(List<Pays> listePays, Sport sport, Athletes athlete){
+    public static Equipes getEquipeDispo(List<Pays> listePays, Sport sport, Athletes athlete) {
         Pays pays = athlete.obtenirPays();
         int indexPays = listePays.indexOf(pays);
         pays = listePays.get(indexPays);
         List<Equipes> equipes = pays.getEquipes();
-        for(Equipes equipe : equipes){
-            if(equipe.getSport().equals(sport) && !equipe.estPleine()){
+        for (Equipes equipe : equipes) {
+            if (equipe.getSport().equals(sport) && !equipe.estPleine()) {
                 return equipe;
             }
         }
@@ -250,11 +270,12 @@ public class JeuxOlympiques {
 
     /**
      * Cette fonction permet de retourner un sport en fonction de son nom
+     * 
      * @param sport : le nom du sport
      * @return un sport en fonction de son nom
      */
-    public static Sport getSportFromName(String sport){
-        switch(sport){
+    public static Sport getSportFromName(String sport) {
+        switch (sport) {
             case "Athletisme 110 haies":
                 return new Athletisme(sport, false, 100, -1);
             case "Natation relais libre":
@@ -276,9 +297,10 @@ public class JeuxOlympiques {
         }
     }
 
-
     /**
-     * Cette fonction permet de retourner les valeurs du csv en liste de liste de string, exploitable pour la création des instances
+     * Cette fonction permet de retourner les valeurs du csv en liste de liste de
+     * string, exploitable pour la création des instances
+     * 
      * @param path : le chemin du fichier csv
      * @return les valeurs du csv en liste de liste de string
      */
@@ -287,7 +309,7 @@ public class JeuxOlympiques {
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             String line = br.readLine();
-            
+
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 records.add(Arrays.asList(values));
@@ -305,6 +327,7 @@ public class JeuxOlympiques {
 
     @Override
     public String toString() {
-        return "Les jeux olympiques de " + this.annee + " ont " + this.nbEpreuves + " épreuves." + "\n" + "Les compétitions sont : " + this.lesCompetitions + "\n";
+        return "Les jeux olympiques de " + this.annee + " ont " + this.nbEpreuves + " épreuves." + "\n"
+                + "Les compétitions sont : " + this.lesCompetitions + "\n";
     }
 }
