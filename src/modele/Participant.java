@@ -1,9 +1,11 @@
 package modele;
+
 public interface Participant {
 
     /**
      * Méthode permettant à un participant de participer à une compétition.
      * @return le score du participant
+     * @throws IllegalStateException si le participant ne peut pas participer à la compétition
      */
     public float participer() throws IllegalStateException;
     
@@ -14,7 +16,7 @@ public interface Participant {
     public String obtenirNom();
     
     /**
-     * Méthode permettant d'obtenir le nom du participant.
+     * Méthode permettant d'obtenir le sexe du participant.
      * @return le sexe du participant
      */
     public Sexe obtenirSexe();
@@ -32,7 +34,7 @@ public interface Participant {
     public Equipes obtenirEquipes();
 
     /**
-     * Getter de la compétition actuelle, en tant que Participant
+     * Getter de la compétition actuelle, en tant que Participant.
      * @return la compétition, null si il n'y a pas de compétition en cours.
      */
     public Competition getCompetitionActuelle();
@@ -44,19 +46,34 @@ public interface Participant {
     public void setCompetitionActuelle(Competition competition);
 
     /**
-     * Renvoie le nombre de médailles d'or remportées par le participant.
-     *
-     * @return le nombre de médailles d'or remportées par le participant
+     * Renvoie le classement du participant.
+     * @return le classement du participant
      */
     public Classement getClassement();
 
+    /**
+     * Renvoie la force du participant.
+     * @return la force du participant
+     */
     public int getForce();
 
+    /**
+     * Renvoie l'agilité du participant.
+     * @return l'agilité du participant
+     */
     public int getAgilite();
 
+    /**
+     * Renvoie l'endurance du participant.
+     * @return l'endurance du participant
+     */
     public int getEndurance();
 
+    /**
+     * Renvoie la performance du participant.
+     * @return la performance du participant
+     */
     public float getPerformance();
-
-} 
     
+
+}

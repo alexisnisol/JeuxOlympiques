@@ -25,13 +25,13 @@ public class TestPays {
         france = new Pays("France");
         usa = new Pays("Etats Unis");
 
-        equipe1 = new Equipes("Équipe de test", 5, false, "", 0, france);
-        equipe2 = new Equipes("Équipe de test 2", 10, true, "", 0, france);
-        equipe3 = new Equipes("Équipe de test 3", 5, false, "", 0, france);
-        equipe4 = new Equipes("Équipe de test 4", 10, true, "", 0, usa);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, france);
+        equipe1 = new Equipes("Équipe de test", 5, false, france);
+        equipe2 = new Equipes("Équipe de test 2", 10, true, france);
+        equipe3 = new Equipes("Équipe de test 3", 5, false, france);
+        equipe4 = new Equipes("Équipe de test 4", 10, true, usa);
+        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, france);
         athlete1.rejoindreEquipe(equipe1);
-        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, "", 0, usa);
+        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, usa);
         athlete2.rejoindreEquipe(equipe4);
     }
 

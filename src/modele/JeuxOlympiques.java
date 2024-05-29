@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import modele.sports.Athletisme;
+import modele.sports.VolleyBall;
+import modele.sports.Sport;
 
 public class JeuxOlympiques {
 
@@ -95,15 +98,13 @@ public class JeuxOlympiques {
      * @param path : le chemin du fichier csv
      * @return les valeurs du csv en instance de JeuxOlympiques, Compétition, Participant etc.
      */
-    public static JeuxOlympiques convertFromArrayCsv(List<String> records){
-        /*List<Competition> competitions = new ArrayList<>();
-        List<Equipes> equipes = new ArrayList<>();
-        List<Pays> pays = new ArrayList<>();
-        List<Participant> participants = new ArrayList<>();*/
-
-        return null; //TODO: à faire
+    public static JeuxOlympiques convertFromArrayCsv(String path){
+        List<String> liste = fromCsv(path);
+        Athletes athlete = new Athletes(liste.get(0), liste.get(1), Sexe.valueOf(liste.get(2)), Integer.parseInt(liste.get(3)), Integer.parseInt(liste.get(4)), Integer.parseInt(liste.get(5)), new Pays(liste.get(6)));
+        return null;
     }
 
+    
     public static List<String> fromCsv(String path) {
         List<String> liste = new ArrayList<String>();
         try {

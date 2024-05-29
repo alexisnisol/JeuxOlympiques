@@ -56,7 +56,10 @@ public class TestCompetition {
         competition2 = new CompetitionIndividuelle(2, Sexe.HOMME, new Natation(4, 1000));
     }
 
-
+    /**
+     * Teste la méthode enregistrerParticipant de la classe Competition.
+     * Vérifie si les exceptions sont correctement gérées.
+     */
     @Test
     public void testEnregistrerParticipant() throws MauvaisParticipantException {
         boolean thrown;

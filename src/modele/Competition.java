@@ -1,9 +1,8 @@
 package modele;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import modele.exceptions.CompetitionPleineException;
 import modele.exceptions.MauvaisParticipantException;
@@ -59,6 +58,7 @@ public abstract class Competition {
      * @throws ParticipantDejaPresentException 
      * @throws ParticipantOccupeException
      * @throws CompetitionPleineException
+     * @throws MauvaisParticipantException
      */
     public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, CompetitionPleineException, MauvaisParticipantException{
         if(participant.obtenirSexe() != this.sexe){
@@ -70,6 +70,7 @@ public abstract class Competition {
         if(participant.getCompetitionActuelle() != null){
             throw new ParticipantOccupeException();
         }
+        
 
         int nbParticipant = 1; //1 étant l'athlète si le participant n'est pas une équipe.
         /*if(participant instanceof Equipes){

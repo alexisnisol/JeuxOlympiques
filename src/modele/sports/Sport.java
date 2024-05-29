@@ -20,5 +20,12 @@ public abstract class Sport {
 
     public abstract float calculerPerformance(Participant participant);
 
-    //TODO : Faire le equals
+    @Override
+    public boolean equals(Object o) {
+        if (o==null){return false;}
+        if (o == this) {return true; } 
+        if (!(o instanceof Sport)) {return false;}
+        Sport s = (Sport) o;
+        return this.coeff == s.coeff;
+    }
 }
