@@ -22,7 +22,7 @@ CREATE TABLE ATHLETES (
   CONSTRAINT FKEquipe FOREIGN KEY (idEquipe) REFERENCES EQUIPES(idEquipe)
 );
 
-CREATE TABLE PAY (
+CREATE TABLE PAYS (
     idPays int primary key,
     nomPays varchar(23) NOT NULL
 );
@@ -37,7 +37,7 @@ CREATE TABLE COMPETITIONS (
   CONSTRAINT FKSport FOREIGN KEY (idSport) REFERENCES SPORT(idSport)
 );
 
-CREATE TABLE SPOR (
+CREATE TABLE SPORT (
     idSport int primary key,
     nomSport varchar(16) NOT NULL,
     typeSport varchar(16) NOT NULL,
