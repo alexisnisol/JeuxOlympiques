@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import modele.Athletes;
@@ -113,114 +116,70 @@ public class Executable {
                         System.out.println(liste);
                     }
                     if (choix2.equals("manuel")) {
-                        System.out.println("Veuillez entrer le nombre de compétitions : ");
-                        int nbCompet = scanner.nextInt();
-                        for (int i = 0; i < nbCompet; i++) {
-                            System.out.println("Veuillez entrer le type de compétition (individuelle/collective) : ");
-                            String typeCompet = scanner.next();
-                            System.out.println("Veuillez entrer le sexe de la compétition (homme/femme) : ");
-                            Sexe sexe = Sexe.valueOf(scanner.next().toUpperCase());
-                            System.out.println("Veuillez entrer le nom du sport : ");
-                            String nomSport = scanner.next();
-                            System.out.println(
-                                    "Si votre Sport est l'escime veuillez indiquez le type d'épee(fleuret/epee): ");
-                            String typeEpee = scanner.next();
-                            System.out.println("Veuillez entrer le nombre de participants : ");
-                            int nbParticipants = scanner.nextInt();
-                            System.out.println(
-                                    "Veuillez entrer la distance de la course (si le sport est un sport d'athlétisme sinon mettez 0) :  ");
-                            int distance = scanner.nextInt();
-                            System.out.println(
-                                    "Veuillez entrer le nombre de joueurs par équipe (si le sport est un sport collectif sinon mettez 1) : ");
-                            int nbJoueurs = scanner.nextInt();
-                            System.out.println("Veuillez entrer le nom du pays : ");
-                            String nomPays = scanner.next();
-                            Pays pays = new Pays(nomPays);
-                            System.out.println("Veuillez entrer le nom du participant : ");
-                            String nomParticipant = scanner.next();
-                            System.out.println("Veuillez entrer le prénom du participant : ");
-                            String prenomParticipant = scanner.next();
-                            System.out.println("Veuillez entrer le sexe du participant (homme/femme) : ");
-                            Sexe sexeParticipant = Sexe.valueOf(scanner.next().toUpperCase());
-                            System.out.println("Veuillez entrer le nombre de médailles d'or du participant : ");
-                            int nbOr = scanner.nextInt();
-                            System.out.println("Veuillez entrer le nombre de médailles d'argent du participant : ");
-                            int nbArgent = scanner.nextInt();
-                            System.out.println("Veuillez entrer le nombre de médailles de bronze du participant : ");
-                            int nbBronze = scanner.nextInt();
-                            Athletes participant = new Athletes(nomParticipant, prenomParticipant, sexeParticipant,
-                                    nbOr, nbArgent, nbBronze, pays);
-                            if (typeCompet.equals("individuelle") && nomSport.equals("athletisme")) {
-                                Competition compet2 = new CompetitionIndividuelle(sexe,
-                                        new Athletisme(nomSport, false, distance, -1));
-                                jo.enregistrerCompetition(compet);
-                                try {
-                                    compet2.enregistrerParticipant(participant);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            if (typeCompet.equals("collective") && nomSport.equals("volleyball")) {
-                                VolleyBall sport2 = new VolleyBall(nomSport, false, nbJoueurs);
-                                Equipes equipe = new Equipes("Equipe1", sport2, nbJoueurs, false, pays);
-                                participant.rejoindreEquipe(equipe);
-                                Competition compet3 = new CompetitionCollective(sexe, sport2);
-                                jo.enregistrerCompetition(compet3);
-                                try {
-                                    compet3.enregistrerParticipant(equipe);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            if (typeCompet.equals("collective") && nomSport.equals("handball")) {
-                                HandBall sport3 = new HandBall(nomSport, false, nbJoueurs);
-                                Equipes equipe = new Equipes("Equipe2", sport3, nbJoueurs, false, pays);
-                                participant.rejoindreEquipe(equipe);
-                                Competition compet4 = new CompetitionCollective(sexe, sport3);
-                                jo.enregistrerCompetition(compet4);
-                                try {
-                                    compet4.enregistrerParticipant(equipe);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                        System.out.println("Entrez l'année des Jeux Olympiques : ");
+                        int annee = scanner.nextInt();
 
-                            }
-                            Escrime sport4 = null;
-                            if (typeCompet.equals("individuelle") && nomSport.equals("escrime")) {
-                                if (typeEpee.equals("fleuret")) {
-                                    sport4 = new Escrime(nomSport, false, TypeEscrime.FLEURET, nbJoueurs);
-                                }
-                                if (typeEpee.equals("epee")) {
-                                    sport4 = new Escrime(nomSport, false, TypeEscrime.EPEE, nbJoueurs);
-                                }
-                                Competition compet5 = new CompetitionCollective(sexe, sport4);
-                                jo.enregistrerCompetition(compet5);
-                                try {
-                                    compet5.enregistrerParticipant(participant);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                        System.out.println("Entrez le nombre de participants : ");
+                        int nbParticipants = scanner.nextInt();
+                        scanner.nextLine(); // Consomme la ligne restante
 
+                        List<List<String>> liste = new ArrayList<>();
+
+                        for (int i = 0; i < nbParticipants; i++) {
+                            System.out.println("Entrez le nom du participant : ");
+                            String nom = scanner.nextLine();
+
+                            System.out.println("Entrez le prénom du participant : ");
+                            String prenom = scanner.nextLine();
+
+                            System.out.println("Entrez le sexe du participant (HOMME pour masculin, FEMME pour féminin) : ");
+                            Sexe sexe = Sexe.valueOf(scanner.next());
+                            scanner.nextLine(); // Consomme la ligne restante
+
+                            System.out.println("Entrez le pays du participant : ");
+                            String pays = scanner.nextLine();
+
+                            System.out.println("Entrez l'épreuve du participant (si l'épreuve est l'escime renseigné fleuret ou epee) : ");
+                            String epreuve = scanner.nextLine();
+
+
+                            System.out.println("Entrez la force du participant : ");
+                            int force = scanner.nextInt();
+
+                            System.out.println("Entrez l'endurance du participant : ");
+                            int endurance = scanner.nextInt();
+
+                            System.out.println("Entrez l'agilité du participant : ");
+                            int agilite = scanner.nextInt();
+                            scanner.nextLine(); // Consomme la ligne restante
+
+
+                            List<String> participant = Arrays.asList(nom, prenom, String.valueOf(sexe), pays, epreuve, String.valueOf(force), String.valueOf(endurance), String.valueOf(agilite));
+                            liste.add(participant);
                             }
 
-                            if (typeCompet.equals("individuelle") && nomSport.equals("natation")) {
-                                Competition compet6 = new CompetitionCollective(sexe,
-                                        new Natation(nomSport, false, distance, -1));
-                                jo.enregistrerCompetition(compet6);
-                                try {
-                                    compet6.enregistrerParticipant(participant);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                            JeuxOlympiques.convertFromArrayCsv(annee, liste);
 
-                            }
+                            scanner.close();
                             System.out.println(jo);
-
-                        }
+                            System.out.println(jo.getLesCompetitions());
+                            System.out.println(jo.classementMedailles());
                         break;
                     }
                 case 2:
-                    // Code pour simuler les épreuves...
+                    
+                    for (Competition competition : jo.getLesCompetitions()) {
+                        if (competition.equals(null)){
+                            
+                            System.out.println("Aucune compétition n'a été enregistrée");
+                        }
+                        else{
+                            competition.jouer();
+                        }
+                        System.out.println(competition);
+                        System.out.println(jo.classementMedailles());
+
+                    }
                     break;
                 case 3:
                     // Code pour obtenir les résultats et le classement...

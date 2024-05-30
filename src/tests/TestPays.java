@@ -28,7 +28,7 @@ public class TestPays {
         usa = new Pays("Etats Unis");
 
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe1 = new Equipes("Équipe de test", sport, 5, false, france);
+        equipe1 = new Equipes("Équipe de test", sport, 5, false,france);
         equipe2 = new Equipes("Équipe de test 2", sport, 10, true, france);
         equipe3 = new Equipes("Équipe de test 3", sport, 5, false, france);
         equipe4 = new Equipes("Équipe de test 4", sport, 10, true, usa);
@@ -37,6 +37,7 @@ public class TestPays {
         athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, usa);
         athlete2.rejoindreEquipe(equipe4);
     }
+
 
     @Test
     public void testEquipes() {
@@ -50,8 +51,8 @@ public class TestPays {
         assertEquals(Arrays.asList(athlete2), usa.getAthletes());
     }
 
+
     @Test
     public void testObtenirEquipe() {
-
     }
 }
