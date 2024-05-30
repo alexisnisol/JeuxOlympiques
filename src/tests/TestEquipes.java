@@ -1,4 +1,5 @@
 package tests;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -6,6 +7,7 @@ import modele.Athletes;
 import modele.Equipes;
 import modele.Pays;
 import modele.Sexe;
+import modele.sports.VolleyBall;
 
 import static org.junit.Assert.*;
 
@@ -20,16 +22,17 @@ public class TestEquipes {
     @Before
     public void setUp() {
         pays = new Pays("France");
-        equipe = new Equipes("Équipe de test", 2, false, "", 0, pays);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, pays);
-        athlete1bis = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, "", 0, pays);
-        athlete2 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, pays);
-        athlete3 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, "", 0, pays);
+        VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
+        equipe = new Equipes("Équipe de test", sport, 6, false, pays);
+        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete1bis = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete2 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, pays);
+        athlete3 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, pays);
     }
 
     @Test
     public void testGetTailleMax() {
-        assertEquals(2, equipe.getTailleMax());
+        assertEquals(6, equipe.getTailleMax());
     }
 
     @Test
@@ -53,8 +56,11 @@ public class TestEquipes {
     public void testRejoindreEquipe() {
         assertTrue(athlete1.rejoindreEquipe(equipe));
         assertFalse(athlete1.rejoindreEquipe(equipe)); // ParticipantDejaPresentException
-        assertFalse(athlete1bis.rejoindreEquipe(equipe)); // ParticipantDejaPresentException : même si l'objet est différent, il est considéré comme identique à l'aide de la méthode equals.
+        assertFalse(athlete1bis.rejoindreEquipe(equipe)); // ParticipantDejaPresentException : même si l'objet est
+                                                          // différent, il est considéré comme identique à l'aide de la
+                                                          // méthode equals.
         assertTrue(athlete2.rejoindreEquipe(equipe));
+        equipe.setTailleMax(2);
         assertFalse(athlete3.rejoindreEquipe(equipe)); // EquipePleineException
     }
 
@@ -62,21 +68,21 @@ public class TestEquipes {
     public void testGetTotalForce() {
         athlete1.rejoindreEquipe(equipe);
         athlete2.rejoindreEquipe(equipe);
-        assertEquals(100, equipe.getTotalForce());
+        assertEquals(100, equipe.getForce());
     }
 
     @Test
     public void testGetTotalAgilite() {
         athlete1.rejoindreEquipe(equipe);
         athlete2.rejoindreEquipe(equipe);
-        assertEquals(140, equipe.getTotalAgilite());
+        assertEquals(140, equipe.getAgilite());
     }
 
     @Test
     public void testGetTotalEndurance() {
         athlete1.rejoindreEquipe(equipe);
         athlete2.rejoindreEquipe(equipe);
-        assertEquals(120, equipe.getTotalEndurance());
+        assertEquals(120, equipe.getEndurance());
     }
 
     @Test

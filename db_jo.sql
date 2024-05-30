@@ -1,9 +1,15 @@
+DROP TABLE IF EXISTS ATHLETES;
+DROP TABLE IF EXISTS EQUIPES;
+DROP TABLE IF EXISTS COMPETITIONS;
+DROP TABLE IF EXISTS SPORT;
+DROP TABLE IF EXISTS PAYS;
+
 CREATE TABLE ATHLETES (
   idAthletes int primary key,
   nom varchar(16) NOT NULL,
   prenom varchar(16) NOT NULL,
   sexe varchar(5) NOT NULL,
-  `force` int DEFAULT NULL,
+  force int DEFAULT NULL,
   endurance int DEFAULT NULL,
   agilite int DEFAULT NULL,
   medaille varchar(10) DEFAULT NULL,
@@ -35,8 +41,7 @@ CREATE TABLE SPORT (
     idSport int primary key,
     nomSport varchar(16) NOT NULL,
     typeSport varchar(16) NOT NULL,
-    coeffSport decimal(6,0) DEFAULT NULL,
-);
+    coeffSport decimal(6,0) DEFAULT NULL);
 
 CREATE TABLE EQUIPES (
     idEquipe int primary key,
@@ -50,3 +55,4 @@ CREATE TABLE EQUIPES (
     CONSTRAINT FKPays FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
     CONSTRAINT FKCompetition FOREIGN KEY (idCompetition) REFERENCES COMPETITIONS(idCompetition)
 );
+
