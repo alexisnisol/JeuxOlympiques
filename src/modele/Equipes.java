@@ -168,7 +168,7 @@ public class Equipes implements Participant {
     }
 
     /**
-     * Calcul l'agilité totale de l'équipe : somme des agilités de tous les athlètes
+ * Calcul l'agilité totale de l'équipe : somme des agilités de tous les athlètes
      * 
      * @return l'agilité totale de l'équipe
      */

@@ -156,11 +156,11 @@ public class Executable {
 
                             List<String> participant = Arrays.asList(nom, prenom, String.valueOf(sexe), pays, epreuve, String.valueOf(force), String.valueOf(endurance), String.valueOf(agilite));
                             liste.add(participant);
+                            System.out.println(liste);
+                            System.out.println(participant);
                             }
 
                             JeuxOlympiques.convertFromArrayCsv(annee, liste);
-
-                            scanner.close();
                             System.out.println(jo);
                             System.out.println(jo.getLesCompetitions());
                             System.out.println(jo.classementMedailles());
@@ -182,7 +182,19 @@ public class Executable {
                     }
                     break;
                 case 3:
-                    // Code pour obtenir les résultats et le classement...
+                    System.out.println("Entrez le nom de l'épreuve : ");
+                    String nomEpreuve = scanner.next();
+                    for (Competition competition : jo.getLesCompetitions()) {
+                        if (competition.getSport().getNom().equals(nomEpreuve)) {
+                            System.out.println(competition);
+                            List<Participant> gagnants = competition.jouer();
+                            for (int i = 0; i < gagnants.size(); i++) {
+                                System.out.println("Place " + (i+1) + ": " + gagnants.get(i).obtenirNom() + " " + gagnants.get(i).getPerformance() + " points" + " " + gagnants.get(i).getClassement());
+                            }
+                            return;
+                        }
+                    }
+                    System.out.println("Aucune compétition n'a été enregistrée avec ce nom");
                     break;
                 case 4:
                     // Code pour obtenir le palmares des médailles...
