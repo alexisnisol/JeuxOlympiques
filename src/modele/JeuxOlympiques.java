@@ -155,37 +155,38 @@ public class JeuxOlympiques {
             participants.add(athlete);
 
             String sportStr = joueur.get(4);
-            Sport sport = getSportFromName(sportStr);
-            if (sport == null) {
-                throw new IllegalArgumentException("Le sport " + sportStr + " n'existe pas");
-            }
+            try{
+                Sport sport = getSportFromName(sportStr);
 
-            /**
-             * Si le sport est en équipe, on ajoute l'athlète à une équipe
-             */
-            if (sport.isEnEquipe()) {
-                Equipes equipe = getEquipeDispo(listePays, sport, athlete);
-                if (equipe == null) {
-                    equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
-                            paysJoueur);
-                    try {
-                        equipe.addAthlete(athlete);
-                    } catch (EquipePleineException | ParticipantDejaPresentException e) {
-                        e.printStackTrace();
-                    }
-                    listeEquipes.add(equipe);
-                } else {
-                    try {
-                        equipe.addAthlete(athlete);
-                    } catch (EquipePleineException e) {
-                        System.out.println("L'équipe " + equipe + " est pleine");
-                    } catch (ParticipantDejaPresentException e) {
-                        System.out.println("L'athlète " + athlete + " est déjà dans l'équipe " + equipe);
+
+                /**
+                 * Si le sport est en équipe, on ajoute l'athlète à une équipe
+                 */
+                if (sport.isEnEquipe()) {
+                    Equipes equipe = getEquipeDispo(listePays, sport, athlete);
+                    if (equipe == null) {
+                        equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
+                                paysJoueur);
+                        try {
+                            equipe.addAthlete(athlete);
+                        } catch (EquipePleineException | ParticipantDejaPresentException e) {
+                            e.printStackTrace();
+                        }
+                        listeEquipes.add(equipe);
+                    } else {
+                        try {
+                            equipe.addAthlete(athlete);
+                        } catch (EquipePleineException e) {
+                            System.out.println("L'équipe " + equipe + " est pleine");
+                        } catch (ParticipantDejaPresentException e) {
+                            System.out.println("L'athlète " + athlete + " est déjà dans l'équipe " + equipe);
+                        }
                     }
                 }
+                athletesSport.put(athlete, sport);
+            }catch(IllegalArgumentException exception){
+                System.out.println(exception);
             }
-
-            athletesSport.put(athlete, sport);
         }
 
         /**
@@ -274,7 +275,7 @@ public class JeuxOlympiques {
      * @param sport : le nom du sport
      * @return un sport en fonction de son nom
      */
-    public static Sport getSportFromName(String sport) {
+    public static Sport getSportFromName(String sport) throws IllegalArgumentException {
         switch (sport) {
             case "Athletisme 110 haies":
                 return new Athletisme(sport, false, 100, -1);
@@ -293,7 +294,7 @@ public class JeuxOlympiques {
             case "Athletisme relais 400m":
                 return new Athletisme(sport, true, 400, 4);
             default:
-                return null;
+                throw new IllegalArgumentException("Le sport " + sport + " n'existe pas");
         }
     }
 
