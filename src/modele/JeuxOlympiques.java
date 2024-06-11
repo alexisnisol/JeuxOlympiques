@@ -7,22 +7,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
-import modele.exceptions.EquipePleineException;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.exceptions.SexeCompetitionException;
-import modele.sports.Athletisme;
 import modele.sports.Escrime;
 import modele.sports.HandBall;
 import modele.sports.Natation;
-import modele.sports.Sport;
 import modele.sports.TypeEscrime;
-import modele.sports.VolleyBall;
 
 public class JeuxOlympiques {
 
@@ -158,29 +153,21 @@ public class JeuxOlympiques {
             try{
                 Sport sport = getSportFromName(sportStr);
 
-
                 /**
                  * Si le sport est en équipe, on ajoute l'athlète à une équipe
                  */
                 if (sport.isEnEquipe()) {
-                    Equipes equipe = getEquipeDispo(listePays, sport, athlete);
+                    Equipes equipe = getEquipeDispo(listePays, sport, athlete); // Une équipe est disponible si l'équipe n'est pas pleine, si le joueur a le même pays et si le sport du joueur est le même que celui de l'équipe
+                    //Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et l'athlète rejoint l'équipe.
                     if (equipe == null) {
                         equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
                                 paysJoueur);
-                        try {
-                            equipe.addAthlete(athlete);
-                        } catch (EquipePleineException | ParticipantDejaPresentException e) {
-                            e.printStackTrace();
-                        }
+                        
+                        athlete.rejoindreEquipe(equipe);
+                        
                         listeEquipes.add(equipe);
-                    } else {
-                        try {
-                            equipe.addAthlete(athlete);
-                        } catch (EquipePleineException e) {
-                            System.out.println("L'équipe " + equipe + " est pleine");
-                        } catch (ParticipantDejaPresentException e) {
-                            System.out.println("L'athlète " + athlete + " est déjà dans l'équipe " + equipe);
-                        }
+                    } else { //Une équipe est disponible, alors l'athlète rejoint l'équipe.
+                        athlete.rejoindreEquipe(equipe);
                     }
                 }
                 athletesSport.put(athlete, sport);

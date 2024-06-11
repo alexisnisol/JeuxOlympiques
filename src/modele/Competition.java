@@ -106,6 +106,7 @@ public abstract class Competition {
         return place;
     }
 
+    /*
     private boolean finirCompetition() {
         for (Participant p : this.lesParticipants) {
             p.setCompetitionActuelle(null);
@@ -113,6 +114,7 @@ public abstract class Competition {
         this.lesParticipants.clear();
         return true;
     }
+    */
 
     public Sport getSport() {
         return sport;
