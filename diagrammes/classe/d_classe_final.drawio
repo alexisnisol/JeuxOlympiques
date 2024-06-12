@@ -1,0 +1,361 @@
+<mxfile host="app.diagrams.net" modified="2024-06-12T21:53:55.945Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="T1O8f0xCOfPCKOedFZwO" version="24.5.4" type="github">
+  <diagram name="Page-1" id="yU0-Mf1R3nde41_V3rap">
+    <mxGraphModel dx="-888" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BS3W2MengVh8HjLx5N8C-1" value="{abstract} Sport" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3520" y="99" width="240" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-2" value="- nom : String&lt;div&gt;- enEquipe : boolean&lt;/div&gt;&lt;div&gt;- taille : int&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-1">
+          <mxGeometry y="26" width="240" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-1">
+          <mxGeometry y="80" width="240" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-4" value="+ Sport(nom:String,enEquipe:boolean, taille:int)&lt;div&gt;+ calculerPerformance(p:Participant) : float&lt;/div&gt;&lt;div&gt;+ getNom() : String&lt;/div&gt;&lt;div&gt;+ isEnEquipe() : boolean&lt;/div&gt;&lt;div&gt;+ getTaille(): int&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-1">
+          <mxGeometry y="88" width="240" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-5" value="Pays" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2630" y="639" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-6" value="- nom : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-5">
+          <mxGeometry y="26" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-5">
+          <mxGeometry y="52" width="210" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-8" value="+ Pays(nom : String)&lt;div&gt;+ addAthletes(athlete: Athlete) : void&lt;/div&gt;&lt;div&gt;+ addEquipe(equipe: Equipe) : void&lt;/div&gt;&lt;div&gt;+ getNom () : String&lt;/div&gt;&lt;div&gt;+ getAthletes() : Athlete[*]&lt;/div&gt;&lt;div&gt;+ getEquipes() : Equipe&lt;span style=&quot;background-color: initial;&quot;&gt;[*]&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;horizontal=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-5">
+          <mxGeometry y="60" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-9" value="Athlete" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2900" y="869" width="330" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-10" value="- nom : String&lt;div&gt;- prenom : String&lt;br&gt;- sexe : Sexe&lt;br&gt;&lt;/div&gt;&lt;div&gt;- force : int&lt;/div&gt;&lt;div&gt;- endurance :&amp;nbsp; int &lt;br&gt;&lt;/div&gt;&lt;div&gt;- agilite : int&lt;/div&gt;&lt;div&gt;- performanceActuelle : float&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-9">
+          <mxGeometry y="26" width="330" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-11" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-9">
+          <mxGeometry y="140" width="330" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-12" value="+ Athlete(nom : String, ...)&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ rejoindreEquipe(equipe: Equipe) : boolean&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getNom() : String&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getPrenom() : String&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-9">
+          <mxGeometry y="150" width="330" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-13" value="Equipe" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2900" y="455" width="230" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-14" value="&lt;div&gt;- nomEquipe : String&lt;/div&gt;&lt;div&gt;- tailleMax : int&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;- enRelais : boolean&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;- performanceActuelle : float&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-13">
+          <mxGeometry y="26" width="230" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-13">
+          <mxGeometry y="110" width="230" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-16" value="&lt;div&gt;+ Equipe(nom : String, ...)&lt;/div&gt;&lt;div&gt;+ getTailleMax() : int&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ setTailleMax(taille: int) : int&lt;br&gt;&lt;/div&gt;+ getTaille() : int&lt;div&gt;+ getSport() : Sport&lt;/div&gt;&lt;div&gt;+ isEnRelais() : boolean&lt;/div&gt;&lt;div&gt;+ setEnRelais(enRelais : boolean&lt;span style=&quot;background-color: initial;&quot;&gt;) : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getListeAthletes() : Athlete[*]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ addAthlete(athlete Athlete) : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ estPleine() : boolean&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ setPays(pays Pays) : void&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-13">
+          <mxGeometry y="118" width="230" height="172" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-17" value="Handball" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3290" y="91" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-18" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-17">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-19" value="&lt;div&gt;VolleyBall&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3290" y="131" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-19">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-21" value="Escrime" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3290" y="171" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-22" value="- type : TypeEscrime" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-21">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-23" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-21">
+          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-24" value="Natation&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3290" y="31" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-25" value="- distance : int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-24">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-26" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-24">
+          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-27" value="Athlétisme" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3290" y="239" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-28" value="- distance : int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-27">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-29" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-27">
+          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-30" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3555" y="297" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.626;entryY=0.99;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-32" target="BS3W2MengVh8HjLx5N8C-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3660" y="299" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-32" value="{abstract} Competition" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3520" y="345" width="300" height="170" as="geometry">
+            <mxRectangle x="1060" y="585" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-33" value="&lt;div&gt;- sexe : Sexe&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-32">
+          <mxGeometry y="26" width="300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-34" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-32">
+          <mxGeometry y="50" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-35" value="&lt;div&gt;+ Competition(&lt;span style=&quot;background-color: initial;&quot;&gt;sexe : Sexe,&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;sport : Sport)&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getSexe() : Sexe&lt;/span&gt;&lt;/div&gt;+ getParticipants() : Participant[*]&lt;div&gt;+ enregistrerParticipant (participant: Participant) : void&lt;/div&gt;&lt;div&gt;+ jouer () : Participant[*]&lt;/div&gt;&lt;div&gt;- calculerPlacement() : Participant[*]&lt;/div&gt;&lt;div&gt;+ getSport() : Sport&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-32">
+          <mxGeometry y="58" width="300" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-36" value="CompetitionIndividuelle" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3510" y="548" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-37" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-36">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" target="BS3W2MengVh8HjLx5N8C-35">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3710" y="529" as="targetPoint" />
+            <mxPoint x="3729.9999999999995" y="548.0000000000002" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="3730" y="529" />
+              <mxPoint x="3730" y="529" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-39" value="CompetitionCollective" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3680" y="548" width="160" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-40" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-39">
+          <mxGeometry y="26" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-41" value="&lt;i&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt; Participant&lt;/i&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3180" y="455" width="320" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-42" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-41">
+          <mxGeometry y="26" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-43" value="&lt;div&gt;+ participer() : float&lt;br&gt;&lt;/div&gt;+ obtenirNom() : String&lt;div&gt;+ obtenirSexe() : Sexe&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ obtenirPays() : Pays&lt;br&gt;&lt;/div&gt;&lt;div&gt;+&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;obtenirEquipes() : Equipe&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ getCompetitionActuelle() : Competition&lt;/div&gt;&lt;div&gt;+ setCompetitionActuelle(competition : Competition): void&lt;/div&gt;&lt;div&gt;+ getClassement() : Classement&lt;/div&gt;&lt;div&gt;+ getForce() : int&lt;/div&gt;&lt;div&gt;+ getAgilite() : int&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getEndurance() : int&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ getPerformance() : float&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-41">
+          <mxGeometry y="34" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-44" value="JeuxOlympiques" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3520" y="705" width="490" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-45" value="- annee : int&lt;div&gt;- nbEpreuves : int&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-44">
+          <mxGeometry y="26" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-46" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-44">
+          <mxGeometry y="80" width="490" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-47" value="+ JeuxOlympiques(annee : int, nbEpreuves : int)&lt;div&gt;+ getAnnee() : int&lt;/div&gt;&lt;div&gt;+ getNbEpreuves() : int&lt;/div&gt;&lt;div&gt;+ getLesCompetitions() : Competition[*]&lt;/div&gt;&lt;div&gt;+ recupererResultat(participant : Participant) : Classement&lt;/div&gt;&lt;div&gt;+ lancerJeuxOlympiques() : void&lt;/div&gt;&lt;div&gt;+ enregistrerCompetition(competition : Competition) : void&lt;/div&gt;&lt;div&gt;+ classementMedailles() : Map&amp;lt;Pays, Classement&amp;gt;&lt;/div&gt;&lt;div&gt;+ classementOr() : String&lt;/div&gt;&lt;div&gt;+ fromCsv(path: String) : (String[*])[*]&lt;br&gt;&lt;/div&gt;&lt;div&gt;+ convertFromArrayCsv(annee : int, records : (String[*])[*]) : JeuxOlympiques&lt;/div&gt;&lt;div&gt;+ genererCompetition(compet: Competition, participant: Participant, Competition[*]) : void&lt;/div&gt;&lt;div&gt;+ getEquipeDispo(listePays: Pays[*], sport : Sport, athlete : Athlete) : Equipe&lt;/div&gt;&lt;div&gt;+ getSportFromName(sport : String) : Sport&lt;/div&gt;&lt;div&gt;+ obtenirListeSportsDisponible() : String[*]&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-44">
+          <mxGeometry y="88" width="490" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=classic;endFill=1;startArrow=none;startFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-45" target="BS3W2MengVh8HjLx5N8C-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3820" y="480" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="3900" y="383" />
+              <mxPoint x="3900" y="383" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-49" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3490" y="379" width="10" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-50" value="- lesCompetitions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3820" y="362" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-51" value="- sport" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3610" y="295" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" target="BS3W2MengVh8HjLx5N8C-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3310" y="454.0000000000001" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-53" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3259" y="428" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-54" value="- lesParticipants" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3306" y="428" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-55" value="- competitionActuelle" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3390" y="357" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-28" target="BS3W2MengVh8HjLx5N8C-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-22" target="BS3W2MengVh8HjLx5N8C-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3460" y="300" as="sourcePoint" />
+            <mxPoint x="3590" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-19" target="BS3W2MengVh8HjLx5N8C-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3360" y="216" as="sourcePoint" />
+            <mxPoint x="3590" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-17" target="BS3W2MengVh8HjLx5N8C-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3384" y="134" as="sourcePoint" />
+            <mxPoint x="3590" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-25" target="BS3W2MengVh8HjLx5N8C-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3395" y="4" as="sourcePoint" />
+            <mxPoint x="3590" y="148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-61" value="Classement" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3270" y="750" width="200" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-62" value="- medaillesOr : int&amp;nbsp;&lt;div&gt;- medailesArgent : int&amp;nbsp;&lt;/div&gt;&lt;div&gt;- medaillesBronze: int&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-61">
+          <mxGeometry y="26" width="200" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-63" value="" style="endArrow=none;html=1;rounded=0;entryX=0.996;entryY=-0.026;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.012;exitY=0.974;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="BS3W2MengVh8HjLx5N8C-61">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-9.103828801926284e-14" y="78.99600000000001" as="sourcePoint" />
+            <mxPoint x="201.60000000000005" y="78.99600000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-64" value="+ Classement()&amp;nbsp;&lt;div&gt;+ getMedaillesOr() : int&amp;nbsp;&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;getMedaillesArgent() : int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ getMedaillesBronze() : int&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;+ ajouteMedailleOr() : void&lt;/div&gt;&lt;div&gt;+&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;ajouteMedailleArgent() : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;ajouteMedailleBronze() : void&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getTotal() : int&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ getClassementOr() : Classement&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ compareTo(o:Classement) : int&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="BS3W2MengVh8HjLx5N8C-61">
+          <mxGeometry y="80" width="200" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-14" target="BS3W2MengVh8HjLx5N8C-43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3130" y="521" as="sourcePoint" />
+            <mxPoint x="3180" y="521" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3170" y="553" />
+              <mxPoint x="3170" y="553" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-36" target="BS3W2MengVh8HjLx5N8C-35">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="3590" y="529" />
+              <mxPoint x="3590" y="529" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-5" target="BS3W2MengVh8HjLx5N8C-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2730" y="639" />
+              <mxPoint x="2730" y="553" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.474;exitY=0.994;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-8" target="BS3W2MengVh8HjLx5N8C-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2730" y="659" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="2730" y="952" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;dashed=1;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-9" target="BS3W2MengVh8HjLx5N8C-43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3170" y="749" as="sourcePoint" />
+            <mxPoint x="3220" y="749" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3230" y="749" />
+              <mxPoint x="3230" y="749" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-70" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3830" y="382" width="20" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-71" value="- listeAthletes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2820" y="919" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-72" value="- pays" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2714" y="799" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-73" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2820" y="949" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-74" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2670" y="799" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-75" value="- listeAthletes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3070" y="839" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-76" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-16" target="BS3W2MengVh8HjLx5N8C-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2960" y="562" as="sourcePoint" />
+            <mxPoint x="3130" y="895" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3065" y="809" />
+              <mxPoint x="3065" y="809" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-77" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3000" y="839" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-78" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3000" y="751" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-79" value="- equipe" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3055" y="750" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-80" value="- pays" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2717" y="615" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-81" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2673" y="615" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-82" value="- listeEquipes" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2820" y="522" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-83" value="1..*" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2820" y="552" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-61" target="BS3W2MengVh8HjLx5N8C-43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3830" y="1134" as="sourcePoint" />
+            <mxPoint x="3320" y="1009" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3320" y="689" />
+              <mxPoint x="3320" y="689" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-85" value="- classement" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3325" y="720" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-86" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3260" y="720" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="BS3W2MengVh8HjLx5N8C-13" target="BS3W2MengVh8HjLx5N8C-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3680" y="355" as="sourcePoint" />
+            <mxPoint x="3680" y="298" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3015" y="320" />
+              <mxPoint x="3570" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-88" value="- sport" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3510" y="295" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BS3W2MengVh8HjLx5N8C-89" value="1..1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3660" y="297" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
