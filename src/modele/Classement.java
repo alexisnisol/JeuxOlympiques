@@ -92,8 +92,20 @@ public class Classement {
      * 
      * @return Le total de médailles.
      */
-    public int getTotal(){
+    public int getTotal() {
         return this.medaillesOr + this.medaillesArgent + this.medaillesBronze;
+    }
+
+    /**
+     * Renvoie une représentation sous forme de chaîne de caractères du classement
+     * des médailles d'or.
+     * 
+     * @return La représentation du classement des médailles d'or.
+     */
+    public Classement getClassementOr() {
+        Classement classement = new Classement();
+        classement.ajouterMedailleOr(this.medaillesOr);
+        return classement;
     }
 
     /**
@@ -103,7 +115,8 @@ public class Classement {
      */
     @Override
     public String toString() {
-        return "Voici le classement : " + this.medaillesOr + " médailles d'or, " + this.medaillesArgent + " médailles d'argent, " + this.medaillesBronze + " médailles de bronze.";
+        return "Voici le classement : " + this.medaillesOr + " médailles d'or, " + this.medaillesArgent
+                + " médailles d'argent, " + this.medaillesBronze + " médailles de bronze.";
     }
 
     /**
@@ -127,15 +140,21 @@ public class Classement {
      * @return true si le classement est égal à l'objet spécifié, sinon false.
      */
     @Override
-    public boolean equals(Object o){
-        if (o==null){return false;}
-        if (o == this) {return true; } 
-        if (!(o instanceof Classement)) {return false;}
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Classement)) {
+            return false;
+        }
 
         Classement classement = (Classement) o;
         return this.medaillesOr == classement.medaillesOr &&
-        this.medaillesArgent == classement.medaillesArgent &&
-        this.medaillesBronze == classement.medaillesBronze;
+                this.medaillesArgent == classement.medaillesArgent &&
+                this.medaillesBronze == classement.medaillesBronze;
     }
-    
+
 }

@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,6 @@ import modele.sports.VolleyBall;
 public class Executable {
     public static void main(String[] args) {
         JeuxOlympiques jo = new JeuxOlympiques(2024, 10);
-        
 
         Pays france = new Pays("France");
         Pays usa = new Pays("USA");
@@ -132,16 +132,17 @@ public class Executable {
                             System.out.println("Entrez le prénom du participant : ");
                             String prenom = scanner.nextLine();
 
-                            System.out.println("Entrez le sexe du participant (HOMME pour masculin, FEMME pour féminin) : ");
+                            System.out.println(
+                                    "Entrez le sexe du participant (HOMME pour masculin, FEMME pour féminin) : ");
                             Sexe sexe = Sexe.valueOf(scanner.next());
                             scanner.nextLine(); // Consomme la ligne restante
 
                             System.out.println("Entrez le pays du participant : ");
                             String pays = scanner.nextLine();
 
-                            System.out.println("Entrez l'épreuve du participant (si l'épreuve est l'escime renseigné fleuret ou epee) : ");
+                            System.out.println(
+                                    "Entrez l'épreuve du participant (si l'épreuve est l'escime renseigné fleuret ou epee) : ");
                             String epreuve = scanner.nextLine();
-
 
                             System.out.println("Entrez la force du participant : ");
                             int force = scanner.nextInt();
@@ -153,27 +154,26 @@ public class Executable {
                             int agilite = scanner.nextInt();
                             scanner.nextLine(); // Consomme la ligne restante
 
-
-                            List<String> participant = Arrays.asList(nom, prenom, String.valueOf(sexe), pays, epreuve, String.valueOf(force), String.valueOf(endurance), String.valueOf(agilite));
+                            List<String> participant = Arrays.asList(nom, prenom, String.valueOf(sexe), pays, epreuve,
+                                    String.valueOf(force), String.valueOf(endurance), String.valueOf(agilite));
                             liste.add(participant);
                             System.out.println(liste);
                             System.out.println(participant);
-                            }
+                        }
 
-                            JeuxOlympiques.convertFromArrayCsv(annee, liste);
-                            System.out.println(jo);
-                            System.out.println(jo.getLesCompetitions());
-                            System.out.println(jo.classementMedailles());
+                        JeuxOlympiques.convertFromArrayCsv(annee, liste);
+                        System.out.println(jo);
+                        System.out.println(jo.getLesCompetitions());
+                        System.out.println(jo.classementMedailles());
                         break;
                     }
                 case 2:
-                    
+
                     for (Competition competition : jo.getLesCompetitions()) {
-                        if (competition.equals(null)){
-                            
+                        if (competition.equals(null)) {
+
                             System.out.println("Aucune compétition n'a été enregistrée");
-                        }
-                        else{
+                        } else {
                             competition.jouer();
                         }
                         System.out.println(competition);
@@ -182,14 +182,17 @@ public class Executable {
                     }
                     break;
                 case 3:
-                    System.out.println("Entrez le nom de l'épreuve : ");
+                    System.out.println(
+                            "Entrez le nom de l'épreuve (Veuillez écrire le nom de la compétition correctement): ");
                     String nomEpreuve = scanner.next();
                     for (Competition competition : jo.getLesCompetitions()) {
                         if (competition.getSport().getNom().equals(nomEpreuve)) {
                             System.out.println(competition);
                             List<Participant> gagnants = competition.jouer();
                             for (int i = 0; i < gagnants.size(); i++) {
-                                System.out.println("Place " + (i+1) + ": " + gagnants.get(i).obtenirNom() + " " + gagnants.get(i).getPerformance() + " points" + " " + gagnants.get(i).getClassement());
+                                System.out.println("Place " + (i + 1) + ": " + gagnants.get(i).obtenirNom() + " "
+                                        + gagnants.get(i).getPerformance() + " points" + " "
+                                        + gagnants.get(i).getClassement());
                             }
                             return;
                         }
@@ -197,10 +200,19 @@ public class Executable {
                     System.out.println("Aucune compétition n'a été enregistrée avec ce nom");
                     break;
                 case 4:
-                    // Code pour obtenir le palmares des médailles...
+                    // Code pour obtenir le palmares des médailles par pays apres chaque journée...
+                    LocalDate dateAujourdhui = LocalDate.now();
+                    System.out.println("Voici les résultats d'aujourd'hui le : " + dateAujourdhui + " : "
+                            + jo.classementMedailles());
+
                     break;
                 case 5:
-                    // Code pour obtenir un classement par nombre total de médailles...
+                    // Code pour Obtenir un classement par nombre total de médailles et par nombre
+                    // total de médailles d'Or
+                    System.out
+                            .println("Voici le classement par nombre total de médailles : " + jo.classementMedailles());
+                    System.out.println("Voici le classement par nombre total de médailles d'Or : "
+                            + jo.classementOr());
                     break;
                 case 0:
                     System.out.println("Au revoir !");

@@ -112,6 +112,18 @@ public class JeuxOlympiques {
         return classementParPays;
     }
 
+    public String classementOr() {
+        Map<Pays, Classement> classementParPays = classementMedailles();
+        String classementOr = "";
+        for (Map.Entry<Pays, Classement> entry : classementParPays.entrySet()) {
+            Pays pays = entry.getKey();
+            Classement classement = entry.getValue();
+            classementOr += pays + " : " + classement.getMedaillesOr() + " medailles d'or\n";
+        }
+        return classementOr.toString();
+
+    }
+
     /**
      * Cette fonction permet de convertir les valeurs du csv en jeux olympiques
      * 
@@ -150,28 +162,32 @@ public class JeuxOlympiques {
             participants.add(athlete);
 
             String sportStr = joueur.get(4);
-            try{
+            try {
                 Sport sport = getSportFromName(sportStr);
 
                 /**
                  * Si le sport est en équipe, on ajoute l'athlète à une équipe
                  */
                 if (sport.isEnEquipe()) {
-                    Equipes equipe = getEquipeDispo(listePays, sport, athlete); // Une équipe est disponible si l'équipe n'est pas pleine, si le joueur a le même pays et si le sport du joueur est le même que celui de l'équipe
-                    //Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et l'athlète rejoint l'équipe.
+                    Equipes equipe = getEquipeDispo(listePays, sport, athlete); // Une équipe est disponible si l'équipe
+                                                                                // n'est pas pleine, si le joueur a le
+                                                                                // même pays et si le sport du joueur
+                                                                                // est le même que celui de l'équipe
+                    // Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et
+                    // l'athlète rejoint l'équipe.
                     if (equipe == null) {
                         equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
                                 paysJoueur);
-                        
+
                         athlete.rejoindreEquipe(equipe);
-                        
+
                         listeEquipes.add(equipe);
-                    } else { //Une équipe est disponible, alors l'athlète rejoint l'équipe.
+                    } else { // Une équipe est disponible, alors l'athlète rejoint l'équipe.
                         athlete.rejoindreEquipe(equipe);
                     }
                 }
                 athletesSport.put(athlete, sport);
-            }catch(IllegalArgumentException exception){
+            } catch (IllegalArgumentException exception) {
                 System.out.println(exception);
             }
         }
