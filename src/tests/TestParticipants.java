@@ -3,10 +3,10 @@ package tests;
 import org.junit.Before;
 import org.junit.Test;
 
-import modele.Athletes;
-import modele.Equipes;
 import modele.Pays;
 import modele.Sexe;
+import modele.participants.Athletes;
+import modele.participants.Equipes;
 import modele.sports.VolleyBall;
 
 import static org.junit.Assert.*;

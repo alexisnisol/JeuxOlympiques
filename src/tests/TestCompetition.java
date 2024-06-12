@@ -2,19 +2,20 @@ package tests;
 
 import org.junit.Before;
 import org.junit.Test;
-import modele.Athletes;
-import modele.Competition;
-import modele.CompetitionCollective;
-import modele.CompetitionIndividuelle;
+
 import modele.exceptions.MauvaisParticipantException;
-import modele.Equipes;
 import modele.sports.Natation;
 import modele.sports.VolleyBall;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.Pays;
 import modele.Sexe;
+import modele.competitions.Competition;
+import modele.competitions.CompetitionCollective;
+import modele.competitions.CompetitionIndividuelle;
 import modele.exceptions.SexeCompetitionException;
+import modele.participants.Athletes;
+import modele.participants.Equipes;
 import modele.exceptions.EquipePleineException;
 
 import static org.junit.Assert.*;

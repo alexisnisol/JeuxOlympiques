@@ -2,6 +2,9 @@ package modele;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.participants.Athletes;
+import modele.participants.Equipes;
+
 public class Pays {
     private String nom;
     private List<Athletes> listAthletes;

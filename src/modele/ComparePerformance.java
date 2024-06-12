@@ -1,6 +1,8 @@
 package modele;
 import java.util.Comparator;
 
+import modele.participants.Participant;
+
 /**
  * Cette classe implémente l'interface Comparator pour comparer les performances des participants.
  */

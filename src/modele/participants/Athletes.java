@@ -1,5 +1,9 @@
-package modele;
+package modele.participants;
 
+import modele.Classement;
+import modele.Pays;
+import modele.Sexe;
+import modele.competitions.Competition;
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.ParticipantDejaPresentException;
 

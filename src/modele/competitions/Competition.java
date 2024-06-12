@@ -1,12 +1,16 @@
-package modele;
+package modele.competitions;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import modele.ComparePerformance;
+import modele.Sexe;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.exceptions.SexeCompetitionException;
+import modele.participants.Participant;
 import modele.sports.Sport;
 
 public abstract class Competition {

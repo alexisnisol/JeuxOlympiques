@@ -1,6 +1,6 @@
 package modele.sports;
 
-import modele.Participant;
+import modele.participants.Participant;
 
 public class Natation extends Sport{
     

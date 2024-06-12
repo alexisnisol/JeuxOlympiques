@@ -1,7 +1,12 @@
-package modele;
+package modele.participants;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import modele.Classement;
+import modele.Pays;
+import modele.Sexe;
+import modele.competitions.Competition;
 import modele.exceptions.EquipePleineException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.sports.Sport;

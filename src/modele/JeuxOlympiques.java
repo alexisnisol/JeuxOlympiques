@@ -10,10 +10,16 @@ import java.util.Map;
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
+import modele.competitions.Competition;
+import modele.competitions.CompetitionCollective;
+import modele.competitions.CompetitionIndividuelle;
 import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.exceptions.SexeCompetitionException;
+import modele.participants.Athletes;
+import modele.participants.Equipes;
+import modele.participants.Participant;
 import modele.sports.Escrime;
 import modele.sports.HandBall;
 import modele.sports.Natation;
@@ -71,6 +77,9 @@ public class JeuxOlympiques {
         return participant.getClassement();
     }
 
+    /**
+     * Cette fonction permet de lancer les jeux olympiques, c'est à dire de jouer chaque compétition
+     */
     public void lancerJeuxOlympiques() {
         for (Competition competition : lesCompetitions) {
             competition.jouer();
@@ -161,7 +170,7 @@ public class JeuxOlympiques {
                 paysJoueur = tempPays;
                 listePays.add(paysJoueur);
             }
-            
+
             athlete = new Athletes(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)),
                     Integer.parseInt(joueur.get(5)), Integer.parseInt(joueur.get(6)), Integer.parseInt(joueur.get(7)),
                     paysJoueur);

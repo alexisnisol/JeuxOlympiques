@@ -4,13 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import modele.Athletes;
+
 import modele.Classement;
-import modele.Competition;
 import modele.JeuxOlympiques;
-import modele.Participant;
 import modele.Pays;
 import modele.Sexe;
+import modele.competitions.Competition;
+import modele.participants.Athletes;
+import modele.participants.Participant;
 
 public class Executable {
 
