@@ -112,6 +112,11 @@ public class JeuxOlympiques {
         return classementParPays;
     }
 
+    /**
+     * Cette fonction permet de retourner le classement des pays par les
+     * médailles d'or
+     * @return le classement des pays par les médailles d'or
+     */
     public String classementOr() {
         Map<Pays, Classement> classementParPays = classementMedailles();
         String classementOr = "";
@@ -218,6 +223,7 @@ public class JeuxOlympiques {
 
         JeuxOlympiques jeuxOlympiques = new JeuxOlympiques(annee, competitions.size());
 
+        jeuxOlympiques.lesCompetitions = competitions;
         System.out.println("Il y a " + jeuxOlympiques.getNbEpreuves() + " compétitions");
 
         return jeuxOlympiques;
@@ -279,6 +285,7 @@ public class JeuxOlympiques {
      * @return un sport en fonction de son nom
      */
     public static Sport getSportFromName(String sport) throws IllegalArgumentException {
+        System.out.println(sport);
         switch (sport) {
             case "Athletisme 110 haies":
                 return new Athletisme(sport, false, 100, -1);
@@ -299,6 +306,23 @@ public class JeuxOlympiques {
             default:
                 throw new IllegalArgumentException("Le sport " + sport + " n'existe pas");
         }
+    }
+
+    /**
+     * Cette fonction permet de retourner la liste des sports disponibles
+     * @return la liste des sports disponibles
+     */
+    public static List<String> obtenirListeSportsDisponible(){
+        List<String> sports = new ArrayList<>();
+        sports.add("Athletisme 110 haies");
+        sports.add("Natation relais libre");
+        sports.add("Natation 100 brasse");
+        sports.add("Escrime fleuret");
+        sports.add("Escrime epee");
+        sports.add("Volley-Ball");
+        sports.add("Handball");
+        sports.add("Athletisme relais 400m");
+        return sports;
     }
 
     /**
