@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,20 +7,10 @@ import java.util.Scanner;
 import modele.Athletes;
 import modele.Classement;
 import modele.Competition;
-import modele.CompetitionCollective;
-import modele.CompetitionIndividuelle;
-import modele.Equipes;
 import modele.JeuxOlympiques;
 import modele.Participant;
 import modele.Pays;
 import modele.Sexe;
-import modele.sports.Athletisme;
-import modele.sports.Escrime;
-import modele.sports.HandBall;
-import modele.sports.Natation;
-import modele.sports.Sport;
-import modele.sports.TypeEscrime;
-import modele.sports.VolleyBall;
 
 public class Executable {
 
@@ -255,8 +244,6 @@ public class Executable {
                     for(Map.Entry<Pays, Classement> entry : jo.classementMedailles().entrySet()){
                         System.out.println(entry.getKey().getNom() + " : " + entry.getValue());
                     }
-                    
-
                     break;
                 case 5:
                     // Code pour Obtenir un classement par nombre total de médailles et par nombre
@@ -266,7 +253,7 @@ public class Executable {
                         System.out.println(entry.getKey().getNom() + " : " + entry.getValue());
                     }
                     System.out.println(" ");
-                    System.out.println("Voici le classement par nombre total de médailles d'Or :");
+                    System.out.println("Voici le classement par nombre total de médailles d'Or pour " + jo.getNbEpreuves() + " compétitions :");
                     System.out.println(jo.classementOr());
                     break;
                 case 0:
