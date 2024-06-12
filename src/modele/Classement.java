@@ -1,6 +1,6 @@
 package modele;
 
-public class Classement {
+public class Classement implements Comparable<Classement>{
 
     private int medaillesOr;
     private int medaillesArgent;
@@ -115,7 +115,7 @@ public class Classement {
      */
     @Override
     public String toString() {
-        return "Voici le classement : " + this.medaillesOr + " médailles d'or, " + this.medaillesArgent
+        return "" + this.medaillesOr + " médailles d'or, " + this.medaillesArgent
                 + " médailles d'argent, " + this.medaillesBronze + " médailles de bronze.";
     }
 
@@ -155,6 +155,11 @@ public class Classement {
         return this.medaillesOr == classement.medaillesOr &&
                 this.medaillesArgent == classement.medaillesArgent &&
                 this.medaillesBronze == classement.medaillesBronze;
+    }
+
+    @Override
+    public int compareTo(Classement o) {
+        return Integer.compare(this.getTotal(), o.getTotal());
     }
 
 }
