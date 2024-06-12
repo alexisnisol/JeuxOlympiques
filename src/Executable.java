@@ -81,6 +81,7 @@ public class Executable {
         // System.out.println(resCompet);
         // System.out.println("CLASSEMENT MEDAILLES : " + jo.classementMedailles());
         // System.out.println(JeuxOlympiques.fromCsv("donnees.csv"));
+        // System.out.println(JeuxOlympiques.convertFromArrayCsv(2024, JeuxOlympiques.fromCsv("donnees.csv")));
 
         Scanner scanner = new Scanner(System.in);
         int choix;
