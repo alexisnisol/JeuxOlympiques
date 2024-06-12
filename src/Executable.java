@@ -3,8 +3,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import modele.Athletes;
+import modele.Classement;
 import modele.Competition;
 import modele.CompetitionCollective;
 import modele.CompetitionIndividuelle;
@@ -22,9 +24,34 @@ import modele.sports.TypeEscrime;
 import modele.sports.VolleyBall;
 
 public class Executable {
+
+    public static void menuAffichage(String title, String header, List<String> options) {
+        int lenMax = title.length();
+        if (header.length() > lenMax) {
+            lenMax = header.length();
+        }
+        for (String opt : options) {
+            if (opt.length() > lenMax) {
+                lenMax = opt.length();
+            }
+        }
+        System.out.println("╭" + "─".repeat(lenMax) + "╮");
+        System.out.println("│" + " ".repeat((lenMax - title.length()) / 2) + title + " ".repeat((lenMax - title.length() - 1) / 2 - title.length() % 2) + " │");
+        if(!header.isEmpty()){
+            System.out.println("├" + "─".repeat(lenMax) + "┤");
+            System.out.println("│" + header + " ".repeat(lenMax - header.length()) + "│");
+        }
+        System.out.println("├" + "─".repeat(lenMax) + "┤");
+        for (String opt : options) {
+            System.out.println("│" + opt + " ".repeat(lenMax - opt.length()) + "│");
+        }
+        System.out.println("╰" + "─".repeat(lenMax) + "╯");
+    }
+
     public static void main(String[] args) {
         JeuxOlympiques jo = new JeuxOlympiques(2024, 10);
 
+        /*System.out.println("Bienvenue dans le programme de gestion des Jeux Olympiques !");
         Pays france = new Pays("France");
         Pays usa = new Pays("USA");
 
@@ -77,7 +104,9 @@ public class Executable {
             e.printStackTrace();
         }
 
-        resCompet = competCollective.jouer();
+        resCompet = competCollective.jouer();*/
+
+
         // System.out.println(resCompet);
         // System.out.println("CLASSEMENT MEDAILLES : " + jo.classementMedailles());
         // System.out.println(JeuxOlympiques.fromCsv("donnees.csv"));
@@ -85,16 +114,17 @@ public class Executable {
         // 
         Scanner scanner = new Scanner(System.in);
         int choix;
-
+        String header = "";
+        //menuAffichage("Menu Jeux Olympiques", Arrays.asList("1. Rentrer les épreuves, les participants manuellement ou par lecture de fichier", "2. Simuler les épreuves", "3. Obtenir les résultats et le classement pour une épreuve donnée", "4. Obtenir le palmares des médailles par pays après chaque journée", "5. Obtenir un classement par nombre total de médailles et par nombre total de médailles d'Or", "0. Quitter"));
         do {
-            System.out.println("\nMenu:");
-            System.out.println("1. Rentrer les épreuves, les participants manuellement ou par lecture de fichier");
-            System.out.println("2. Simuler les épreuves");
-            System.out.println("3. Obtenir les résultats et le classement pour une épreuve donnée");
-            System.out.println("4. Obtenir le palmares des médailles par pays après chaque journée");
-            System.out.println(
-                    "5. Obtenir un classement par nombre total de médailles et par nombre total de médailles d’Or");
-            System.out.println("0. Quitter");
+            menuAffichage("Menu Jeux Olympiques", header, Arrays.asList(
+                "1. Rentrer les épreuves, les participants manuellement ou par lecture de fichier", 
+                "2. Simuler les épreuves",
+                "3. Jouer les épreuves et Obtenir les résultats et le classement pour une épreuve donnée",
+                "4. Obtenir le palmares des médailles par pays après chaque journée",
+                "5. Obtenir un classement par nombre total de médailles et par nombre total de médailles d'Or",
+                "0. Quitter"
+                ));
             System.out.print("Veuillez entrer votre choix : ");
 
             try {
@@ -110,11 +140,12 @@ public class Executable {
                             "Voulez vous rentrer les épreuves et les participants manuellement ou par lecture de fichier ? (manuel/fichier) :");
                     String choix2 = scanner.next();
                     if (choix2.equals("fichier")) {
-                        System.out.println("Veillez entrer le chemin du fichier : ");
+                        System.out.println("Veuillez entrer le chemin du fichier : ");
                         String path = scanner.next();
                         List<List<String>> liste = JeuxOlympiques.fromCsv(path);
-                        jo = JeuxOlympiques.convertFromArrayCsv(2024, liste);
-                        System.out.println(liste);
+                        System.out.println("Voici le résumé des participants et des compétitions : ");
+                        jo = JeuxOlympiques.convertFromArrayCsv(2024, liste); //print automatiquement le nombre de participants et de compétitions
+                        header = jo.getNbEpreuves() + " compétitions";
                     }
                     if (choix2.equals("manuel")) {
                         System.out.println("Entrez l'année des Jeux Olympiques : ");
@@ -168,6 +199,7 @@ public class Executable {
                         System.out.println(jo.classementMedailles());
                         break;
                     }
+                    break;
                 case 2:
 
                     for (Competition competition : jo.getLesCompetitions()) {
@@ -183,37 +215,59 @@ public class Executable {
                     }
                     break;
                 case 3:
-                    System.out.println(
-                            "Entrez le nom de l'épreuve (Veuillez écrire le nom de la compétition correctement): ");
-                    String nomEpreuve = scanner.next();
+                    System.out.println("Choisir une épreuve :");
+                    int cptSport = 0;
+                    for(String sport : JeuxOlympiques.obtenirListeSportsDisponible()){
+                        System.out.println(cptSport+". " + sport);
+                        cptSport++;
+                    }
+
+                    String nomEpreuve = JeuxOlympiques.obtenirListeSportsDisponible().get(scanner.nextInt());
+                    try{
+                        JeuxOlympiques.getSportFromName(nomEpreuve);
+                    } catch(IllegalArgumentException e){
+                        System.out.println("Erreur : " + e.getMessage());
+                        break;
+                    }
+                    int cpt = 0;
                     for (Competition competition : jo.getLesCompetitions()) {
                         if (competition.getSport().getNom().equals(nomEpreuve)) {
                             System.out.println(competition);
-                            List<Participant> gagnants = competition.jouer();
-                            for (int i = 0; i < gagnants.size(); i++) {
-                                System.out.println("Place " + (i + 1) + ": " + gagnants.get(i).obtenirNom() + " "
-                                        + gagnants.get(i).getPerformance() + " points" + " "
-                                        + gagnants.get(i).getClassement());
+                            Participant participant;
+                            List<Participant> competitionJoue = competition.jouer();
+                            for (int i = 0; i < competitionJoue.size(); i++) {
+                                participant = competitionJoue.get(i);
+                                System.out.println("Place " + (i + 1) + ": " + (participant instanceof Athletes ? "Athlète " : "Equipe ") + participant.obtenirNom() + " "
+                                        + competitionJoue.get(i).getPerformance() + " points" + " "
+                                        + competitionJoue.get(i).getClassement());
                             }
-                            return;
                         }
+                        cpt++;
                     }
-                    System.out.println("Aucune compétition n'a été enregistrée avec ce nom");
+                    if(cpt == 0) {
+                        System.out.println("Aucune compétition n'a été enregistrée avec ce nom");
+                    }
                     break;
                 case 4:
                     // Code pour obtenir le palmares des médailles par pays apres chaque journée...
                     LocalDate dateAujourdhui = LocalDate.now();
-                    System.out.println("Voici les résultats d'aujourd'hui le : " + dateAujourdhui + " : "
-                            + jo.classementMedailles());
+                    System.out.println("Voici les résultats d'aujourd'hui, le " + dateAujourdhui + " : ");
+                    for(Map.Entry<Pays, Classement> entry : jo.classementMedailles().entrySet()){
+                        System.out.println(entry.getKey().getNom() + " : " + entry.getValue());
+                    }
+                    
 
                     break;
                 case 5:
                     // Code pour Obtenir un classement par nombre total de médailles et par nombre
                     // total de médailles d'Or
-                    System.out
-                            .println("Voici le classement par nombre total de médailles : " + jo.classementMedailles());
-                    System.out.println("Voici le classement par nombre total de médailles d'Or : "
-                            + jo.classementOr());
+                    System.out.println("Voici le classement par nombre total de médailles : ");
+                    for(Map.Entry<Pays, Classement> entry : jo.classementMedailles().entrySet()){
+                        System.out.println(entry.getKey().getNom() + " : " + entry.getValue());
+                    }
+                    System.out.println(" ");
+                    System.out.println("Voici le classement par nombre total de médailles d'Or :");
+                    System.out.println(jo.classementOr());
                     break;
                 case 0:
                     System.out.println("Au revoir !");
