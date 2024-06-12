@@ -285,7 +285,6 @@ public class JeuxOlympiques {
      * @return un sport en fonction de son nom
      */
     public static Sport getSportFromName(String sport) throws IllegalArgumentException {
-        System.out.println(sport);
         switch (sport) {
             case "Athletisme 110 haies":
                 return new Athletisme(sport, false, 100, -1);
