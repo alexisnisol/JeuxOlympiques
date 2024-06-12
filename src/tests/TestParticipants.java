@@ -5,27 +5,27 @@ import org.junit.Test;
 
 import modele.Pays;
 import modele.Sexe;
-import modele.participants.Athletes;
-import modele.participants.Equipes;
+import modele.participants.Athlete;
+import modele.participants.Equipe;
 import modele.sports.VolleyBall;
 
 import static org.junit.Assert.*;
 
 public class TestParticipants {
-    private Equipes equipe;
-    private Athletes athlete1;
-    private Athletes athlete2;
-    private Athletes athlete3;
+    private Equipe equipe;
+    private Athlete athlete1;
+    private Athlete athlete2;
+    private Athlete athlete3;
     private Pays pays;
 
     @Before
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipes("Équipe de test", sport, 6, false, pays);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
-        athlete2 = new Athletes("Test", "Test", Sexe.FEMME, 30, 35, 40, pays);
-        athlete3 = new Athletes("Test2", "Test2", Sexe.FEMME, 30, 35, 40, pays);
+        equipe = new Equipe("Équipe de test", sport, 6, false, pays);
+        athlete1 = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete2 = new Athlete("Test", "Test", Sexe.FEMME, 30, 35, 40, pays);
+        athlete3 = new Athlete("Test2", "Test2", Sexe.FEMME, 30, 35, 40, pays);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TestParticipants {
     public void testObtenirSexe() {
         assertEquals(Sexe.HOMME, equipe.obtenirSexe());
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        Equipes equipeFemme = new Equipes("Équipe de test2", sport, 6, false, pays);
+        Equipe equipeFemme = new Equipe("Équipe de test2", sport, 6, false, pays);
 
         athlete1.rejoindreEquipe(equipeFemme); // HOMME
         assertEquals(Sexe.HOMME, equipeFemme.obtenirSexe());

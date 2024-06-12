@@ -10,7 +10,7 @@ import modele.JeuxOlympiques;
 import modele.Pays;
 import modele.Sexe;
 import modele.competitions.Competition;
-import modele.participants.Athletes;
+import modele.participants.Athlete;
 import modele.participants.Participant;
 
 public class Executable {
@@ -227,7 +227,7 @@ public class Executable {
                             List<Participant> competitionJoue = competition.jouer();
                             for (int i = 0; i < competitionJoue.size(); i++) {
                                 participant = competitionJoue.get(i);
-                                System.out.println("Place " + (i + 1) + ": " + (participant instanceof Athletes ? "Athlète " : "Equipe ") + participant.obtenirNom() + " "
+                                System.out.println("Place " + (i + 1) + ": " + (participant instanceof Athlete ? "Athlète " : "Equipe ") + participant.obtenirNom() + " "
                                         + competitionJoue.get(i).getPerformance() + " points" + " "
                                         + competitionJoue.get(i).getClassement());
                             }

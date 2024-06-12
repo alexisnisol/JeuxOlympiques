@@ -11,19 +11,19 @@ import modele.exceptions.EquipePleineException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.sports.Sport;
 
-public class Equipes implements Participant {
+public class Equipe implements Participant {
 
     private String nomEquipe;
     private int tailleMax;
     private Sport sport;
     private boolean enRelais;
     private Classement classement;
-    private List<Athletes> listeAthletes;
+    private List<Athlete> listeAthletes;
     private Pays pays;
     private Competition competitionActuelle;
     private float performanceActuelle;
 
-    public Equipes(String nomEquipe, Sport sport, int tailleMax, boolean enRelais, Pays pays) {
+    public Equipe(String nomEquipe, Sport sport, int tailleMax, boolean enRelais, Pays pays) {
         this.nomEquipe = nomEquipe;
         this.tailleMax = tailleMax;
         this.sport = sport;
@@ -104,7 +104,7 @@ public class Equipes implements Participant {
      * 
      * @return la liste des athlètes de l'équipe
      */
-    public List<Athletes> getListeAthletes() {
+    public List<Athlete> getListeAthletes() {
         return listeAthletes;
     }
 
@@ -115,7 +115,7 @@ public class Equipes implements Participant {
      * @throws EquipePleineException
      * @throws ParticipantDejaPresentException
      */
-    public void addAthlete(Athletes athlete) throws EquipePleineException, ParticipantDejaPresentException {
+    public void addAthlete(Athlete athlete) throws EquipePleineException, ParticipantDejaPresentException {
         if (this.listeAthletes.size() + 1 > this.tailleMax) {
             throw new EquipePleineException();
         }
@@ -166,7 +166,7 @@ public class Equipes implements Participant {
     @Override
     public int getForce() {
         int totalForce = 0;
-        for (Athletes ath : this.listeAthletes) {
+        for (Athlete ath : this.listeAthletes) {
             totalForce += ath.getForce();
         }
         return totalForce;
@@ -180,7 +180,7 @@ public class Equipes implements Participant {
     @Override
     public int getAgilite() {
         int totalAgilite = 0;
-        for (Athletes ath : this.listeAthletes) {
+        for (Athlete ath : this.listeAthletes) {
             totalAgilite += ath.getAgilite();
         }
         return totalAgilite;
@@ -195,7 +195,7 @@ public class Equipes implements Participant {
     @Override
     public int getEndurance() {
         int totalEndurance = 0;
-        for (Athletes ath : this.listeAthletes) {
+        for (Athlete ath : this.listeAthletes) {
             totalEndurance += ath.getEndurance();
         }
         return totalEndurance;
@@ -223,7 +223,7 @@ public class Equipes implements Participant {
     @Override
     public Sexe obtenirSexe() {
         int nbHomme = 0;
-        for (Athletes athetes : this.listeAthletes) {
+        for (Athlete athetes : this.listeAthletes) {
             if (athetes.obtenirSexe() == Sexe.HOMME) {
                 ++nbHomme;
             } else {
@@ -252,7 +252,7 @@ public class Equipes implements Participant {
      * @return l'équipe
      */
     @Override
-    public Equipes obtenirEquipes() {
+    public Equipe obtenirEquipes() {
         return this;
     }
 
@@ -269,11 +269,11 @@ public class Equipes implements Participant {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof Equipes)) {
+        if (!(o instanceof Equipe)) {
             return false;
         }
 
-        Equipes equipe = (Equipes) o;
+        Equipe equipe = (Equipe) o;
         return this.nomEquipe.equals(equipe.nomEquipe) &&
                 this.sport.equals(equipe.sport) &&
                 this.tailleMax == equipe.tailleMax &&
@@ -283,7 +283,7 @@ public class Equipes implements Participant {
 
     public String athletesToString() {
         StringBuilder sb = new StringBuilder();
-        for (Athletes athlete : this.listeAthletes) {
+        for (Athlete athlete : this.listeAthletes) {
             sb.append(athlete.getNom()).append(" ").append(athlete.getPrenom()).append(", ");
         }
         // Supprime la dernière virgule et l'espace

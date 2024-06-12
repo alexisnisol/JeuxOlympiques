@@ -17,8 +17,8 @@ import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.exceptions.SexeCompetitionException;
-import modele.participants.Athletes;
-import modele.participants.Equipes;
+import modele.participants.Athlete;
+import modele.participants.Equipe;
 import modele.participants.Participant;
 import modele.sports.Escrime;
 import modele.sports.HandBall;
@@ -73,7 +73,6 @@ public class JeuxOlympiques {
      * @return on retourne donc ses résultats dans toute ses compétitions
      */
     public Classement recupererResultat(Participant participant) {
-        // return participant.getResultat();
         return participant.getClassement();
     }
 
@@ -97,7 +96,7 @@ public class JeuxOlympiques {
     }
 
     /**
-     * Cette fonction permet de retourner le classement des participants par les
+     * Cette fonction permet de retourner le classement des pays par les
      * médailles
      */
     public Map<Pays, Classement> classementMedailles() {
@@ -147,13 +146,13 @@ public class JeuxOlympiques {
      */
     public static JeuxOlympiques convertFromArrayCsv(int annee, List<List<String>> records) {
         List<Competition> competitions = new ArrayList<>();
-        List<Equipes> listeEquipes = new ArrayList<>();
+        List<Equipe> listeEquipes = new ArrayList<>();
         List<Pays> listePays = new ArrayList<>();
         List<Participant> participants = new ArrayList<>();
 
-        Map<Athletes, Sport> athletesSport = new HashMap<>();
+        Map<Athlete, Sport> athletesSport = new HashMap<>();
 
-        Athletes athlete;
+        Athlete athlete;
         Pays paysJoueur;
         Pays tempPays;
         for (List<String> joueur : records) {
@@ -171,7 +170,7 @@ public class JeuxOlympiques {
                 listePays.add(paysJoueur);
             }
 
-            athlete = new Athletes(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)),
+            athlete = new Athlete(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)),
                     Integer.parseInt(joueur.get(5)), Integer.parseInt(joueur.get(6)), Integer.parseInt(joueur.get(7)),
                     paysJoueur);
             
@@ -185,14 +184,14 @@ public class JeuxOlympiques {
                  * Si le sport est en équipe, on ajoute l'athlète à une équipe
                  */
                 if (sport.isEnEquipe()) {
-                    Equipes equipe = getEquipeDispo(listePays, sport, athlete); // Une équipe est disponible si l'équipe
+                    Equipe equipe = getEquipeDispo(listePays, sport, athlete); // Une équipe est disponible si l'équipe
                                                                                 // n'est pas pleine, si le joueur a le
                                                                                 // même pays et si le sport du joueur
                                                                                 // est le même que celui de l'équipe
                     // Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et
                     // l'athlète rejoint l'équipe.
                     if (equipe == null) {
-                        equipe = new Equipes(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
+                        equipe = new Equipe(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
                                 paysJoueur);
 
                         athlete.rejoindreEquipe(equipe);
@@ -212,8 +211,8 @@ public class JeuxOlympiques {
          * On crée les compétitions individuelles en fonction des sports des athlètes
          * dans le jeu de données
          */
-        for (Map.Entry<Athletes, Sport> entry : athletesSport.entrySet()) {
-            Athletes athlete1 = entry.getKey();
+        for (Map.Entry<Athlete, Sport> entry : athletesSport.entrySet()) {
+            Athlete athlete1 = entry.getKey();
             Sport sport = entry.getValue();
             if (!sport.isEnEquipe()) {
                 CompetitionIndividuelle competition = new CompetitionIndividuelle(athlete1.obtenirSexe(), sport);
@@ -225,7 +224,7 @@ public class JeuxOlympiques {
          * On crée les compétitions collectives en fonction des équipes générées en
          * amont, à la lecture du csv.
          */
-        for (Equipes equipe : listeEquipes) {
+        for (Equipe equipe : listeEquipes) {
             CompetitionCollective competition = new CompetitionCollective(equipe.obtenirSexe(), equipe.getSport());
             genererCompetition(competition, equipe, competitions);
         }
@@ -276,12 +275,12 @@ public class JeuxOlympiques {
      * @return une équipe disponible pour un sport donné, un pays donné et un
      *         athlète donné, null si aucune équipe n'est disponible
      */
-    public static Equipes getEquipeDispo(List<Pays> listePays, Sport sport, Athletes athlete) {
+    public static Equipe getEquipeDispo(List<Pays> listePays, Sport sport, Athlete athlete) {
         Pays pays = athlete.obtenirPays();
         int indexPays = listePays.indexOf(pays);
         pays = listePays.get(indexPays);
-        List<Equipes> equipes = pays.getEquipes();
-        for (Equipes equipe : equipes) {
+        List<Equipe> equipes = pays.getEquipes();
+        for (Equipe equipe : equipes) {
             if (equipe.getSport().equals(sport) && !equipe.estPleine()) {
                 return equipe;
             }

@@ -4,7 +4,7 @@ import modele.exceptions.MauvaisParticipantException;
 import modele.exceptions.ParticipantDejaPresentException;
 import modele.exceptions.ParticipantOccupeException;
 import modele.exceptions.SexeCompetitionException;
-import modele.participants.Equipes;
+import modele.participants.Equipe;
 import modele.participants.Participant;
 import modele.sports.Sport;
 
@@ -17,7 +17,7 @@ public class CompetitionIndividuelle extends Competition {
 
     @Override
     public void enregistrerParticipant(Participant participant) throws SexeCompetitionException, ParticipantDejaPresentException, ParticipantOccupeException, MauvaisParticipantException{
-        if(participant instanceof Equipes){
+        if(participant instanceof Equipe){
             throw new MauvaisParticipantException();
         }
         super.enregistrerParticipant(participant);

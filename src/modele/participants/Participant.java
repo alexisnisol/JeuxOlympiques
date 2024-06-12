@@ -36,7 +36,7 @@ public interface Participant {
      * Méthode permettant d'obtenir l'équipe du participant.
      * @return l'équipe du participant
      */
-    public Equipes obtenirEquipes();
+    public Equipe obtenirEquipes();
 
     /**
      * Getter de la compétition actuelle, en tant que Participant.

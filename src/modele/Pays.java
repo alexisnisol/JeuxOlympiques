@@ -2,13 +2,13 @@ package modele;
 import java.util.ArrayList;
 import java.util.List;
 
-import modele.participants.Athletes;
-import modele.participants.Equipes;
+import modele.participants.Athlete;
+import modele.participants.Equipe;
 
 public class Pays {
     private String nom;
-    private List<Athletes> listAthletes;
-    private List<Equipes> listEquipes;
+    private List<Athlete> listAthletes;
+    private List<Equipe> listEquipes;
 
     public Pays(String nom){
         this.nom = nom;
@@ -20,7 +20,7 @@ public class Pays {
      * Ajoute un athlète à la liste des athlètes du pays
      * @param athlete l'athlète à ajouter
      */
-    public void addAthlete(Athletes athlete){
+    public void addAthlete(Athlete athlete){
         this.listAthletes.add(athlete);
     }
 
@@ -28,7 +28,7 @@ public class Pays {
      * Ajoute une équipe à la liste des équipes du pays
      * @param equipe l'équipe à ajouter
      */
-    public void addEquipe(Equipes equipe){
+    public void addEquipe(Equipe equipe){
         this.listEquipes.add(equipe);
     }
 
@@ -44,7 +44,7 @@ public class Pays {
      * Obtient la liste des athlètes du pays
      * @return la liste des athlètes
      */
-    public List<Athletes> getAthletes(){
+    public List<Athlete> getAthletes(){
         return this.listAthletes;
     }
     
@@ -52,7 +52,7 @@ public class Pays {
      * Obtient la liste des équipes du pays
      * @return la liste des équipes
      */
-    public List<Equipes> getEquipes(){
+    public List<Equipe> getEquipes(){
         return this.listEquipes;
     }
 

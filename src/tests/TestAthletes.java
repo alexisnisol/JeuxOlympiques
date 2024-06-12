@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import modele.Pays;
 import modele.Sexe;
-import modele.participants.Athletes;
-import modele.participants.Equipes;
+import modele.participants.Athlete;
+import modele.participants.Equipe;
 import modele.sports.Sport;
 import modele.sports.VolleyBall;
 
@@ -15,16 +15,16 @@ import static org.junit.Assert.*;
 
 
 public class TestAthletes {
-    private Athletes athlete;
+    private Athlete athlete;
     private Pays pays;
-    private Equipes equipe;
+    private Equipe equipe;
 
     @Before
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipes("Équipe de test", sport, 5, false, pays);
-        athlete = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        equipe = new Equipe("Équipe de test", sport, 5, false, pays);
+        athlete = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete.rejoindreEquipe(equipe);
     }
 

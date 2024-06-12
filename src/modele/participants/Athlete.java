@@ -10,7 +10,7 @@ import modele.exceptions.ParticipantDejaPresentException;
 /**
  * Cette classe représente un athlète participant aux Jeux Olympiques.
  */
-public class Athletes implements Participant {
+public class Athlete implements Participant {
     private String nom;
     private String prenom;
     private Sexe sexe;
@@ -19,7 +19,7 @@ public class Athletes implements Participant {
     private int agilite;
     private Classement classement;
     private Pays pays;
-    private Equipes equipe;
+    private Equipe equipe;
     private Competition competitionActuelle;
     private float performanceActuelle;
 
@@ -34,7 +34,7 @@ public class Athletes implements Participant {
      * @param agilite   l'agilité de l'athlète
      * @param pays      le pays de l'athlète
      */
-    public Athletes(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, Pays pays) {
+    public Athlete(String nom, String prenom, Sexe sexe, int force, int endurance, int agilite, Pays pays) {
         this.nom = nom;
         this.prenom = prenom;
         this.agilite = agilite;
@@ -54,7 +54,7 @@ public class Athletes implements Participant {
      * @param equipe l'équipe à rejoindre
      * @return true si l'athlète a réussi à rejoindre l'équipe, false sinon
      */
-    public boolean rejoindreEquipe(Equipes equipe) {
+    public boolean rejoindreEquipe(Equipe equipe) {
         try {
             this.equipe = equipe;
             this.equipe.addAthlete(this);
@@ -196,7 +196,7 @@ public class Athletes implements Participant {
      * @return l'équipe de l'athlète
      */
     @Override
-    public Equipes obtenirEquipes() {
+    public Equipe obtenirEquipes() {
         return this.equipe;
     }
 
@@ -224,11 +224,11 @@ public class Athletes implements Participant {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof Athletes)) {
+        if (!(o instanceof Athlete)) {
             return false;
         }
 
-        Athletes athlete = (Athletes) o;
+        Athlete athlete = (Athlete) o;
         return this.nom.equals(athlete.nom) &&
                 this.prenom.equals(athlete.prenom) &&
                 this.sexe == athlete.sexe &&

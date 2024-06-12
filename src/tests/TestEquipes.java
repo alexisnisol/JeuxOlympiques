@@ -4,29 +4,29 @@ import org.junit.Test;
 
 import modele.Pays;
 import modele.Sexe;
-import modele.participants.Athletes;
-import modele.participants.Equipes;
+import modele.participants.Athlete;
+import modele.participants.Equipe;
 import modele.sports.VolleyBall;
 
 import static org.junit.Assert.*;
 
 public class TestEquipes {
-    private Equipes equipe;
-    private Athletes athlete1;
-    private Athletes athlete1bis;
-    private Athletes athlete2;
-    private Athletes athlete3;
+    private Equipe equipe;
+    private Athlete athlete1;
+    private Athlete athlete1bis;
+    private Athlete athlete2;
+    private Athlete athlete3;
     private Pays pays;
 
     @Before
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipes("Équipe de test", sport, 2, false, pays);
-        athlete1 = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
-        athlete1bis = new Athletes("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
-        athlete2 = new Athletes("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, pays);
-        athlete3 = new Athletes("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, pays);
+        equipe = new Equipe("Équipe de test", sport, 2, false, pays);
+        athlete1 = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete1bis = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
+        athlete2 = new Athlete("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, pays);
+        athlete3 = new Athlete("DoeDoeDoe", "JohnJohnJohn", Sexe.HOMME, 50, 60, 70, pays);
     }
 
     @Test
