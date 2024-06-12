@@ -146,24 +146,26 @@ public class JeuxOlympiques {
 
         Athletes athlete;
         Pays paysJoueur;
+        Pays tempPays;
         for (List<String> joueur : records) {
 
             /*
              * On crée un pays pour l'athlète
              * On crée un athlète
              */
-            paysJoueur = new Pays(joueur.get(3));
+            tempPays = new Pays(joueur.get(3));
+            if(listePays.contains(tempPays)){
+                int indexPays = listePays.indexOf(tempPays);
+                paysJoueur = listePays.get(indexPays);
+            } else {
+                paysJoueur = tempPays;
+                listePays.add(paysJoueur);
+            }
+            
             athlete = new Athletes(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)),
                     Integer.parseInt(joueur.get(5)), Integer.parseInt(joueur.get(6)), Integer.parseInt(joueur.get(7)),
                     paysJoueur);
-            if (!listePays.contains(paysJoueur)) {
-                listePays.add(paysJoueur);
-            } else {
-                int indexPays = listePays.indexOf(paysJoueur);
-                paysJoueur = listePays.get(indexPays);
-                paysJoueur.addAthlete(athlete);
-                listePays.set(indexPays, paysJoueur);
-            }
+            
             participants.add(athlete);
 
             String sportStr = joueur.get(4);
