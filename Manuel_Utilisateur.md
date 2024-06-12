@@ -14,7 +14,7 @@ Cette application permet de simuler des Jeux Olympiques, de gérer les épreuves
 1. Compilez les fichiers sources Java en utilisant votre IDE préféré ou en ligne de commande :
 
 ```
-javac -d ./bin ./src/*.java
+javac -cp ./src/ -encoding UTF8 -d bin src/*.java
 ```
 2. Exécutez l'application en ligne de commande :
 ```

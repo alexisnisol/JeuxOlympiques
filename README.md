@@ -7,7 +7,7 @@ FAMILIAR Enzo
 
 
 ### Compilation
-javac -d ./bin ./src/*.java
+javac -cp ./src/ -encoding UTF8 -d bin src/*.java
 
 ### Exécution
 java -cp ./bin Executable
