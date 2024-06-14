@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-06-14T16:59:05.201Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="bHG4UXeN-FLAmxjDG2-m" version="24.5.4" type="github">
+<mxfile host="app.diagrams.net" modified="2024-06-14T17:03:12.677Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="mNpSm2ulX4bnywkaJvtb" version="24.5.4" type="github">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="1395" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1116" dy="520" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -224,12 +224,6 @@
             <mxPoint x="1890" y="470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ahG7zml8AhsYettLMHsf-67" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 8px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: rgb(197, 134, 192);&quot;&gt;throw&lt;/span&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(197, 134, 192);&quot;&gt;new&lt;/span&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: rgb(220, 220, 170);&quot;&gt;SexeCompetitionException&lt;/span&gt;&lt;span style=&quot;color: rgb(204, 204, 204);&quot;&gt;();&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;align=center;fontSize=9;" parent="1" vertex="1">
-          <mxGeometry x="1290" y="450" width="190" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="ahG7zml8AhsYettLMHsf-68" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 9px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;this&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #9cdcfe;&quot;&gt;lesParticipants&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;contains&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #9cdcfe;&quot;&gt;participant&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1350" y="480" width="360" height="40" as="geometry" />
-        </mxCell>
         <mxCell id="ahG7zml8AhsYettLMHsf-69" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="ahG7zml8AhsYettLMHsf-48" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1270" y="500" as="sourcePoint" />
@@ -241,9 +235,6 @@
             <mxPoint x="1265" y="530" as="sourcePoint" />
             <mxPoint x="1490" y="530" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="ahG7zml8AhsYettLMHsf-71" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 8px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%; font-size: 9px;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: #c586c0;&quot;&gt;throw&lt;/span&gt; &lt;span style=&quot;color: #c586c0;&quot;&gt;new&lt;/span&gt; &lt;span style=&quot;color: #dcdcaa;&quot;&gt;ParticipantDejaPresentException&lt;/span&gt;();&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;align=center;fontSize=9;" parent="1" vertex="1">
-          <mxGeometry x="1380" y="530" width="190" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ahG7zml8AhsYettLMHsf-72" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -268,12 +259,6 @@
             <mxPoint x="1265" y="650" as="sourcePoint" />
             <mxPoint x="1685" y="650" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="ahG7zml8AhsYettLMHsf-77" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 9px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 136%;&quot;&gt;&lt;span style=&quot;color: #9cdcfe;&quot;&gt;participant&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;getCompetitionActuelle&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;() &lt;/span&gt;&lt;span style=&quot;color: #d4d4d4;&quot;&gt;!=&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;null&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1460" y="600" width="370" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="ahG7zml8AhsYettLMHsf-78" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 9px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: #c586c0;&quot;&gt;throw&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #c586c0;&quot;&gt;new&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;ParticipantOccupeException&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;();&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1480" y="650" width="330" height="40" as="geometry" />
         </mxCell>
         <mxCell id="ahG7zml8AhsYettLMHsf-79" value="" style="endArrow=classic;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;" parent="1" target="ahG7zml8AhsYettLMHsf-49" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -314,7 +299,7 @@
         <mxCell id="ahG7zml8AhsYettLMHsf-86" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 9px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;this&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #9cdcfe;&quot;&gt;lesParticipants&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;add&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #9cdcfe;&quot;&gt;participant&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;connectable=0;" parent="1" vertex="1">
           <mxGeometry x="1060" y="720" width="190" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="ahG7zml8AhsYettLMHsf-87" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 9px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: #9cdcfe;&quot;&gt;participant&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;setCompetitionActuelle&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;this&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="ahG7zml8AhsYettLMHsf-87" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-weight: normal; font-size: 9px; line-height: 19px; white-space: pre;&quot;&gt;&lt;div style=&quot;line-height: 100%;&quot;&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;setCompetitionActuelle&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color: #569cd6;&quot;&gt;this&lt;/span&gt;&lt;span style=&quot;color: #cccccc;&quot;&gt;);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1370" y="750" width="350" height="40" as="geometry" />
         </mxCell>
         <mxCell id="ahG7zml8AhsYettLMHsf-88" value="" style="endArrow=none;dashed=1;html=1;rounded=0;startArrow=classic;startFill=1;" parent="1" edge="1">
@@ -328,6 +313,21 @@
         </mxCell>
         <mxCell id="p8NlmfbnsBrjD1FHsdJK-2" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;font style=&quot;font-size: 9px;&quot;&gt;le sexe du participant n&#39;est pas celui de la compétition&lt;/font&gt;&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1270" y="410" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p8NlmfbnsBrjD1FHsdJK-3" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;l&#39;exception est levée&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="440" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p8NlmfbnsBrjD1FHsdJK-4" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;si dans la liste de participant il&amp;nbsp; y a déjà ce participant&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="480" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p8NlmfbnsBrjD1FHsdJK-5" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;l&#39;exception est levée&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1445" y="500" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p8NlmfbnsBrjD1FHsdJK-6" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;Le participant est déjà entraint de participer à une compétition&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="600" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p8NlmfbnsBrjD1FHsdJK-7" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;l&#39;exception est levée&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="640" width="100" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
