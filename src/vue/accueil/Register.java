@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import controller.ControleurAccueil;
+import controller.ControleurLoginJDBC;
+import controller.ControleurRegisterJDBC;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
@@ -61,17 +63,12 @@ public class Register extends BorderPane{
     public void showCenter(){
         VBox center = new VBox(25);
         center.setAlignment(Pos.CENTER);
-        TextField textfield;
-        List<String> fields = Arrays.asList("Nom", "Prénom", "Pseudo");
-        for(String field : fields){
-            textfield = new TextField();
-            textfield.setPrefSize(433, 59);
-            textfield.setStyle("-fx-background-color: #414246; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold;");
-            textfield.setPromptText(field);
-            center.getChildren().add(textfield);
-        }
-        
-        PasswordField mdp = new PasswordField();
+        nom = new TextFieldAccueil("Nom");
+        prenom = new TextFieldAccueil("Prénom");
+        pseudo = new TextFieldAccueil("Pseudo");
+        center.getChildren().addAll(nom, prenom, pseudo);
+    
+        mdp = new PasswordField();
         mdp.setPrefSize(433, 59);
         mdp.setStyle("-fx-background-color: #414246; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold;");
         mdp.setPromptText("Mot de passe");
@@ -114,11 +111,18 @@ public class Register extends BorderPane{
 
     public void showBottom(){
         Button bottom = new Button("Inscription");
+
+        bottom.setOnAction(new ControleurRegisterJDBC(this));
+
         BorderPane.setAlignment(bottom, Pos.CENTER);
         BorderPane.setMargin(bottom, new Insets(0, 0, 20, 0));
 
         bottom.setPrefSize(314, 70);
         bottom.setStyle("-fx-text-fill: white; -fx-background-color: #0781FE; -fx-font-weight: bold; -fx-font-size: 18;");
         this.setBottom(bottom);
+    }
+
+    public Main getMain() {
+        return main;
     }
 }
