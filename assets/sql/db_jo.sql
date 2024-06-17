@@ -15,7 +15,7 @@ CREATE TABLE ROLES (
 
 
 CREATE TABLE UTILISATEURS (
-  idUtilisateur int primary key,
+  idUtilisateur int primary key AUTO_INCREMENT,
   nom varchar(16),
   prenom varchar(16),
   pseudo varchar(16),

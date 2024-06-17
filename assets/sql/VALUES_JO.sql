@@ -115,7 +115,11 @@ Select * from ATHLETES;
 
 
 
-INSERT INTO ROLES VALUES (1, "admin");
+INSERT INTO ROLES VALUES 
+(1, "admin"),
+(2, "organisateur"),
+(3, "journaliste");
+
 INSERT INTO UTILISATEURS VALUES (1, "admin", "admin", "admin", "admin", 1);
 
 
