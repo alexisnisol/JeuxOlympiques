@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import BD.server.ControleurSQL;
 import controller.ControleurAccueil;
+import controller.ControleurLoginJDBC;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
@@ -61,10 +62,7 @@ public class Login extends BorderPane{
     public void showCenter(){
         VBox center = new VBox(50);
         center.setAlignment(Pos.CENTER);
-        pseudo = new TextField();
-        pseudo.setPrefSize(433, 59);
-        pseudo.setStyle("-fx-background-color: #414246; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold;");
-        pseudo.setPromptText("Pseudo");
+        pseudo = new TextFieldAccueil("Pseudo");
         mdp = new PasswordField();
         mdp.setPrefSize(433, 59);
         mdp.setStyle("-fx-background-color: #414246; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold;");
@@ -100,7 +98,8 @@ public class Login extends BorderPane{
 
     public void showBottom(){
         Button bottom = new Button("Connexion");
-        //bottom.setOnAction(new ControleurLoginJDBC(main, ButtonAction.CONNEXION));
+
+        bottom.setOnAction(new ControleurLoginJDBC(this));
 
         BorderPane.setAlignment(bottom, Pos.CENTER);
         BorderPane.setMargin(bottom, new Insets(0, 0, 20, 0));
