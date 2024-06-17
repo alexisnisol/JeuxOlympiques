@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER" maxWidth="407.0" minWidth="50.0" prefHeight="76.0" prefWidth="407.0" spacing="50.0" style="-fx-background-color: #36373B; -fx-border-radius: 15; -fx-background-radius: 15;" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="142.0" style="-fx-background-color: #0781FE; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-radius: 10;" text="Se connecter" textFill="WHITE" />
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #36373B; -fx-font-weight: bold;" text="S'inscrire" textFill="WHITE" />
+         </children>
+         <BorderPane.margin>
+            <Insets top="25.0" />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <left>
+      <ImageView fitHeight="173.0" fitWidth="253.0" preserveRatio="true" BorderPane.alignment="CENTER_RIGHT">
+         <image>
+            <Image url="@../../../../../../Téléchargements/image%204.png" />
+         </image>
+      </ImageView>
+   </left>
+   <right>
+      <ImageView fitHeight="229.0" fitWidth="217.0" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../../../../Téléchargements/image%205.png" />
+         </image>
+      </ImageView>
+   </right>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="900.0" spacing="50.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField prefHeight="59.0" prefWidth="433.0" style="-fx-background-color: #414246; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold;" styleClass="mainFields" text="Pseudo">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <TextField prefHeight="59.0" prefWidth="405.0" style="-fx-background-color: #414246; -fx-text-fill: white; -fx-padding: 10; -fx-font-weight: bold;" styleClass="mainFields" text="Mot de passe" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="314.0" style="-fx-background-color: #0781FE; -fx-font-weight: bold;" text="Connexion" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
