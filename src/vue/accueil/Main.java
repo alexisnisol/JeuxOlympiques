@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -104,14 +105,15 @@ public class Main extends Application{
     }
 
     /**
-     * Affiche une fenêtre popup pour demander si l'utilisateur veut vraiment quitter
+     * Affiche une fenêtre popup lié à l'authentification
      * @return la fenêtre popup
      */
-    public Alert getPopupIncorrect(String info){
-        Alert alert = new Alert(Alert.AlertType.ERROR,"Le " + info + " est incorrect !", ButtonType.OK);
+    public Alert getPopup(AlertType type, String text){
+        Alert alert = new Alert(type, text, ButtonType.OK);
         alert.setTitle("Authentification");
         return alert;
     }
+
     
     public static void main(String[] args) {
         launch(args);
