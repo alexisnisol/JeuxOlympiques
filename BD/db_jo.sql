@@ -4,6 +4,28 @@ DROP TABLE IF EXISTS COMPETITIONS;
 DROP TABLE IF EXISTS SPORT;
 DROP TABLE IF EXISTS PAYS;
 
+
+DROP TABLE IF EXISTS UTILISATEURS;
+DROP TABLE IF EXISTS ROLES;
+
+CREATE TABLE ROLES (
+  idRole int primary key,
+  nomRole varchar(16)
+);
+
+CREATE TABLE UTILISATEURS (
+  idUtilisateur int primary key,
+  nom varchar(16),
+  prenom varchar(16),
+  pseudo varchar(16),
+  email varchar(32),
+  mdp varchar(64)
+  idRole int DEFAULT NULL,
+  CONSTRAINT FKRoles FOREIGN KEY (idRole) REFERENCES ROLES(idRole)
+);
+
+
+
 CREATE TABLE ATHLETES (
   idAthletes int primary key,
   nom varchar(16) NOT NULL,
