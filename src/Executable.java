@@ -110,7 +110,7 @@ public class Executable {
             menuAffichage("Menu Jeux Olympiques", header, Arrays.asList(
                 "1. Rentrer les épreuves, les participants manuellement ou par lecture de fichier", 
                 "2. Simuler les épreuves",
-                "3. Jouer les épreuves et Obtenir les résultats et le classement pour une épreuve donnée",
+                "3. Jouer les épreuves pour un sport donné, et Obtenir les résultats et le classement",
                 "4. Obtenir le palmares des médailles par pays après chaque journée",
                 "5. Obtenir un classement par nombre total de médailles et par nombre total de médailles d'Or",
                 "0. Quitter"
