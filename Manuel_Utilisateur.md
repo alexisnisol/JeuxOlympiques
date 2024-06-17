@@ -14,11 +14,11 @@ Cette application permet de simuler des Jeux Olympiques, de gérer les épreuves
 1. Compilez les fichiers sources Java en utilisant votre IDE préféré ou en ligne de commande :
 
 ```
-javac -cp ./src/ -encoding UTF8 -d bin src/*.java
+javac -cp ./src/ -d bin --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml src/*.java
 ```
 2. Exécutez l'application en ligne de commande :
 ```
-java -cp ./bin Executable
+java -cp .:bin:img --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml Executable
 ````
 
 
