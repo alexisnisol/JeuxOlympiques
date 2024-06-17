@@ -1,3 +1,5 @@
+package BD;
+
 import java.sql.*;
 
 public class ConnexionMySQL {
@@ -9,7 +11,7 @@ public class ConnexionMySQL {
 
 	public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
 		this.connecte = false;
-		this.mysql = DriverManager.getConnection("jdbc:mysql://"+nomServeur+":3306/"+nomBase+"?user="+nomLogin+"&password="+motDePasse);
+		this.mysql = DriverManager.getConnection("jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
 		this.connecte = true;
 	}
 	public void close() throws SQLException {
