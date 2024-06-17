@@ -13,41 +13,29 @@ CREATE TABLE ROLES (
   nomRole varchar(16)
 );
 
+
 CREATE TABLE UTILISATEURS (
   idUtilisateur int primary key,
   nom varchar(16),
   prenom varchar(16),
   pseudo varchar(16),
-  email varchar(32),
-  mdp varchar(64)
+  mdp varchar(64),
   idRole int DEFAULT NULL,
   CONSTRAINT FKRoles FOREIGN KEY (idRole) REFERENCES ROLES(idRole)
 );
 
 
-
-CREATE TABLE ATHLETES (
-  idAthletes int primary key,
-  nom varchar(16) NOT NULL,
-  prenom varchar(16) NOT NULL,
-  sexe varchar(5) NOT NULL,
-  force int DEFAULT NULL,
-  endurance int DEFAULT NULL,
-  agilite int DEFAULT NULL,
-  medaille varchar(10) DEFAULT NULL,
-  totalMedailles int DEFAULT NULL,
-  idPays int DEFAULT NULL,
-  competitionActuelle int DEFAULT NULL,
-  idEquipe int DEFAULT NULL,
-  CONSTRAINT FKCompetition FOREIGN KEY (competitionActuelle) REFERENCES COMPETITIONS(idCompetition),
-  CONSTRAINT FKPays FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
-  CONSTRAINT FKEquipe FOREIGN KEY (idEquipe) REFERENCES EQUIPES(idEquipe)
-);
-
-CREATE TABLE PAY (
+CREATE TABLE PAYS (
     idPays int primary key,
     nomPays varchar(23) NOT NULL
 );
+
+CREATE TABLE SPORT (
+    idSport int primary key,
+    nomSport varchar(16) NOT NULL,
+    typeSport varchar(16) NOT NULL,
+    coeffSport decimal(6,0) DEFAULT NULL);
+
 
 CREATE TABLE COMPETITIONS (
   idCompetition int primary key,
@@ -56,14 +44,8 @@ CREATE TABLE COMPETITIONS (
   sexeCompetition varchar(5) DEFAULT NULL,
   estIndividuelle varchar(5) DEFAULT NULL,
   idSport int DEFAULT NULL,
-  CONSTRAINT FKSport FOREIGN KEY (idSport) REFERENCES SPORT(idSport)
+  CONSTRAINT FKSportC FOREIGN KEY (idSport) REFERENCES SPORT(idSport)
 );
-
-CREATE TABLE SPOR (
-    idSport int primary key,
-    nomSport varchar(16) NOT NULL,
-    typeSport varchar(16) NOT NULL,
-    coeffSport decimal(6,0) DEFAULT NULL);
 
 CREATE TABLE EQUIPES (
     idEquipe int primary key,
@@ -74,7 +56,23 @@ CREATE TABLE EQUIPES (
     totalMedailles int DEFAULT NULL,
     idPays int DEFAULT NULL,
     idCompetition int DEFAULT NULL,
-    CONSTRAINT FKPays FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
-    CONSTRAINT FKCompetition FOREIGN KEY (idCompetition) REFERENCES COMPETITIONS(idCompetition)
+    CONSTRAINT FKPaysE FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
+    CONSTRAINT FKCompetitionE FOREIGN KEY (idCompetition) REFERENCES COMPETITIONS(idCompetition)
 );
 
+
+CREATE TABLE ATHLETES (
+  idAthletes int primary key,
+  nom varchar(16) NOT NULL,
+  prenom varchar(16) NOT NULL,
+  sexe varchar(5) NOT NULL,
+  `force` int DEFAULT NULL,
+  endurance int DEFAULT NULL,
+  agilite int DEFAULT NULL,
+  idPays int DEFAULT NULL,
+  competitionActuelle int DEFAULT NULL,
+  idEquipe int DEFAULT NULL,
+  CONSTRAINT FKCompetitionA FOREIGN KEY (competitionActuelle) REFERENCES COMPETITIONS(idCompetition),
+  CONSTRAINT FKPaysA FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
+  CONSTRAINT FKEquipeA FOREIGN KEY (idEquipe) REFERENCES EQUIPES(idEquipe)
+);

@@ -85,18 +85,26 @@ INSERT INTO EQUIPES VALUES
 (18, 'Equipe de Tunisie', 8, 'Oui', 'Bronze', 18);
 
 INSERT INTO ATHLETES VALUES 
-(1, 'Dupont', 'Jean', 'Homme', 10, 10, 10, 'Or', 1, 1, 1),
-(2, 'Durand', 'Marie', 'Femme', 10, 10, 10, 'Argent', 1, 1, 1),
-(3, 'Martin', 'Pierre', 'Homme', 10, 10, 10, 'Bronze', 1, 1, 1),
-(4, 'Bernard', 'Sophie', 'Femme', 10, 10, 10, 'Or', 1, 1, 1),
-(5, 'Petit', 'Paul', 'Homme', 10, 10, 10, 'Argent', 1, 1, 1),
-(6, 'Lefevre', 'Julie', 'Femme', 10, 10, 10, 'Bronze', 1, 1, 1),
-(7, 'Leroy', 'Jacques', 'Homme', 10, 10, 10, 'Or', 1, 1, 1),
-(8, 'Leroux', 'Marine', 'Femme', 10, 10, 10, 'Argent', 1, 1, 1),
-(9, 'Lefevre', 'Julien', 'Homme', 10, 10, 10, 'Bronze', 1, 1, 1),
-(10, 'Dupret', 'Pierre','Homme',10,10,10,'Or',1,1,1);
-
-
+(1, 'Dupont', 'Jean', 'Homme', 10, 10, 10, 1, 1, 1),
+(2, 'Durand', 'Marie', 'Femme', 8, 8, 8, 2, 1, 2),
+(3, 'Martin', 'Pierre', 'Homme', 9, 9, 9, 3, 1, 3),
+(4, 'Bernard', 'Sophie', 'Femme', 7, 7, 7, 4, 1, 4),
+(5, 'Lefevre', 'Paul', 'Homme', 6, 6, 6, 5, 1, 5),
+(6, 'Leroy', 'Julie', 'Femme', 5, 5, 5, 6, 1, 6),
+(7, 'Moreau', 'Jacques', 'Homme', 4, 4, 4, 7, 1, 7),
+(8, 'Lefevre', 'Marie', 'Femme', 3, 3, 3, 8, 1, 8),
+(9, 'Leroy', 'Pierre', 'Homme', 2, 2, 2, 9, 1, 9),
+(10, 'Moreau', 'Sophie', 'Femme', 1, 1, 1, 10, 1, 10),
+(11, 'Dupont', 'Paul', 'Homme', 10, 10, 10, 11, 1, 11),
+(12, 'Durand', 'Julie', 'Femme', 8, 8, 8, 12, 1, 12),
+(13, 'Martin', 'Jacques', 'Homme', 9, 9, 9, 13, 1, 13),
+(14, 'Bernard', 'Marie', 'Femme', 7, 7, 7, 14, 1, 14),
+(15, 'Lefevre', 'Pierre', 'Homme', 6, 6, 6, 15, 1, 15),
+(16, 'Leroy', 'Sophie', 'Femme', 5, 5, 5, 16, 1, 16),
+(17, 'Moreau', 'Paul', 'Homme', 4, 4, 4, 17, 1, 17),
+(18, 'Lefevre', 'Julie', 'Femme', 3, 3, 3, 18, 1, 18),
+(19, 'Leroy', 'Marie', 'Femme', 2, 2, 2, 19, 1, 19),
+(20, 'Moreau', 'Pierre', 'Homme', 1, 1, 1, 20, 1, 20);
 
 Select * from PAYS;
 Select * from SPORT;
@@ -104,15 +112,12 @@ Select * from COMPETITIONS;
 Select * from EQUIPES;
 Select * from ATHLETES;
 
-SELECT EPREUVE, COUNT(*) AS RESULTATS, EQUIPE, MEDAILLE
-FROM ATHLETES
-WHERE EPREUVE = 'Natation'
-GROUP BY EPREUVE, EQUIPE, MEDAILLE
-ORDER BY RESULTATS DESC;
 
-SELECT nom, prenom, totalMedailles FROM ATHLETES WHERE totalMedailles > 0 ORDER BY totalMedailles DESC;
 
-SELECT nom, prenom, COUNT(*) as NombreMedaillesOr FROM ATHLETES WHERE idAthletes in (SELECT idAthletes FROM ATHLETES WHERE medaille = 'Or') GROUP BY nom, prenom ORDER BY NombreMedaillesOr asc;
+
+INSERT INTO ROLES VALUES (1, "admin");
+INSERT INTO UTILISATEURS VALUES (1, "admin", "admin", "admin", "admin", 1);
+
 
 
 
