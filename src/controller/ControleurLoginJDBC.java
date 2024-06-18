@@ -1,46 +1,41 @@
 package controller;
 
+import vue.accueil.accueilbase.principale;
 import java.sql.SQLException;
-import java.util.Optional;
-
 import BD.RequetesJDBC.RoleConnexion;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import vue.accueil.Login;
 import vue.accueil.Main;
-import vue.accueil.Main.ButtonAction;
 
-public class ControleurLoginJDBC implements EventHandler<ActionEvent>{
+public class ControleurLoginJDBC implements EventHandler<ActionEvent> {
 
     private Login login;
-    
-    public ControleurLoginJDBC(Login login) {
+    private principale accueil;
+
+    public ControleurLoginJDBC(Login login, principale accueil) {
         this.login = login;
+        this.accueil = accueil;
     }
 
     @Override
     public void handle(ActionEvent event) {
         Main main = login.getMain();
         try {
-            RoleConnexion connexion = main.getRequetesJDBC().connexion(login.getPseudo().getText(), login.getMdp().getText());
+            RoleConnexion connexion = main.getRequetesJDBC().connexion(login.getPseudo().getText(),
+                    login.getMdp().getText());
 
-            if(connexion == RoleConnexion.INVALIDE){
+            if (connexion == RoleConnexion.INVALIDE) {
                 main.getPopup(Alert.AlertType.ERROR, "Le Mot de passe est incorrect !").show();
-            }else{
-                switch (connexion) {
-                    case JOURNALISTE:
-                        break;
-                
-                    default:
-                        break;
-                }
+            } else {
+                accueil.afficheAccueil(connexion);
+
+                this.login.resetTF();
             }
-        }
-        catch (SQLException e1) {
+        } catch (SQLException e1) {
             e1.printStackTrace();
         }
+
     }
 }

@@ -1,18 +1,15 @@
 package controller;
 
-import java.sql.SQLException;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import vue.accueil.Main;
 import vue.accueil.Main.ButtonAction;
 
-public class ControleurAccueil implements EventHandler<ActionEvent>{
+public class ControleurAccueil implements EventHandler<ActionEvent> {
 
     private Main main;
     private ButtonAction action;
-    
+
     public ControleurAccueil(Main main, ButtonAction action) {
         this.main = main;
         this.action = action;
@@ -30,7 +27,6 @@ public class ControleurAccueil implements EventHandler<ActionEvent>{
                 main.afficherInscription();
                 break;
 
-        
             default:
                 main.afficherInscription();
         }
