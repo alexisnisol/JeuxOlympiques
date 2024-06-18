@@ -173,7 +173,7 @@ public class Equipe implements Participant {
     }
 
     /**
- * Calcul l'agilité totale de l'équipe : somme des agilités de tous les athlètes
+     * Calcul l'agilité totale de l'équipe : somme des agilités de tous les athlètes
      * 
      * @return l'agilité totale de l'équipe
      */
@@ -217,7 +217,7 @@ public class Equipe implements Participant {
      */
     @Override
     public String obtenirNom() {
-        return this.nomEquipe;
+        return "Equipe " + this.nomEquipe;
     }
 
     @Override

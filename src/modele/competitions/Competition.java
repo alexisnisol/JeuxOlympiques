@@ -18,10 +18,13 @@ public abstract class Competition {
     protected List<Participant> lesParticipants;
     protected Sport sport;
 
+    private boolean estJouee;
+
     public Competition(Sexe sexe, Sport sport) {
         this.sexe = sexe;
         this.lesParticipants = new ArrayList<>();
         this.sport = sport;
+        this.estJouee = false;
     }
 
     /**
@@ -31,6 +34,15 @@ public abstract class Competition {
      */
     public Sexe getSexe() {
         return this.sexe;
+    }
+
+    /**
+     * Retourne vrai si la compétition est jouée, faux sinon
+     * 
+     * @return vrai si la compétition est jouée, faux sinon
+     */
+    public boolean estJouee() {
+        return this.estJouee;
     }
 
     /**
@@ -84,6 +96,7 @@ public abstract class Competition {
     public List<Participant> jouer() {
         // if(this.estPleine()){
         List<Participant> gagnants = this.calculerPlacement();
+        this.estJouee = true;
 
         if (gagnants.size() > 0)
             gagnants.get(0).getClassement().ajouterMedailleOr();
@@ -110,15 +123,11 @@ public abstract class Competition {
         return place;
     }
 
-    /*
-    private boolean finirCompetition() {
-        for (Participant p : this.lesParticipants) {
-            p.setCompetitionActuelle(null);
-        }
-        this.lesParticipants.clear();
-        return true;
+    public List<Participant> getPlacement() {
+        List<Participant> place = new ArrayList<>(this.lesParticipants);
+        Collections.sort(place, new ComparePerformance());
+        return place;
     }
-    */
 
     public Sport getSport() {
         return sport;
@@ -144,6 +153,10 @@ public abstract class Competition {
     @Override
     public int hashCode() {
         return this.sexe.hashCode() + this.sport.hashCode();
+    }
+
+    public String affichageVue() {
+        return "" + this.sexe + " de " + sport.getNom();
     }
 
     @Override
