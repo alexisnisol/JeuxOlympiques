@@ -1,0 +1,46 @@
+#navbar-btn{
+    -fx-font-size: 18;
+    -fx-background-color: #FFFFFF; 
+    -fx-text-weight: bold;
+}
+
+#navbar-btn:hover{
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+#accueil-tf{
+    -fx-background-color: #414246; 
+    -fx-text-fill: white;
+    -fx-padding: 10;
+    -fx-font-weight: bold;
+}
+
+
+#nav-loupe{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#nav-loupe:hover{
+    -fx-cursor: hand;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}
+
+#consultBtn{
+    -fx-background-color: #d9d9d9;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-border-color: #d9d9d9;
+}
+
+#consultBtn:hover{
+    -fx-cursor: hand;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+}

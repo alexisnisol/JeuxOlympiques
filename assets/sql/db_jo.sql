@@ -52,8 +52,6 @@ CREATE TABLE EQUIPES (
     nomEquipe varchar(16) NOT NULL,
     tailleMax int DEFAULT NULL,
     enRelais varchar(5) DEFAULT NULL,
-    medaille varchar(10) DEFAULT NULL,
-    totalMedailles int DEFAULT NULL,
     idPays int DEFAULT NULL,
     idCompetition int DEFAULT NULL,
     CONSTRAINT FKPaysE FOREIGN KEY (idPays) REFERENCES PAYS(idPays),

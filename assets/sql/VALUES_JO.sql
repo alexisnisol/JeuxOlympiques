@@ -65,24 +65,24 @@ INSERT INTO COMPETITIONS VALUES
 (20, 'Cyclisme', 64, 'Homme', 'Oui', 14);
 
 INSERT INTO EQUIPES VALUES 
-(1, 'Equipe de France', 8, 'Oui', 'Or', 1, 1),
-(2, 'Equipe d''Italie', 8, 'Oui', 'Argent', 2, 1),
-(3, 'Equipe d''Espagne', 8, 'Oui', 'Bronze', 3, 1),
-(4, 'Equipe d''Allemagne', 8, 'Oui', 'Or', 4, 1),
-(5, 'Equipe du Royaume-Uni', 8, 'Oui', 'Argent', 5, 1),
-(6, 'Equipe de Russie', 8, 'Oui', 'Bronze', 6, 1),
-(7, 'Equipe de Chine', 8, 'Oui', 'Or', 7, 1),
-(8, 'Equipe du Japon', 8, 'Oui', 'Argent', 8, 1),
-(9, 'Equipe d''Australie', 8, 'Oui', 'Bronze', 9, 1),
-(10, 'Equipe du Canada', 8, 'Oui', 'Or', 10, 1),
-(11, 'Equipe des Etats-Unis', 8, 'Oui', 'Argent', 11, 1),
-(12, 'Equipe du Mexique', 8, 'Oui', 'Bronze', 12, 1),
-(13, 'Equipe d''Argentine', 8, 'Oui', 'Or', 13, 1),
-(14, 'Equipe du Bresil', 8, 'Oui', 'Argent', 14, 1),
-(15, 'Equipe d''Afrique du Sud', 8, 'Oui', 'Bronze', 15, 1),
-(16, 'Equipe d''Egypte', 8, 'Oui', 'Or', 16, 1),
-(17, 'Equipe du Maroc', 8, 'Oui', 'Argent', 17, 1),
-(18, 'Equipe de Tunisie', 8, 'Oui', 'Bronze', 18);
+(1, 'France', 8, 'Oui', 1, null),
+(2, 'Italie', 8, 'Oui', 1, null),
+(3, 'Espagne', 8, 'Oui',  1, null),
+(4, 'Allemagne', 8, 'Oui', 1, null),
+(5, 'Royaume-Uni', 8, 'Oui', 1, null),
+(6, 'Russie', 8, 'Oui', 1, null),
+(7, 'Chine', 8, 'Oui', 1, null),
+(8, 'Japon', 8, 'Oui', 1, null),
+(9, 'Australie', 8, 'Oui', 1, null),
+(10, 'Canada', 8, 'Oui', 1, null),
+(11, 'USA', 8, 'Oui', 1, null),
+(12, 'Mexique', 8, 'Oui', 1, null),
+(13, 'Argentine', 8, 'Oui', 1, null),
+(14, 'Bresil', 8, 'Oui', 1, null),
+(15, 'Afrique du Sud', 8, 'Oui', 1, null),
+(16, 'Egypte', 8, 'Oui', 1, null),
+(17, 'Maroc', 8, 'Oui', 1, null),
+(18, 'Tunisie', 8, 'Oui', 18, null);
 
 INSERT INTO ATHLETES VALUES 
 (1, 'Dupont', 'Jean', 'Homme', 10, 10, 10, 1, 1, 1),
@@ -102,26 +102,28 @@ INSERT INTO ATHLETES VALUES
 (15, 'Lefevre', 'Pierre', 'Homme', 6, 6, 6, 15, 1, 15),
 (16, 'Leroy', 'Sophie', 'Femme', 5, 5, 5, 16, 1, 16),
 (17, 'Moreau', 'Paul', 'Homme', 4, 4, 4, 17, 1, 17),
-(18, 'Lefevre', 'Julie', 'Femme', 3, 3, 3, 18, 1, 18),
-(19, 'Leroy', 'Marie', 'Femme', 2, 2, 2, 19, 1, 19),
-(20, 'Moreau', 'Pierre', 'Homme', 1, 1, 1, 20, 1, 20);
+(18, 'Lefevre', 'Julie', 'Femme', 3, 3, 3, 18, 1, 18);
 
-Select * from PAYS;
-Select * from SPORT;
-Select * from COMPETITIONS;
-Select * from EQUIPES;
-Select * from ATHLETES;
+--Select * from PAYS;
+--Select * from SPORT;
+--Select * from COMPETITIONS;
+--Select * from EQUIPES;
+--Select * from ATHLETES;
 
 
 
 
 INSERT INTO ROLES VALUES 
-(1, "admin"),
+(1, "administrateur"),
 (2, "organisateur"),
 (3, "journaliste");
 
-INSERT INTO UTILISATEURS VALUES (1, "admin", "admin", "admin", "admin", 1);
+INSERT INTO UTILISATEURS VALUES (1, "admin", "admin", "admin", "admin", 1),
+(2, "orga", "orga", "orga", "orga", 2),
+(3, "aa", "aa", "aa", "aa", 3);
 
 
 
 
+INSERT INTO UTILISATEURS VALUES
+(5, "orga", "orga", "orga", "orga", 2)
