@@ -1,5 +1,7 @@
 package vue.accueil;
 
+import java.util.List;
+
 import BD.RequetesJDBC;
 import BD.server.LoginBD;
 import controller.ControleurAccueil;
@@ -14,22 +16,24 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import modele.JeuxOlympiques;
 
-public class Main extends Application{
-    
-    private Stage primaryStage;
+public class Main extends Application {
+
+    private Scene scene;
     private BorderPane root;
 
     private Login loginPane;
     private Register registerPane;
     private LoginBD loginBD;
     private RequetesJDBC requetesJDBC;
+    private JeuxOlympiques modele;
+    private Stage stage;
 
-    public void accueil(){
-        
+    public void accueil() {
+
         Label titre = new Label("Bienvenue dans les Jeux IUT’Olympiques");
         titre.setAlignment(Pos.CENTER);
         titre.setStyle("-fx-font-size: 30px;");
@@ -60,70 +64,85 @@ public class Main extends Application{
         root.setBottom(menu);
         root.setStyle("-fx-background-color: #ffffff;");
     }
-    
-    public void afficherAccueil(){
+
+    public void afficherAccueil() {
+        this.stage.setScene(scene);
         accueil();
-        this.primaryStage.getScene().setRoot(root);
+        this.scene.setRoot(root);
     }
 
-    public void afficherLoginBD(){
-        this.primaryStage.getScene().setRoot(this.loginBD);
+    public void afficherLoginBD() {
+        Scene scene = new Scene(this.loginBD, 300, 400);
+        this.stage.setScene(scene);
+        scene.setRoot(loginBD);
     }
 
-    public void afficherlogin(){
-        this.primaryStage.getScene().setRoot(this.loginPane);
+    public void afficherlogin() {
+        this.scene.setRoot(this.loginPane);
     }
 
-    public void afficherInscription(){
-        this.primaryStage.getScene().setRoot(this.registerPane);
+    public void afficherInscription() {
+        this.scene.setRoot(this.registerPane);
     }
 
-
-	@Override
-	public void start(Stage stage) throws Exception {
-        this.primaryStage = stage;
+    @Override
+    public void start(Stage stage) throws Exception {
+        this.stage = stage;
         this.root = new BorderPane();
-        this.loginPane = new Login(this);
+
+        this.modele = new JeuxOlympiques(2024, 0);
+
+        List<List<String>> liste = JeuxOlympiques.fromCsv("src/big_data.csv");
+        this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
+
+        this.scene = new Scene(root, 900, 550);
+
+        this.loginPane = new Login(this, this.modele);
         this.registerPane = new Register(this);
         this.loginBD = new LoginBD(this);
 
         this.requetesJDBC = new RequetesJDBC(this.loginBD.getConnexionMySQL());
 
-        Scene scene = new Scene(root, 900, 550);
-        
-        primaryStage.setTitle("Jeux IUT'Olympiques");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        scene.getStylesheets().add("file:assets/css/styles.css");
+
+        stage.setTitle("Jeux IUT'Olympiques");
+        stage.setScene(scene);
+        stage.show();
         afficherLoginBD();
-        
+
     }
 
-
-
-    public RequetesJDBC getRequetesJDBC(){
+    public RequetesJDBC getRequetesJDBC() {
         return this.requetesJDBC;
+    }
+
+    public JeuxOlympiques getModele() {
+        return this.modele;
     }
 
     /**
      * Affiche une fenêtre popup lié à l'authentification
+     * 
      * @return la fenêtre popup
      */
-    public Alert getPopup(AlertType type, String text){
+    public Alert getPopup(AlertType type, String text) {
         Alert alert = new Alert(type, text, ButtonType.OK);
         alert.setTitle("Authentification");
         return alert;
     }
 
-    
     public static void main(String[] args) {
         launch(args);
-	}
+    }
 
-    public enum ButtonAction{
+    public enum ButtonAction {
         LOGIN_PANE,
         REGISTER_PANE,
         CONNEXION,
         INSCRIPTION
     }
-}
 
+    public Scene getScene() {
+        return this.scene;
+    }
+}

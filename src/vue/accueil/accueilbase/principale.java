@@ -3,52 +3,93 @@ package vue.accueil.accueilbase;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import modele.Classement;
+import modele.JeuxOlympiques;
+import modele.Pays;
+import vue.Recherche.Rechercher;
+import vue.accueil.Login;
+import vue.accueil.Navigation;
+import vue.administrateur.Ajouter;
+import vue.journaliste.ConsulterPane;
+import vue.journaliste.Medailles;
+
+import java.util.Map;
+
+import BD.RequetesJDBC.RoleConnexion;
+import controller.ControleurNavigation;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
 public class principale extends BorderPane {
 
+    private Login login;
+    private JeuxOlympiques modele;
+    private Navigation navigation;
+    private RoleConnexion userRole;
 
-    public  principale() {
+    public principale(Login login, JeuxOlympiques modele) {
+
+        this.login = login;
+        this.modele = this.login.getMain().getModele();
+
         this.setStyle("-fx-background-color: #FFFFFF;");
-        VBox top = new VBox();
-        HBox top2 = new HBox();
-        ImageView logo = new ImageView(new Image("file:assets/img/jo_paris.png"));
-        ImageView logo2 = new ImageView(new Image("file:assets/img/jo_paris.png"));
-        logo2.setFitHeight(125);
-        logo2.setFitWidth(125);
-        logo.setFitHeight(125);
-        logo.setFitWidth(125);
-        top2.getChildren().addAll(logo,logo2);
-        top2.setAlignment(Pos.CENTER_RIGHT);
-        this.setTop(top);
-        HBox menu = new HBox();
-        menu.setPrefSize(900,5);
-        menu.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, blue, red);");
-        top.getChildren().addAll(top2,menu);
+
+        navigation = new Navigation(this, this.modele);
+        this.setTop(navigation);
+
+        // centre de la fenetre
+
         ImageView volley = new ImageView(new Image("file:assets/img/volley.jpg"));
-        volley.setFitHeight(200);
-        volley.setFitWidth(500);
-        BorderPane.setAlignment(volley,Pos.CENTER);
-        BorderPane.setMargin(volley, new Insets(0,0,0,50));
+        volley.setFitHeight(300);
+        volley.setFitWidth(450);
+        BorderPane.setAlignment(volley, Pos.CENTER);
+        BorderPane.setMargin(volley, new Insets(10, 0, 0, 50));
         this.setLeft(volley);
-        TextArea text = new TextArea("gerzjgvezhfezfezfezfs");
-        text.setStyle("-fx-background-color: #FFFFFF;");
-        text.setPrefSize(300,300);
-        text.setEditable(false);
-        BorderPane.setAlignment(text,Pos.CENTER);
-        BorderPane.setMargin(text, new Insets(50,50,50,0));
+        String longText = "Une performance encourageante pour les Bleus à l'approche des Jeux Olympiques de Paris 2024. Les Tricolores, médaillés d'or à Tokyo, ont vaincu l'Italie, championen du monde";
+        TextFlow text = new TextFlow(new Text(longText));
+        BorderPane.setMargin(text, new Insets(10));
+        text.setStyle(
+                "-fx-background-color: transparent;  -fx-border-color: transparent transparent transparent transparent;");
+        text.setPrefSize(300, 100);
+        BorderPane.setMargin(text, new Insets(50, 50, 0, 0));
+        BorderPane.setAlignment(text, Pos.CENTER);
         this.setRight(text);
+    }
 
-    
+    public JeuxOlympiques getModele() {
+        return this.modele;
+    }
 
+    public RoleConnexion getUserRole() {
+        return this.userRole;
+    }
+
+    public void afficheAccueil(RoleConnexion userRole) {
+        this.userRole = userRole;
+        this.login.getMain().getScene().setRoot(this);
+        navigation = new Navigation(this, this.modele);
+        this.setTop(navigation);
+    }
+
+    public void afficheRecherche() {
+        this.login.getMain().getScene().setRoot(new Rechercher(this.navigation));
 
     }
 
+    public void afficherAjout() {
+        this.login.getMain().getScene().setRoot(new Ajouter(this.navigation));
+    }
 
+    public void afficherConsultation() {
+        this.login.getMain().getScene().setRoot(new ConsulterPane(this.login.getMain(), this.navigation));
+    }
 
-    
+    public void afficherMain() {
+        this.login.getMain().afficherAccueil();
+    }
+
 }
