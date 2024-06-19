@@ -64,17 +64,17 @@ public class Medailles extends BorderPane {
         Label or = new Label("Or");
         or.setAlignment(Pos.CENTER);
         or.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #767171; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1px;");
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #ffe88e; -fx-text-fill: black; -fx-border-color: black; -fx-border-width: 1px;");
         or.setPrefSize(500, 100);
         Label argent = new Label("Argent");
         argent.setAlignment(Pos.CENTER);
         argent.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #767171; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1px;");
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #ced7de; -fx-text-fill: black; -fx-border-color: black; -fx-border-width: 1px;");
         argent.setPrefSize(500, 100);
         Label bronze = new Label("Bronze");
         bronze.setAlignment(Pos.CENTER);
         bronze.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #767171; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1px;");
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #ddb086; -fx-text-fill: black; -fx-border-color: black; -fx-border-width: 1px;");
         bronze.setPrefSize(500, 100);
         Label total = new Label("Total");
         total.setAlignment(Pos.CENTER);

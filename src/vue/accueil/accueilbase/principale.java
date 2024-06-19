@@ -76,16 +76,16 @@ public class principale extends BorderPane {
     }
 
     public void afficheRecherche() {
-        this.login.getMain().getScene().setRoot(new Rechercher(this.navigation));
+        this.login.getMain().getScene().setRoot(new Rechercher(this.navigation, this.login.getMain()));
 
     }
 
     public void afficherAjout() {
-        this.login.getMain().getScene().setRoot(new Ajouter(this.navigation));
+        this.login.getMain().getScene().setRoot(new Ajouter(this.navigation, this.login.getMain()));
     }
 
     public void afficherConsultation() {
-        this.login.getMain().getScene().setRoot(new ConsulterPane(this.login.getMain(), this.navigation));
+        this.login.getMain().getScene().setRoot(new ConsulterPane(this.navigation, this.login.getMain()));
     }
 
     public void afficherMain() {

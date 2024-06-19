@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modele.JeuxOlympiques;
+import modele.competitions.Competition;
 
 public class Main extends Application {
 
@@ -144,5 +145,13 @@ public class Main extends Application {
 
     public Scene getScene() {
         return this.scene;
+    }
+
+    public List<Competition> getCompetitions() throws Exception {
+        try {
+            return this.requetesJDBC.getCompetitions();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

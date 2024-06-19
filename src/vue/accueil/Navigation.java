@@ -71,8 +71,8 @@ public class Navigation extends BorderPane {
         BorderPane.setAlignment(consulter, Pos.CENTER_LEFT);
         this.setPrefSize(900, 20);
 
-        if (accueil.getUserRole() == RoleConnexion.ORGANISATEUR) {
-            majOrganisateur();
+        if (accueil.getUserRole() == RoleConnexion.ADMINISTRATEUR) {
+            majAdmin();
         }
 
     }
@@ -85,7 +85,7 @@ public class Navigation extends BorderPane {
         AJOUTER
     }
 
-    public void majOrganisateur() {
+    public void majAdmin() {
         Button ajouter = new Button("AJOUTER");
         ajouter.setOnAction(new ControleurNavigation(accueil, modele, NavAction.AJOUTER));
         ajouter.setPrefSize(150, 50);

@@ -20,7 +20,7 @@ public class ConsulterPane extends BorderPane {
 
     private Main main;
 
-    public ConsulterPane(Main main, Navigation navigation) {
+    public ConsulterPane(Navigation navigation, Main main) {
         this.main = main;
         this.navigation = navigation;
         this.setStyle("-fx-background-color: white;");

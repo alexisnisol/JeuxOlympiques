@@ -63,17 +63,17 @@ public class CompetitionsPane extends BorderPane {
         Label or = new Label("Premier");
         or.setAlignment(Pos.CENTER);
         or.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #767171; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1px;");
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #ffe88e; -fx-text-fill: black; -fx-border-color: black; -fx-border-width: 1px;");
         or.setPrefSize(500, 100);
         Label argent = new Label("Deuxième");
         argent.setAlignment(Pos.CENTER);
         argent.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #767171; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1px;");
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #ced7de; -fx-text-fill: black; -fx-border-color: black; -fx-border-width: 1px;");
         argent.setPrefSize(500, 100);
         Label bronze = new Label("Troisième");
         bronze.setAlignment(Pos.CENTER);
         bronze.setStyle(
-                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #767171; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1px;");
+                "-fx-font-size: 18; -fx-font-weight: bold; -fx-background-color: #ddb086; -fx-text-fill: black; -fx-border-color: black; -fx-border-width: 1px;");
         bronze.setPrefSize(500, 100);
         Label total = new Label("Participants");
         total.setAlignment(Pos.CENTER);
@@ -97,7 +97,7 @@ public class CompetitionsPane extends BorderPane {
 
             grid.add(nomCompet, 0, rowI);
 
-            if (estJouee) {
+            try {
                 Participant premier = compet.getPlacement().get(0);
                 Participant deuxieme = compet.getPlacement().get(1);
                 Participant troisieme = compet.getPlacement().get(2);
@@ -114,7 +114,7 @@ public class CompetitionsPane extends BorderPane {
                 grid.add(premierLabel, 1, rowI);
                 grid.add(deuxiemeLabel, 2, rowI);
                 grid.add(troisiemeLabel, 3, rowI);
-            } else {
+            } catch (IllegalStateException e) {
                 grid.add(new Label("N'est pas jouée"), 1, rowI);
             }
 
@@ -126,13 +126,15 @@ public class CompetitionsPane extends BorderPane {
             rowI++;
         }
 
-        TitledPane tp = new TitledPane("Classement des Jeux IUT'Olympiques", grid);
+        TitledPane tp = new TitledPane("Classement des Jeux IUT'Olympiques",
+                grid);
         tp.setStyle("-fx-font-size: 18;");
         tp.setPadding(new Insets(20));
         tp.setCollapsible(false);
         tp.setAlignment(Pos.CENTER);
         BorderPane.setAlignment(tp, Pos.BOTTOM_CENTER);
-        ScrollPane scrollPane = new ScrollPane(tp);
+        ScrollPane scrollPane = new ScrollPane(
+                tp);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -142,6 +144,10 @@ public class CompetitionsPane extends BorderPane {
     }
 
     public static String getUrlFlag(String pays) throws NoSuchFieldException {
+        return getUrlFlag(64, 48, pays);
+    }
+
+    public static String getUrlFlag(int width, int height, String pays) throws NoSuchFieldException {
         String codePays = "fr";
         try {
             // Lire le contenu du fichier codes.json
@@ -154,6 +160,6 @@ public class CompetitionsPane extends BorderPane {
         } catch (Exception e) {
             throw new NoSuchFieldException("Pays non trouvé");
         }
-        return "https://flagcdn.com/64x48/" + codePays + ".png";
+        return "https://flagcdn.com/" + width + "x" + height + "/" + codePays + ".png";
     }
 }
