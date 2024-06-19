@@ -18,28 +18,22 @@ INSERT INTO SPORT (nomSport, typeSport, coeffAgilite, coeffEndurance, coeffForce
 ('Handball', 'Collectif', 8, 7, 6);
 
 INSERT INTO COMPETITIONS VALUES 
-('Athletisme 110 haies', 0, 'Homme', 'Oui', 'Athletisme'),
-('Athletisme 110 haies',  0, 'Femme', 'Oui', 'Athletisme'),
-('Natation 100 brasse',  0, 'Homme', 'Oui', 'Natation'),
-('Natation 100 brasse',  0, 'Femme', 'Oui', 'Natation'),
-('Escrime fleuret',  0, 'Homme', 'Oui', 'Escrime'),
-('Escrime epee',  0, 'Homme', 'Oui', 'Escrime'),
-('Escrime epee',  0, 'Femme', 'Oui', 'Escrime'),
-('Escrime fleuret',  0, 'Femme', 'Oui', 'Escrime'),
-('Natation relais libre',  0, 'Homme', 'Non', 'Natation'),
-('Natation relais libre',  0, 'Femme', 'Non', 'Natation'),
-('Athletisme relais 400m',  0, 'Homme', 'Non', 'Athletisme'),
-('Athletisme relais 400m',  0, 'Femme', 'Non', 'Athletisme'),
-('Volley-Ball',  0, 'Homme', 'Non', 'Volley-Ball'),
-('Volley-Ball',  0, 'Femme', 'Non', 'Volley-Ball'),
-('Handball', 0,  'Homme', 'Non', 'Handball'),
-('Handball',  0, 'Femme', 'Non', 'Handball');
-
-  nom varchar(32) DEFAULT NULL,
-  nbParticipants int DEFAULT NULL,
-  sexeCompetition varchar(5) DEFAULT NULL,
-  estIndividuelle varchar(5) DEFAULT NULL,
-  nomSport varchar(16) DEFAULT NULL,
+('Athletisme 110 haies', 'HOMME', 'Oui', 'Athletisme'),
+('Athletisme 110 haies', 'FEMME', 'Oui', 'Athletisme'),
+('Natation 100 brasse', 'HOMME', 'Oui', 'Natation'),
+('Natation 100 brasse', 'FEMME', 'Oui', 'Natation'),
+('Escrime fleuret', 'HOMME', 'Oui', 'Escrime'),
+('Escrime epee', 'HOMME', 'Oui', 'Escrime'),
+('Escrime epee', 'FEMME', 'Oui', 'Escrime'),
+('Escrime fleuret', 'FEMME', 'Oui', 'Escrime'),
+('Natation relais libre', 'HOMME', 'Non', 'Natation'),
+('Natation relais libre', 'FEMME', 'Non', 'Natation'),
+('Athletisme relais 400m', 'HOMME', 'Non', 'Athletisme'),
+('Athletisme relais 400m', 'FEMME', 'Non', 'Athletisme'),
+('Volley-Ball', 'HOMME', 'Non', 'Volley-Ball'),
+('Volley-Ball', 'FEMME', 'Non', 'Volley-Ball'),
+('Handball', 'HOMME', 'Non', 'Handball'),
+('Handball', 'FEMME', 'Non', 'Handball');
 
 
 INSERT INTO EQUIPES (nomEquipe, tailleMax, enRelais, nomPays, idCompetition) VALUES 
@@ -55,16 +49,16 @@ INSERT INTO EQUIPES (nomEquipe, tailleMax, enRelais, nomPays, idCompetition) VAL
 ('Equipe Luxembourg', 23, 'Non', 'Luxembourg', 1);
 
 INSERT INTO ATHLETES (nom, prenom, sexe, `force`, endurance, agilite, nomPays, idCompetition, idEquipe) VALUES 
-('Mbappe', 'Kylian', 'Homme', 8, 9, 9, 'France', 1, 1), 
-('Nadal', 'Rafael', 'Homme', 7, 9, 8, 'Espagne', 2, NULL),
-('James', 'LeBron', 'Homme', 8, 8, 8, 'Etats-Unis', 3, NULL),
-('Farrell', 'Owen', 'Homme', 7, 8, 7, 'Royaume-Uni', 4, NULL),
-('Karabatic', 'Nikola', 'Homme', 7, 8, 7, 'France', 5, NULL),
-('Ngapeth', 'Earvin', 'Homme', 7, 7, 8, 'France', 6, NULL),
-('Long', 'Ma', 'Homme', 8, 7, 9, 'Chine', 8, NULL),
-('Johnson', 'Dustin', 'Homme', 6, 7, 5, 'Etats-Unis', 9, NULL),
-('Phelps', 'Michael', 'Homme', 7, 9, 8, 'Etats-Unis', 10, NULL),
-('Griezmann', 'Antoine', 'Homme', 7, 8, 9, 'France', 1, 1);
+('Mbappe', 'Kylian', 'HOMME', 8, 9, 9, 'France', 1, 1), 
+('Nadal', 'Rafael', 'HOMME', 7, 9, 8, 'Espagne', 2, NULL),
+('James', 'LeBron', 'HOMME', 8, 8, 8, 'Etats-Unis', 3, NULL),
+('Farrell', 'Owen', 'HOMME', 7, 8, 7, 'Royaume-Uni', 4, NULL),
+('Karabatic', 'Nikola', 'HOMME', 7, 8, 7, 'France', 5, NULL),
+('Ngapeth', 'Earvin', 'HOMME', 7, 7, 8, 'France', 6, NULL),
+('Long', 'Ma', 'HOMME', 8, 7, 9, 'Chine', 8, NULL),
+('Johnson', 'Dustin', 'HOMME', 6, 7, 5, 'Etats-Unis', 9, NULL),
+('Phelps', 'Michael', 'HOMME', 7, 9, 8, 'Etats-Unis', 10, NULL),
+('Griezmann', 'Antoine', 'HOMME', 7, 8, 9, 'France', 1, 1);
 
 --Select * from PAYS;
 --Select * from SPORT;
