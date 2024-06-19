@@ -40,7 +40,6 @@ CREATE TABLE SPORT (
 CREATE TABLE COMPETITIONS (
   idCompetition int primary key AUTO_INCREMENT,
   nom varchar(32) DEFAULT NULL,
-  nbParticipants int DEFAULT NULL,
   sexeCompetition varchar(5) DEFAULT NULL,
   estIndividuelle varchar(5) DEFAULT NULL,
   nomSport varchar(16),
