@@ -31,7 +31,6 @@ CREATE TABLE PAYS (
 
 CREATE TABLE SPORT (
     nomSport varchar(16) primary key,
-    typeSport varchar(16) NOT NULL,
     coeffAgilite decimal(6,0) DEFAULT NULL, 
     coeffEndurance decimal(6,0) DEFAULT NULL,
     coeffForce decimal(6,0) DEFAULT NULL);
