@@ -22,7 +22,7 @@ public class TestEquipes {
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipe("Équipe de test", sport, 2, false, pays);
+        equipe = new Equipe("Équipe de test", sport, 2, pays);
         athlete1 = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete1bis = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete2 = new Athlete("DoeDoe", "JohnJohn", Sexe.HOMME, 50, 60, 70, pays);
@@ -38,17 +38,6 @@ public class TestEquipes {
     public void testSetTailleMax() {
         equipe.setTailleMax(7);
         assertEquals(7, equipe.getTailleMax());
-    }
-
-    @Test
-    public void testIsEnRelais() {
-        assertFalse(equipe.isEnRelais());
-    }
-
-    @Test
-    public void testSetEnRelais() {
-        equipe.setEnRelais(true);
-        assertTrue(equipe.isEnRelais());
     }
 
     @Test

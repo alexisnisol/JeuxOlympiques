@@ -23,7 +23,7 @@ public class TestAthletes {
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipe("Équipe de test", sport, 5, false, pays);
+        equipe = new Equipe("Équipe de test", sport, 5, pays);
         athlete = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete.rejoindreEquipe(equipe);
     }

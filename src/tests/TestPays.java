@@ -29,10 +29,10 @@ public class TestPays {
         usa = new Pays("Etats Unis");
 
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe1 = new Equipe("Équipe de test", sport, 5, false,france);
-        equipe2 = new Equipe("Équipe de test 2", sport, 10, true, france);
-        equipe3 = new Equipe("Équipe de test 3", sport, 5, false, france);
-        equipe4 = new Equipe("Équipe de test 4", sport, 10, true, usa);
+        equipe1 = new Equipe("Équipe de test", sport, 5, france);
+        equipe2 = new Equipe("Équipe de test 2", sport, 10, france);
+        equipe3 = new Equipe("Équipe de test 3", sport, 5, france);
+        equipe4 = new Equipe("Équipe de test 4", sport, 10, usa);
         athlete1 = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, france);
         athlete1.rejoindreEquipe(equipe1);
         athlete2 = new Athlete("Test", "Test", Sexe.FEMME, 30, 35, 40, usa);
