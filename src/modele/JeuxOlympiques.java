@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-
-import BD.RequetesJDBC;
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
@@ -38,11 +36,7 @@ public class JeuxOlympiques {
         this.annee = annee;
         this.nbEpreuves = nbEpreuves;
         this.lesCompetitions = new ArrayList<>();
-        try{
-            RequetesJDBC.creerSport();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+
     }
 
     /**

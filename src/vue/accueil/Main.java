@@ -2,9 +2,8 @@ package vue.accueil;
 
 import java.util.List;
 
-import BD.RequetesJDBC;
-import BD.server.LoginBD;
-import controller.ControleurAccueil;
+import bd.server.RequetesJDBC;
+import controller.accueil.ControleurAccueil;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -32,10 +31,15 @@ public class Main extends Application {
     private Stage stage;
 
     public void accueil() {
-
-
-        System.out.println("aaaa");
         RequetesJDBC.laConnexion = this.loginBD.getConnexionMySQL();
+
+        try{
+            RequetesJDBC.creerSport();
+            RequetesJDBC.creerCompetitions();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         List<List<String>> liste = JeuxOlympiques.fromCsv("src/donnees.csv");
         this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
 
@@ -46,7 +50,7 @@ public class Main extends Application {
         BorderPane.setAlignment(titre, Pos.CENTER);
         titre.setPadding(new Insets(25, 0, 25, 0));
         root.setTop(titre);
-        ImageView image = new ImageView("./assets/img/accueil.png");
+        ImageView image = new ImageView("./assets/img/accueil_iut.png");
         image.setFitHeight(250);
         image.setFitWidth(500);
         root.setCenter(image);
@@ -115,6 +119,10 @@ public class Main extends Application {
         stage.show();
         afficherLoginBD();
 
+    }
+
+    public void setModele(JeuxOlympiques modele) {
+        this.modele = modele;
     }
 
     public JeuxOlympiques getModele() {
