@@ -1,4 +1,4 @@
-package BD.server;
+package vue.accueil;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,13 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import vue.accueil.Login;
-import vue.accueil.Main;
-import vue.accueil.Register;
-
-import java.sql.Connection;
-
-import BD.ConnexionMySQL;
+import bd.server.ConnexionMySQL;
+import controller.sql.ControleurSQL;
 
 public class LoginBD extends GridPane {
 
