@@ -53,11 +53,11 @@ public class RequetesJDBC {
 		ps.setString(1, login);
 		ps.setString(2, mdp);
 		ResultSet rs = ps.executeQuery();
-		ps.close();
 		if (rs.next()) {
 			String role = rs.getString("nomRole");
 			return RoleConnexion.getRoleFromString(role);
 		}
+		ps.close();
 		return RoleConnexion.INVALIDE;
 
 	}
@@ -209,11 +209,11 @@ public class RequetesJDBC {
 		ResultSet rs = ps2.executeQuery("select * from SPORT");
 		if (!rs.next()) {
 			String requetes = "INSERT INTO SPORT (nomSport, typeSport, coeffAgilite, coeffEndurance, coeffForce) VALUES "+
-			"('Natation', 'Individuel', 6, 9, 7),"+
-			"('Athletisme', 'Individuel', 7, 8, 6),"+
-			"('Escrime', 'Individuel', 8, 7, 6),"+
-			"('Volley-Ball', 'Collectif', 8, 6, 5),"+
-			"('Handball', 'Collectif', 8, 7, 6);";
+			"('Natation', 6, 9, 7),"+
+			"('Athletisme', 7, 8, 6),"+
+			"('Escrime', 8, 7, 6),"+
+			"('Volley-Ball', 8, 6, 5),"+
+			"('Handball', 8, 7, 6);";
 			Statement ps = laConnexion.createStatement();
 			ps.executeUpdate(requetes);
 			ps.close();
