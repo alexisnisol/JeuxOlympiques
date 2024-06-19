@@ -1,7 +1,8 @@
 package vue.accueil;
 
-import controller.ControleurAccueil;
-import controller.ControleurLoginJDBC;
+import bd.server.Utilisateur;
+import controller.accueil.ControleurAccueil;
+import controller.sql.ControleurLoginJDBC;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -14,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modele.JeuxOlympiques;
 import vue.accueil.Main.ButtonAction;
-import vue.accueil.accueilbase.Actualite;
 
 public class Login extends BorderPane {
 
@@ -104,9 +104,9 @@ public class Login extends BorderPane {
         Button bottom = new Button("Connexion");
 
         bottom.setCursor(Cursor.HAND);
-        Actualite actualite = new Actualite(this, this.modele);
 
-        bottom.setOnAction(new ControleurLoginJDBC(this, actualite));
+
+        bottom.setOnAction(new ControleurLoginJDBC(this));
 
         BorderPane.setAlignment(bottom, Pos.CENTER);
         BorderPane.setMargin(bottom, new Insets(0, 0, 20, 0));
@@ -115,6 +115,10 @@ public class Login extends BorderPane {
         bottom.setStyle(
                 "-fx-text-fill: white; -fx-background-color: #0781FE; -fx-font-weight: bold; -fx-font-size: 18;");
         this.setBottom(bottom);
+    }
+
+    public void afficherAccueil(Utilisateur user){
+        this.main.getScene().setRoot(new Actualite(this, this.modele, user));
     }
 
     public void resetTF() {
