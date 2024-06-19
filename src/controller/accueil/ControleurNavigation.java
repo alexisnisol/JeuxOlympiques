@@ -36,6 +36,9 @@ public class ControleurNavigation implements EventHandler<ActionEvent> {
             case ADMIN_USERS:
                 this.accueil.afficherUsers();
                 break;
+            case ROLE:
+                this.accueil.afficherRole();
+                break;
             default:
                 this.accueil.afficheRecherche();
                 break;

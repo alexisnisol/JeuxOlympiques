@@ -82,7 +82,8 @@ public class Navigation extends BorderPane {
         CONSULTER,
         DECONNEXION,
         ADMIN_AJOUTER,
-        ADMIN_USERS
+        ADMIN_USERS,
+        ROLE
     }
 
     public void majAdmin() {
@@ -91,7 +92,11 @@ public class Navigation extends BorderPane {
         ajouter.setPrefSize(150, 50);
         ajouter.setId("navbar-btn");
         menu.getChildren().add(ajouter);
-
+        Button role = new Button("ROLE");
+        role.setOnAction(new ControleurNavigation(accueil, NavAction.ROLE));
+        role.setPrefSize(150, 50);
+        role.setId("navbar-btn");
+        menu.getChildren().add(role);
         Button users = new Button("UTILISATEURS");
         users.setOnAction(new ControleurNavigation(accueil, NavAction.ADMIN_USERS));
         users.setPrefSize(150, 50);

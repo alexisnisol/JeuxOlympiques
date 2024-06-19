@@ -92,4 +92,9 @@ public class Actualite extends BorderPane {
         this.login.getMain().afficherAccueil();
     }
 
+    public void afficherRole() {
+        // this.login.getMain().getScene().setRoot(new Role(this.navigation,
+        // this.login.getMain()));
+    }
+
 }
