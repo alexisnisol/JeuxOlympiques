@@ -10,8 +10,10 @@ import modele.JeuxOlympiques;
 import modele.Pays;
 import modele.Sexe;
 import modele.competitions.Competition;
+import modele.competitions.CompetitionCollective;
 import modele.competitions.CompetitionIndividuelle;
 import modele.participants.Athlete;
+import modele.JeuxOlympiques;
 import modele.participants.Equipe;
 import modele.participants.Participant;
 import modele.sports.Sport;
@@ -92,11 +94,18 @@ public class RequetesJDBC {
 		try {
 			PreparedStatement ps = laConnexion.prepareStatement("select * from COMPETITIONS");
 			ResultSet rs = ps.executeQuery();
+			Sexe a = null;
 			while (rs.next()) {
 				if (rs.getString("estIndividuelle").equals("Oui")) {
-					liste.add(new CompetitionIndividuelle((Sexe).getString("sexeCompetition"), rs.getString("sport")));
+					if (rs.getString("sexeCompetition").equals("HOMME")) {
+						a  = Sexe.HOMME;
+					}
+					else {
+						a = Sexe.FEMME;
+					}
+					liste.add(new CompetitionIndividuelle(a, JeuxOlympiques.getSportFromName(rs.getString("sport"))));
 				} else {
-					liste.add(new CompetitionCollective((Sexe).getString("sexeCompetition"), rs.getString("sport")));
+					liste.add(new CompetitionCollective(a, JeuxOlympiques.getSportFromName(rs.getString("sport"))));
 				}
 
 			}
@@ -105,6 +114,26 @@ public class RequetesJDBC {
 			e.printStackTrace();
 		}
 		return liste;
+	}
+
+	public void ajouter_athlete(String nom, String prenom, String sexe, int force, int endurance ,int agilite, int idPays, int CompetitionActuelle, int idEquipe) throws SQLException {
+		PreparedStatement ps2 = laConnexion.prepareStatement("select COUNT(*) from ATHLETES");
+		ResultSet rs = ps2.executeQuery();
+		rs.next();
+		int id = rs.getInt(0) + 1;
+		ps2.close();
+		PreparedStatement ps = laConnexion.prepareStatement("INSERT INTO `ATHLETES`(idAthlete,nom,prenom,sexe,force,endurance,agilite,idPays,idCompetitionIndividuelle,idEquipe) VALUES ("+id+",?,?,?,?,?,?,?,?,?)");
+		ps.setString(1, nom);
+		ps.setString(2, prenom);
+		ps.setString(3, sexe);
+		ps.setInt(4, force);
+		ps.setInt(5, endurance);
+		ps.setInt(6, agilite);
+		ps.setInt(7, idPays);
+		ps.setInt(8, CompetitionActuelle);
+		ps.setInt(9, idEquipe);
+		ps.executeUpdate();
+		ps.close();
 	}
 
 	public Pair<TypeRecherche, List<String>> search(String search, JeuxOlympiques modele)

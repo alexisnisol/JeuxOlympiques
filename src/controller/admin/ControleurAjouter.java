@@ -50,9 +50,11 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                 Competition competition = ajout.getEpreuveBox().getValue();
 
                 try {
-                    for (Competition compet : ajout.getMain().getCompetitions()) {
-
+                    for (Competition compet : ajout.getMain().getCompetitions()){
+                        if (compet.getSport() == competition.getSport()){
+                            compet.enregistrerParticipant(athlete);
                     }
+                    
                 } catch (SexeCompetitionException e) {
                     e.printStackTrace();
                     Alert alert = new Alert(AlertType.ERROR);
@@ -81,6 +83,8 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                     alert.setHeaderText("Mauvais type de participant pour la compétition");
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 break;
             case AjoutEquipe:
@@ -90,7 +94,9 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         ajout.getPaysEquipe());
 
                 try {
-
+                    for (Competition compet : ajout.getMain().getCompetitions()){
+                        compet.inscrireParticipant(equipe);
+                    }
                     System.out.println("Equipe enregistrée");
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information");
