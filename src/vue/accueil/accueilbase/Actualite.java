@@ -14,6 +14,7 @@ import vue.accueil.Navigation;
 import vue.administrateur.Ajouter;
 import vue.journaliste.ConsulterPane;
 import vue.journaliste.Medailles;
+import vue.administrateur.Role;
 
 import java.util.Map;
 
@@ -90,6 +91,11 @@ public class Actualite extends BorderPane {
 
     public void afficherMain() {
         this.login.getMain().afficherAccueil();
+    }
+
+    public void afficherRole() {
+        // this.login.getMain().getScene().setRoot(new Role(this.navigation,
+        // this.login.getMain()));
     }
 
 }

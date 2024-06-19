@@ -38,6 +38,9 @@ public class ControleurNavigation implements EventHandler<ActionEvent> {
                 this.accueil.afficherAjout();
                 break;
 
+            case ROLE:
+                this.accueil.afficherRole();
+                break;
             default:
                 this.accueil.afficheRecherche();
                 break;

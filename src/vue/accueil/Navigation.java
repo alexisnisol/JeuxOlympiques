@@ -82,7 +82,8 @@ public class Navigation extends BorderPane {
         RECHERCHE,
         CONSULTER,
         DECONNEXION,
-        AJOUTER
+        AJOUTER,
+        ROLE
     }
 
     public void majAdmin() {
@@ -91,7 +92,11 @@ public class Navigation extends BorderPane {
         ajouter.setPrefSize(150, 50);
         ajouter.setId("navbar-btn");
         menu.getChildren().add(ajouter);
-
+        Button role = new Button("ROLE");
+        role.setOnAction(new ControleurNavigation(accueil, modele, NavAction.ROLE));
+        role.setPrefSize(150, 50);
+        role.setId("navbar-btn");
+        menu.getChildren().add(role);
     }
 
 }
