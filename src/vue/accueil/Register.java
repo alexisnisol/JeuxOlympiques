@@ -1,7 +1,7 @@
 package vue.accueil;
 
-import controller.ControleurAccueil;
-import controller.ControleurRegisterJDBC;
+import controller.accueil.ControleurAccueil;
+import controller.sql.ControleurRegisterJDBC;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;

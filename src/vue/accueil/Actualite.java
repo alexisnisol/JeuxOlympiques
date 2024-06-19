@@ -1,27 +1,18 @@
-package vue.accueil.accueilbase;
+package vue.accueil;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import modele.Classement;
 import modele.JeuxOlympiques;
-import modele.Pays;
-import vue.Recherche.Rechercher;
-import vue.accueil.Login;
-import vue.accueil.Navigation;
 import vue.administrateur.Ajouter;
+import vue.administrateur.UtilisateursPane;
 import vue.journaliste.ConsulterPane;
-import vue.journaliste.Medailles;
-
-import java.util.Map;
-
-import BD.RequetesJDBC.RoleConnexion;
-import controller.ControleurNavigation;
+import vue.journaliste.Rechercher;
+import bd.server.Utilisateur;
+import bd.server.RequetesJDBC.RoleConnexion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
 public class Actualite extends BorderPane {
@@ -29,10 +20,11 @@ public class Actualite extends BorderPane {
     private Login login;
     private JeuxOlympiques modele;
     private Navigation navigation;
-    private RoleConnexion userRole;
+    private Utilisateur user;
 
-    public Actualite(Login login, JeuxOlympiques modele) {
+    public Actualite(Login login, JeuxOlympiques modele, Utilisateur user) {
 
+        this.user = user;
         this.login = login;
         this.modele = this.login.getMain().getModele();
 
@@ -49,7 +41,7 @@ public class Actualite extends BorderPane {
         BorderPane.setAlignment(volley, Pos.CENTER);
         BorderPane.setMargin(volley, new Insets(10, 0, 0, 50));
         this.setLeft(volley);
-        String longText = "Une performance encourageante pour les Bleus à l'approche des Jeux Olympiques de Paris 2024. Les Tricolores, médaillés d'or à Tokyo, ont vaincu l'Italie, championen du monde";
+        String longText = "Une performance encourageante pour les Bleus à l'approche des Jeux Olympiques de Paris 2024. Les Tricolores, médaillés d'or à Tokyo, ont vaincu l'Italie, champion du monde";
         TextFlow text = new TextFlow(new Text(longText));
         BorderPane.setMargin(text, new Insets(10));
         text.setStyle(
@@ -64,13 +56,17 @@ public class Actualite extends BorderPane {
         return this.modele;
     }
 
-    public RoleConnexion getUserRole() {
-        return this.userRole;
+    public Utilisateur getUtilisateur(){
+        return this.user;
     }
 
-    public void afficheAccueil(RoleConnexion userRole) {
-        this.userRole = userRole;
+    public RoleConnexion getUserRole() {
+        return this.user.getRole();
+    }
+
+    public void afficheAccueil() {
         this.login.getMain().getScene().setRoot(this);
+        
         navigation = new Navigation(this, this.modele);
         this.setTop(navigation);
     }
@@ -82,6 +78,10 @@ public class Actualite extends BorderPane {
 
     public void afficherAjout() {
         this.login.getMain().getScene().setRoot(new Ajouter(this.navigation, this.login.getMain()));
+    }
+
+    public void afficherUsers() {
+        this.login.getMain().getScene().setRoot(new UtilisateursPane(this.navigation, this.user));
     }
 
     public void afficherConsultation() {

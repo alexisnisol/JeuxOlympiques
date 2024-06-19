@@ -1,14 +1,13 @@
-package BD.server;
+package controller.sql;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import vue.accueil.Main;
-import vue.accueil.Main.ButtonAction;
+import vue.accueil.LoginBD;
 
 import java.sql.SQLException;
 
-import BD.ConnexionMySQL;
+import bd.server.ConnexionMySQL;
 
 public class ControleurSQL implements EventHandler<ActionEvent>{
     private LoginBD loginBD;

@@ -1,8 +1,6 @@
 package modele.participants;
 
-import java.sql.SQLException;
-
-import BD.RequetesJDBC;
+import bd.server.RequetesJDBC;
 import modele.Classement;
 import modele.Pays;
 import modele.Sexe;

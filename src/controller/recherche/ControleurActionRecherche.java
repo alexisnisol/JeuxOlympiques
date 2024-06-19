@@ -1,13 +1,13 @@
 package controller.recherche;
 
-import vue.Recherche.Rechercher;
-import vue.Recherche.Rechercher.TypeRecherche;
 import vue.accueil.Main;
+import vue.journaliste.Rechercher;
+import vue.journaliste.Rechercher.TypeRecherche;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import BD.RequetesJDBC;
+import bd.server.RequetesJDBC;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert.AlertType;

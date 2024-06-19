@@ -3,7 +3,7 @@ package modele.participants;
 import java.util.ArrayList;
 import java.util.List;
 
-import BD.RequetesJDBC;
+import bd.server.RequetesJDBC;
 import modele.Classement;
 import modele.Pays;
 import modele.Sexe;

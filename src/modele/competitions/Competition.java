@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import BD.RequetesJDBC;
+import bd.server.RequetesJDBC;
 import modele.ComparePerformance;
 import modele.Sexe;
 import modele.exceptions.MauvaisParticipantException;

@@ -1,8 +1,8 @@
-package controller;
+package controller.sql;
 
 import java.sql.SQLException;
 
-import BD.RequetesJDBC;
+import bd.server.RequetesJDBC;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;

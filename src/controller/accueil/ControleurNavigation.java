@@ -1,21 +1,17 @@
-package controller;
+package controller.accueil;
 
+import vue.accueil.Actualite;
 import vue.accueil.Navigation.NavAction;
-import vue.accueil.accueilbase.Actualite;
-import vue.administrateur.Ajouter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import modele.JeuxOlympiques;
 
 public class ControleurNavigation implements EventHandler<ActionEvent> {
 
     private Actualite accueil;
-    private JeuxOlympiques modele;
     private NavAction action;
 
-    public ControleurNavigation(Actualite accueil, JeuxOlympiques modele, NavAction action) {
+    public ControleurNavigation(Actualite accueil, NavAction action) {
         this.accueil = accueil;
-        this.modele = modele;
         this.action = action;
     }
 
@@ -27,17 +23,19 @@ public class ControleurNavigation implements EventHandler<ActionEvent> {
                 break;
 
             case ACCUEIL:
-                this.accueil.afficheAccueil(accueil.getUserRole());
+                this.accueil.afficheAccueil();
                 break;
 
             case DECONNEXION:
                 this.accueil.afficherMain();
                 break;
 
-            case AJOUTER:
+            case ADMIN_AJOUTER:
                 this.accueil.afficherAjout();
                 break;
-
+            case ADMIN_USERS:
+                this.accueil.afficherUsers();
+                break;
             default:
                 this.accueil.afficheRecherche();
                 break;

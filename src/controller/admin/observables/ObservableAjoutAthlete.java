@@ -1,4 +1,4 @@
-package controller.admin;
+package controller.admin.observables;
 
 import modele.Sexe;
 import modele.competitions.Competition;
