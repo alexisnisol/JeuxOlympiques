@@ -4,6 +4,7 @@ import controller.ControleurAccueil;
 import controller.ControleurRegisterJDBC;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -43,6 +44,7 @@ public class Register extends BorderPane {
         top.setAlignment(Pos.CENTER);
 
         Button connecter = new Button("Se connecter");
+        connecter.setCursor(Cursor.HAND);
         connecter.setOnAction(new ControleurAccueil(main, ButtonAction.LOGIN_PANE));
         connecter.setPrefSize(142, 50);
         connecter.setStyle(
@@ -122,7 +124,7 @@ public class Register extends BorderPane {
 
     public void showBottom() {
         Button bottom = new Button("Inscription");
-
+        bottom.setCursor(Cursor.HAND);
         bottom.setOnAction(new ControleurRegisterJDBC(this));
 
         BorderPane.setAlignment(bottom, Pos.CENTER);

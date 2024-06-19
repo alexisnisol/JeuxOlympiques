@@ -8,6 +8,7 @@ import controller.ControleurAccueil;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -19,8 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modele.JeuxOlympiques;
-import modele.competitions.Competition;
-
 public class Main extends Application {
 
     private Scene scene;
@@ -29,7 +28,6 @@ public class Main extends Application {
     private Login loginPane;
     private Register registerPane;
     private LoginBD loginBD;
-    private RequetesJDBC requetesJDBC;
     private JeuxOlympiques modele;
     private Stage stage;
 
@@ -56,7 +54,9 @@ public class Main extends Application {
         Button inscrire = new Button("S'inscrire");
         Button connexion = new Button("Se connecter");
         inscrire.setStyle("-fx-font-size: 20px; -fx-background-color: #0781FE; -fx-text-fill: #ffffff;");
+        inscrire.setCursor(Cursor.HAND);
         connexion.setStyle("-fx-font-size: 20px; -fx-background-color: #000000; -fx-text-fill: #ffffff;");
+        connexion.setCursor(Cursor.HAND);
         inscrire.setPrefSize(175, 50);
         connexion.setPrefSize(175, 50);
         inscrire.setAlignment(Pos.CENTER);
