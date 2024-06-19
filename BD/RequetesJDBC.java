@@ -1,6 +1,21 @@
 package BD;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import javafx.util.Pair;
+import modele.JeuxOlympiques;
+import modele.Pays;
+import modele.Sexe;
+import modele.competitions.Competition;
+import modele.competitions.CompetitionIndividuelle;
+import modele.participants.Athlete;
+import modele.participants.Equipe;
+import modele.participants.Participant;
+import modele.sports.Sport;
+import vue.Recherche.Rechercher.TypeRecherche;
 
 public class RequetesJDBC {
 	ConnexionMySQL laConnexion;
@@ -72,13 +87,98 @@ public class RequetesJDBC {
 		return true;
 	}
 
-	public void search(String search) throws SQLException {
-		PreparedStatement ps = laConnexion.prepareStatement("select * from PAYS where nom like ?");
-		ps.setString(1, "%" + search + "%");
-		ResultSet rs = ps.executeQuery();
-		while (rs.next()) {
-			System.out.println(rs.getString("nom"));
+	public List<Competition> getCompetitions() throws SQLException {
+		List<Competition> liste = new ArrayList<>();
+		try {
+			PreparedStatement ps = laConnexion.prepareStatement("select * from COMPETITIONS");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				if (rs.getString("estIndividuelle").equals("Oui")) {
+					liste.add(new CompetitionIndividuelle((Sexe).getString("sexeCompetition"), rs.getString("sport")));
+				} else {
+					liste.add(new CompetitionCollective((Sexe).getString("sexeCompetition"), rs.getString("sport")));
+				}
+
+			}
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		ps.close();
+		return liste;
+	}
+
+	public Pair<TypeRecherche, List<String>> search(String search, JeuxOlympiques modele)
+			throws NoSuchElementException {
+		List<String> liste = new ArrayList<>();
+
+		for (Pays pays : modele.obtenirPays()) {
+			if (pays.getNom().equalsIgnoreCase(search)) {
+				liste.add(pays.getNom());
+				liste.add(pays.getAthletes().size() + "");
+				liste.add(pays.getEquipes().size() + "");
+				int cptCompet = 0;
+				for (Competition competition : modele.getLesCompetitions()) {
+					for (Participant participant : competition.getParticipants()) {
+						if (participant.obtenirPays().equals(pays)) {
+							cptCompet++;
+						}
+					}
+				}
+				liste.add(cptCompet + "");
+				liste.add(modele.classementMedailles().get(pays).shortString());
+
+				return new Pair<>(TypeRecherche.PAYS, liste);
+			}
+		}
+
+		String resParticipant;
+		boolean joueEnEquipe = false;
+		String place;
+		for (Athlete participant : modele.obtenirAthletes()) {
+
+			Athlete athlete = (Athlete) participant;
+			resParticipant = athlete.getPrenom() + " " + athlete.getNom();
+
+			joueEnEquipe = athlete.obtenirEquipes() != null;
+
+			if (search.equalsIgnoreCase(resParticipant)) {
+				liste.add(participant.obtenirNom() + " (" + participant.obtenirPays().getNom() + ")");
+				liste.add(
+						(!joueEnEquipe ? "Aucune" : participant.obtenirEquipes().getNom()));
+
+				if (joueEnEquipe) {
+					Equipe equipe = participant.obtenirEquipes();
+					liste.add(equipe.getClassement().shortString());
+					liste.add(equipe.getCompetitionActuelle().toString());
+
+					try {
+						place = equipe.getCompetitionActuelle()
+								.getPlacementParticipant(equipe) + "/"
+								+ equipe.getCompetitionActuelle().getParticipants().size();
+					} catch (IllegalStateException exception) {
+						place = "Non jouée";
+					}
+
+					liste.add(equipe.getPerformance() + " (" + place + ")");
+
+				} else {
+					liste.add(participant.getClassement().shortString());
+					liste.add(participant.getCompetitionActuelle().toString());
+
+					try {
+						place = participant.getCompetitionActuelle().getPlacementParticipant(participant) + "/"
+								+ participant.getCompetitionActuelle().getParticipants().size();
+					} catch (IllegalStateException exception) {
+						place = "Non jouée";
+					}
+
+					liste.add(participant.getPerformance() + " (" + place + ")");
+				}
+				return new Pair<>(TypeRecherche.ATHLETE, liste);
+
+			}
+
+		}
+		throw new NoSuchElementException("Aucune donnée trouvée");
 	}
 }

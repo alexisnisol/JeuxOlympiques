@@ -43,26 +43,23 @@ INSERT INTO SPORT VALUES
 (20, 'Escalade', 'Individuel', 2);
 
 INSERT INTO COMPETITIONS VALUES 
-(1, 'Natation', 8, 'Femme', 'Oui', 1),
-(2, 'Natation', 8, 'Homme', 'Oui', 1),
-(3, 'Athletisme', 24, 'Femme', 'Oui', 3),
-(4, 'Athletisme', 24, 'Homme', 'Oui', 3),
-(5, 'Gymnastique', 6, 'Femme', 'Oui', 5),
-(6, 'Gymnastique', 3, 'Homme', 'Oui', 5),
-(7, 'Tennis', 2, 'Femme', 'Oui', 7),
-(8, 'Tennis', 2, 'Homme', 'Oui', 7),
-(9, 'Football', 11, 'Femme', 'Non', 9),
-(10, 'Football', 11, 'Homme', 'Non', 9),
-(11, 'Basketball', 5, 'Femme', 'Non', 10),
-(12, 'Basketball', 5, 'Homme', 'Non', 10),
-(13, 'Volleyball', 8, 'Femme', 'Non', 11),
-(14, 'Volleyball', 8, 'Homme', 'Non', 11),
-(15, 'Handball', 10, 'Femme', 'Non', 12),
-(16, 'Handball', 10, 'Homme', 'Non', 12),
-(17, 'Rugby', 11, 'Femme', 'Non', 13),
-(18, 'Rugby', 11, 'Homme', 'Non', 13),
-(19, 'Cyclisme', 64, 'Femme', 'Oui', 14),
-(20, 'Cyclisme', 64, 'Homme', 'Oui', 14);
+(1, 'Athletisme 110 haies', 'Homme', 'Oui', 1),
+(2, 'Athletisme 110 haies', 'Femme', 'Oui', 2),
+(3, 'Natation 100 brasse', 'Homme', 'Oui', 3),
+(4, 'Natation 100 brasse', 'Femme', 'Oui', 4),
+(5, 'Escrime fleuret', 'Homme', 'Oui', 5),
+(6, 'Escrime epee', 'Homme', 'Oui', 6),
+(7, 'Escrime epee', 'Femme', 'Oui', 7),
+(8, 'Escrime fleuret', 'Femme', 'Oui', 8),
+(9, 'Natation relais libre', 'Homme', 'Non', 9),
+(10, 'Natation relais libre', 'Femme', 'Non', 10),
+(11, 'Athletisme relais 400m', 'Homme', 'Non', 11),
+(12, 'Athletisme relais 400m', 'Femme', 'Non', 12),
+(13, 'Volley-Ball', 'Homme', 'Non', 13),
+(14, 'Volley-Ball', 'Femme', 'Non', 14),
+(15, 'Handball', 'Homme', 'Non', 15),
+(16, 'Handball', 'Femme', 'Non', 16);
+
 
 INSERT INTO EQUIPES VALUES 
 (1, 'France', 8, 'Oui', 1, null),
@@ -121,9 +118,3 @@ INSERT INTO ROLES VALUES
 INSERT INTO UTILISATEURS VALUES (1, "admin", "admin", "admin", "admin", 1),
 (2, "orga", "orga", "orga", "orga", 2),
 (3, "aa", "aa", "aa", "aa", 3);
-
-
-
-
-INSERT INTO UTILISATEURS VALUES
-(5, "orga", "orga", "orga", "orga", 2)
