@@ -18,12 +18,12 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import controller.admin.ControleurAddCsv;
 import controller.admin.ControleurAjouter;
-import controller.admin.ControleurBonnesEquipes;
-import controller.admin.ObservableAjoutAthlete;
-import controller.admin.ControleurCheckBoxAddAthlete;
+import controller.admin.observables.ControleurBonnesEquipes;
+import controller.admin.observables.ControleurCheckBoxAddAthlete;
+import controller.admin.observables.ObservableAjoutAthlete;
 
 public class Ajouter extends BorderPane {
 
@@ -113,9 +113,16 @@ public class Ajouter extends BorderPane {
         this.equipe.setPromptText("Equipe");
         this.equipe.setVisible(false);
 
+        HBox btnAthletes = new HBox(20);
         this.ajouterAthlete = new Button("Ajouter Athlete");
         this.ajouterAthlete.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutAthlete));
-        ajoutBox.getChildren().addAll(athletelabel, this.nom, this.prenom, this.sexe, stat, this.pays, this.epreuveAthlete, dansEquipe, this.equipe, this.ajouterAthlete);
+        
+        Button genererCSV = new Button("Générer depuis CSV");
+        genererCSV.setOnAction(new ControleurAddCsv(modele, this));
+
+        btnAthletes.getChildren().addAll(this.ajouterAthlete, genererCSV);
+
+        ajoutBox.getChildren().addAll(athletelabel, this.nom, this.prenom, this.sexe, stat, this.pays, this.epreuveAthlete, dansEquipe, this.equipe, btnAthletes);
 
         ajoutBox.setPrefWidth(500);
         ajoutBox.setSpacing(10);
@@ -180,9 +187,9 @@ public class Ajouter extends BorderPane {
     }
 
     public Alert addPopup(String content){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Administration");
-        alert.setContentText(content);
+        alert.setHeaderText(content);
         return alert;
     }
 
@@ -193,6 +200,10 @@ public class Ajouter extends BorderPane {
 
     public JeuxOlympiques getModele() {
         return this.modele;
+    }
+
+    public void setModele(JeuxOlympiques modele) {
+        this.modele = modele;
     }
 
     public ComboBox<Equipe> getEquipesBox() {
