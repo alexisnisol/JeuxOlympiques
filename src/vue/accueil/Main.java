@@ -104,7 +104,7 @@ public class Main extends Application {
 
 
         this.scene = new Scene(root, 900, 550);
-
+        this.stage.getIcons().add(new ImageView("file:assets/img/jo_paris.png").getImage());
         this.loginPane = new Login(this, this.modele);
         this.registerPane = new Register(this);
 
