@@ -1,4 +1,4 @@
-package vue.Recherche;
+package vue.journaliste;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -19,14 +19,12 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import vue.accueil.Main;
 import vue.accueil.Navigation;
-import vue.journaliste.CompetitionsPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 public class Rechercher extends BorderPane {
 
     private BorderPane center;
-    private Main main;
     private HBox hbox;
     private HBox footer;
     private Text text;
@@ -47,7 +45,20 @@ public class Rechercher extends BorderPane {
         // centre de la fenêtre
 
         this.center = new BorderPane();
-        this.setCenter(center);
+
+
+        VBox infoGenerales = new VBox(20);
+        infoGenerales.setPadding(new Insets(20, 20, 20, 20));
+        infoGenerales.setAlignment(Pos.CENTER);
+        Text nbCompet = new Text("Nombre de compétitions : " + main.getModele().getLesCompetitions().size());
+        nbCompet.setStyle("-fx-font-size: 20 px;");
+        Text nbPart = new Text("Nombre de participants : " + main.getModele().obtenirAthletes().size());
+        nbPart.setStyle("-fx-font-size: 20 px;");
+        Text nbPays = new Text("Nombre de pays : " + main.getModele().obtenirPays().size());
+        nbPays.setStyle("-fx-font-size: 20 px;");
+        infoGenerales.getChildren().addAll(nbCompet, nbPart, nbPays);
+        this.center.setTop(infoGenerales);
+
         this.hbox = new HBox();
         ImageView loupe = new ImageView(new Image("file:assets/img/loupe_recherche.png"));
         Button rechercher = new Button();
@@ -66,6 +77,9 @@ public class Rechercher extends BorderPane {
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setPadding(new Insets(0, 20, 0, 20));
         center.setCenter(hbox);
+
+        
+        this.setCenter(center);
 
         // bas de la fenêtre
         ImageView iut = new ImageView(new Image("file:assets/img/iut.png"));
@@ -141,7 +155,6 @@ public class Rechercher extends BorderPane {
         this.text2 = new Text("Nombre d'Athlètes : " + listeData.get(1));
         this.text3 = new Text("Nombre d'Equipes : " + listeData.get(2));
         this.text4 = new Text("Participe à " + listeData.get(3) + " Compétitions");
-        this.text4.setStyle("-fx-font-size: 14 px;");
         Text text5 = new Text("Performance global : " + listeData.get(4));
         vbox.getChildren().addAll(text, text2, text3, text4, text5);
         vbox.setStyle("-fx-font-size: 20 px; -fx-text-weight: bold;");
