@@ -1,6 +1,6 @@
 package modele;
 
-public class Classement implements Comparable<Classement>{
+public class Classement implements Comparable<Classement> {
 
     private int medaillesOr;
     private int medaillesArgent;
@@ -117,6 +117,17 @@ public class Classement implements Comparable<Classement>{
     public String toString() {
         return "" + this.medaillesOr + " médailles d'or, " + this.medaillesArgent
                 + " médailles d'argent, " + this.medaillesBronze + " médailles de bronze.";
+    }
+
+    /**
+     * Renvoie une représentation sous forme de chaîne de caractères du classement,
+     * au format plus simple.
+     * 
+     * @return La représentation du classement.
+     */
+    public String shortString() {
+        return "" + this.medaillesOr + " Or, " + this.medaillesArgent
+                + " Argent, " + this.medaillesBronze + " Bronze.";
     }
 
     /**

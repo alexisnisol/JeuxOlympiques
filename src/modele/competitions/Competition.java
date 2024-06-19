@@ -123,10 +123,20 @@ public abstract class Competition {
         return place;
     }
 
-    public List<Participant> getPlacement() {
+    public List<Participant> getPlacement() throws IllegalStateException {
+        if (!this.estJouee) {
+            throw new IllegalStateException("La compétition n'est pas jouée");
+        }
         List<Participant> place = new ArrayList<>(this.lesParticipants);
         Collections.sort(place, new ComparePerformance());
         return place;
+    }
+
+    public int getPlacementParticipant(Participant participant) throws IllegalStateException {
+        if (!this.estJouee) {
+            throw new IllegalStateException("La compétition n'est pas jouée");
+        }
+        return getPlacement().indexOf(participant) + 1;
     }
 
     public Sport getSport() {

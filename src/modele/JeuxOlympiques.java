@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
@@ -77,7 +79,8 @@ public class JeuxOlympiques {
     }
 
     /**
-     * Cette fonction permet de lancer les jeux olympiques, c'est à dire de jouer chaque compétition
+     * Cette fonction permet de lancer les jeux olympiques, c'est à dire de jouer
+     * chaque compétition
      */
     public void lancerJeuxOlympiques() {
         for (Competition competition : lesCompetitions) {
@@ -121,8 +124,42 @@ public class JeuxOlympiques {
     }
 
     /**
+     * Renvoie la liste des pays des athlètes présents dans une compétition
+     * 
+     * @return la liste des pays
+     */
+    public List<Pays> obtenirPays() {
+        List<Pays> listePays = new ArrayList<>();
+        for (Competition competition : lesCompetitions) {
+            for (Participant participant : competition.getParticipants()) {
+                Pays pays = participant.obtenirPays();
+                if (!listePays.contains(pays)) {
+                    listePays.add(pays);
+                }
+            }
+        }
+        return listePays;
+    }
+
+    public List<Athlete> obtenirAthletes() {
+        List<Athlete> listeParticipants = new ArrayList<>();
+        for (Competition competition : lesCompetitions) {
+            for (Participant participant : competition.getParticipants()) {
+                if (participant instanceof Equipe) {
+                    listeParticipants.addAll(((Equipe) participant).getListeAthletes());
+                } else {
+                    listeParticipants.add((Athlete) participant);
+                }
+            }
+        }
+
+        return listeParticipants;
+    }
+
+    /**
      * Cette fonction permet de retourner le classement des pays par les
      * médailles d'or
+     * 
      * @return le classement des pays par les médailles d'or
      */
     public String classementOr() {
@@ -162,7 +199,7 @@ public class JeuxOlympiques {
              * On crée un athlète
              */
             tempPays = new Pays(joueur.get(3));
-            if(listePays.contains(tempPays)){
+            if (listePays.contains(tempPays)) {
                 int indexPays = listePays.indexOf(tempPays);
                 paysJoueur = listePays.get(indexPays);
             } else {
@@ -173,7 +210,7 @@ public class JeuxOlympiques {
             athlete = new Athlete(joueur.get(0), joueur.get(1), Sexe.valueOf(joueur.get(2)),
                     Integer.parseInt(joueur.get(5)), Integer.parseInt(joueur.get(6)), Integer.parseInt(joueur.get(7)),
                     paysJoueur);
-            
+
             participants.add(athlete);
 
             String sportStr = joueur.get(4);
@@ -185,9 +222,9 @@ public class JeuxOlympiques {
                  */
                 if (sport.isEnEquipe()) {
                     Equipe equipe = getEquipeDispo(listePays, sport, athlete); // Une équipe est disponible si l'équipe
-                                                                                // n'est pas pleine, si le joueur a le
-                                                                                // même pays et si le sport du joueur
-                                                                                // est le même que celui de l'équipe
+                                                                               // n'est pas pleine, si le joueur a le
+                                                                               // même pays et si le sport du joueur
+                                                                               // est le même que celui de l'équipe
                     // Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et
                     // l'athlète rejoint l'équipe.
                     if (equipe == null) {
@@ -202,7 +239,7 @@ public class JeuxOlympiques {
                     }
                 }
                 athletesSport.put(athlete, sport);
-            } catch (IllegalArgumentException exception) {
+            } catch (NoSuchElementException exception) {
                 System.out.println(exception);
             }
         }
@@ -294,7 +331,7 @@ public class JeuxOlympiques {
      * @param sport : le nom du sport
      * @return un sport en fonction de son nom
      */
-    public static Sport getSportFromName(String sport) throws IllegalArgumentException {
+    public static Sport getSportFromName(String sport) throws NoSuchElementException {
         switch (sport) {
             case "Athletisme 110 haies":
                 return new Athletisme(sport, false, 100, -1);
@@ -313,15 +350,16 @@ public class JeuxOlympiques {
             case "Athletisme relais 400m":
                 return new Athletisme(sport, true, 400, 4);
             default:
-                throw new IllegalArgumentException("Le sport " + sport + " n'existe pas");
+                throw new NoSuchElementException("Le sport " + sport + " n'existe pas");
         }
     }
 
     /**
      * Cette fonction permet de retourner la liste des sports disponibles
+     * 
      * @return la liste des sports disponibles
      */
-    public static List<String> obtenirListeSportsDisponible(){
+    public static List<String> obtenirListeSportsDisponible() {
         List<String> sports = new ArrayList<>();
         sports.add("Athletisme 110 haies");
         sports.add("Natation relais libre");

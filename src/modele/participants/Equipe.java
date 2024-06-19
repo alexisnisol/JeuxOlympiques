@@ -211,6 +211,15 @@ public class Equipe implements Participant {
     }
 
     /**
+     * Retourne le nom de l'équipe, sans le préfixe "Equipe"
+     * 
+     * @return le nom de l'équipe
+     */
+    public String getNom() {
+        return this.nomEquipe;
+    }
+
+    /**
      * Retourne le nom de l'équipe.
      * 
      * @return le nom de l'équipe
