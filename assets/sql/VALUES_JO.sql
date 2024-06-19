@@ -78,6 +78,6 @@ INSERT INTO ROLES VALUES
 (2, "organisateur"),
 (3, "journaliste");
 
-INSERT INTO UTILISATEURS VALUES (1, "admin", "admin", "admin", "admin", 1),
+INSERT INTO UTILISATEURS VALUES (1, "a", "a", "a", "a", 1),
 (2, "orga", "orga", "orga", "orga", 2),
 (3, "aa", "aa", "aa", "aa", 3);
