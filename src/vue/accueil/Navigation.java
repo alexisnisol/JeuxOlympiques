@@ -1,7 +1,7 @@
 package vue.accueil;
 
-import BD.RequetesJDBC.RoleConnexion;
-import controller.ControleurNavigation;
+import bd.server.RequetesJDBC.RoleConnexion;
+import controller.accueil.ControleurNavigation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import modele.JeuxOlympiques;
-import vue.accueil.accueilbase.Actualite;
 
 public class Navigation extends BorderPane {
 
@@ -28,12 +27,12 @@ public class Navigation extends BorderPane {
         rechercheButton.setTooltip(new Tooltip("Rechercher"));
         rechercheButton.setGraphic(logo_img2);
         rechercheButton.setId("nav-loupe");
-        rechercheButton.setOnAction(new ControleurNavigation(accueil, modele, NavAction.RECHERCHE));
+        rechercheButton.setOnAction(new ControleurNavigation(accueil, NavAction.RECHERCHE));
         logo_img1.setFitHeight(100);
         logo_img1.setFitWidth(125);
         Button accueilButton = new Button();
         accueilButton.setTooltip(new Tooltip("Accueil"));
-        accueilButton.setOnAction(new ControleurNavigation(accueil, modele, NavAction.ACCUEIL));
+        accueilButton.setOnAction(new ControleurNavigation(accueil, NavAction.ACCUEIL));
         accueilButton.setGraphic(logo_img1);
         accueilButton.setId("nav-loupe");
         logo_img2.setFitHeight(50);
@@ -45,7 +44,7 @@ public class Navigation extends BorderPane {
         Button deco = new Button();
         deco.setTooltip(new Tooltip("Déconnexion"));
         deco.setGraphic(decoimg);
-        deco.setOnAction(new ControleurNavigation(accueil, modele, NavAction.DECONNEXION));
+        deco.setOnAction(new ControleurNavigation(accueil, NavAction.DECONNEXION));
         deco.setId("nav-loupe");
         HBox hbox_deco_recherche = new HBox();
         hbox_deco_recherche.getChildren().addAll(rechercheButton, deco);
@@ -62,7 +61,7 @@ public class Navigation extends BorderPane {
         menu = new HBox(10);
         menu.setAlignment(Pos.CENTER_LEFT);
         Button consulter = new Button("CONSULTER");
-        consulter.setOnAction(new ControleurNavigation(accueil, modele, NavAction.CONSULTER));
+        consulter.setOnAction(new ControleurNavigation(accueil, NavAction.CONSULTER));
         consulter.setPrefSize(150, 50);
         consulter.setId("navbar-btn");
         menu.getChildren().add(consulter);
@@ -82,15 +81,22 @@ public class Navigation extends BorderPane {
         RECHERCHE,
         CONSULTER,
         DECONNEXION,
-        AJOUTER
+        ADMIN_AJOUTER,
+        ADMIN_USERS
     }
 
     public void majAdmin() {
         Button ajouter = new Button("AJOUTER");
-        ajouter.setOnAction(new ControleurNavigation(accueil, modele, NavAction.AJOUTER));
+        ajouter.setOnAction(new ControleurNavigation(accueil, NavAction.ADMIN_AJOUTER));
         ajouter.setPrefSize(150, 50);
         ajouter.setId("navbar-btn");
         menu.getChildren().add(ajouter);
+
+        Button users = new Button("UTILISATEURS");
+        users.setOnAction(new ControleurNavigation(accueil, NavAction.ADMIN_USERS));
+        users.setPrefSize(150, 50);
+        users.setId("navbar-btn");
+        menu.getChildren().add(users);
 
     }
 
