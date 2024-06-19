@@ -14,13 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
 import controller.admin.ControleurAjouter;
 import controller.admin.ControleurBonnesEquipes;
 import controller.admin.ObservableAjoutAthlete;
@@ -38,10 +37,10 @@ public class Ajouter extends BorderPane {
     private TextField force;
     private TextField endurance;
     private TextField agilite;
-    private Button ajouter_athlete;
-    private TextField nom_equipe;
-    private TextField pays_equipe;
-    private Button ajouter_equipe;
+    private Button ajouterAthlete;
+    private TextField nomEquipe;
+    private TextField paysEquipe;
+    private Button ajouterEquipe;
 
     private CheckBox dansEquipe;
     private HBox main;
@@ -70,24 +69,35 @@ public class Ajouter extends BorderPane {
     public void afficherAthlete() {
         VBox ajoutBox = new VBox();
         Label athletelabel = new Label("Ajouter un Athlete");
+        athletelabel.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
         ajoutBox.setStyle("-fx-background-color: #FFFFFF;");
         this.nom = new TextField();
+        this.nom.setId("accueil-tf");
         this.nom.setPromptText("Nom");
         this.prenom = new TextField();
+        this.prenom.setId("accueil-tf");
         this.prenom.setPromptText("Prenom");
         this.sexe = new ComboBox<>();
         this.sexe.getItems().addAll(Sexe.HOMME, Sexe.FEMME);
         this.sexe.valueProperty().addListener(new ObservableAjoutAthlete(this));
         this.sexe.setPromptText("Sexe");
 
+        HBox stat = new HBox();
+        stat.setSpacing(10);
         this.force = new TextField();
+        this.force.setId("accueil-tf");
         this.force.setPromptText("Force");
         this.endurance = new TextField();
+        this.endurance.setId("accueil-tf");
         this.endurance.setPromptText("Endurance");
         this.agilite = new TextField();
+        this.agilite.setId("accueil-tf");
         this.agilite.setPromptText("Agilite");
 
+        stat.getChildren().addAll(this.force, this.endurance, this.agilite);
+
         this.pays = new TextField();
+        this.pays.setId("accueil-tf");
         this.pays.setPromptText("Pays");
         this.pays.textProperty().addListener(new ControleurBonnesEquipes(this));
 
@@ -103,13 +113,13 @@ public class Ajouter extends BorderPane {
         this.equipe.setPromptText("Equipe");
         this.equipe.setVisible(false);
 
-        this.ajouter_athlete = new Button("Ajouter Athlete");
-        this.ajouter_athlete.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutAthlete));
-        ajoutBox.getChildren().addAll(athletelabel, this.nom, this.prenom, this.sexe, this.force, this.endurance,
-                this.agilite, this.pays, this.epreuveAthlete, dansEquipe, this.equipe, this.ajouter_athlete);
+        this.ajouterAthlete = new Button("Ajouter Athlete");
+        this.ajouterAthlete.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutAthlete));
+        ajoutBox.getChildren().addAll(athletelabel, this.nom, this.prenom, this.sexe, stat, this.pays, this.epreuveAthlete, dansEquipe, this.equipe, this.ajouterAthlete);
 
+        ajoutBox.setPrefWidth(500);
         ajoutBox.setSpacing(10);
-        ajoutBox.setAlignment(javafx.geometry.Pos.CENTER);
+        
         BorderPane.setAlignment(ajoutBox, javafx.geometry.Pos.CENTER_LEFT);
 
         this.main.getChildren().add(ajoutBox);
@@ -122,9 +132,11 @@ public class Ajouter extends BorderPane {
     public void afficherEquipe() {
         VBox ajoutBox = new VBox();
         Label equipeLabel = new Label("Ajouter une Equipe");
+        equipeLabel.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
         ajoutBox.setStyle("-fx-background-color: #FFFFFF;");
-        this.nom_equipe = new TextField();
-        this.nom_equipe.setPromptText("Nom de l'equipe");
+        this.nomEquipe = new TextField();
+        this.nomEquipe.setId("accueil-tf");
+        this.nomEquipe.setPromptText("Nom de l'equipe");
 
         this.epreuveEquipes = new ComboBox<>();
         for(Competition compet : this.modele.getLesCompetitions()){
@@ -134,22 +146,17 @@ public class Ajouter extends BorderPane {
         }
         this.epreuveEquipes.setPromptText("Aucune compétition");
 
-        this.pays_equipe = new TextField();
-        this.pays_equipe.setPromptText("Pays");
-        this.ajouter_equipe = new Button("Ajouter Equipe");
-        this.ajouter_equipe.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutEquipe));
-        ajoutBox.getChildren().addAll(equipeLabel, this.nom_equipe,
-                this.pays_equipe, this.epreuveEquipes,
-                this.ajouter_equipe);
+        this.paysEquipe = new TextField();
+        this.paysEquipe.setId("accueil-tf");
+        this.paysEquipe.setPromptText("Pays");
+        this.ajouterEquipe = new Button("Ajouter Equipe");
+        this.ajouterEquipe.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutEquipe));
+        ajoutBox.getChildren().addAll(equipeLabel, this.nomEquipe,
+                this.paysEquipe, this.epreuveEquipes,
+                this.ajouterEquipe);
         ajoutBox.setSpacing(10);
 
-        ajoutBox.setAlignment(javafx.geometry.Pos.CENTER);
-
         this.main.getChildren().add(ajoutBox);
-
-        Separator separator = new Separator();
-        separator.setOrientation(Orientation.VERTICAL);
-        main.getChildren().add(separator);
     }
 
 
@@ -168,8 +175,8 @@ public class Ajouter extends BorderPane {
         this.force.setText("");
         this.endurance.setText("");
         this.agilite.setText("");
-        this.nom_equipe.setText("");
-        this.pays_equipe.setText("");
+        this.nomEquipe.setText("");
+        this.paysEquipe.setText("");
     }
 
     public Alert addPopup(String content){
@@ -237,19 +244,19 @@ public class Ajouter extends BorderPane {
     }
 
     public Button getAjouterAthlete() {
-        return ajouter_athlete;
+        return ajouterAthlete;
     }
 
     public TextField getNomEquipe() {
-        return nom_equipe;
+        return nomEquipe;
     }
 
     public TextField getPaysEquipe() {
-        return pays_equipe;
+        return paysEquipe;
     }
 
     public Button getAjouterEquipe() {
-        return ajouter_equipe;
+        return ajouterEquipe;
     }
 
     public Main getMain() {
