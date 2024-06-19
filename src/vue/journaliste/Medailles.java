@@ -12,13 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 import modele.Classement;
 import modele.Pays;
 import vue.accueil.Navigation;
-import vue.accueil.accueilbase.Actualite;
 import javafx.scene.layout.GridPane;
 
 import org.json.JSONObject;

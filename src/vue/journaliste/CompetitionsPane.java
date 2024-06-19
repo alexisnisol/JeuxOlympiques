@@ -1,25 +1,20 @@
 package vue.journaliste;
 
 import java.util.List;
-import java.util.Map;
-
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import modele.competitions.Competition;
 import modele.participants.Participant;
 import vue.accueil.Navigation;
 import javafx.scene.layout.GridPane;
-
 import org.json.JSONObject;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -88,32 +83,39 @@ public class CompetitionsPane extends BorderPane {
 
         // Ajout des données
         int rowI = 1;
-        boolean estJouee;
+        List<Participant> placement;
         for (Competition compet : competitions) {
-            estJouee = compet.estJouee();
-
             Label nomCompet = new Label(compet.affichageVue());
             nomCompet.setStyle("-fx-font-size: 12;");
 
             grid.add(nomCompet, 0, rowI);
-
             try {
-                Participant premier = compet.getPlacement().get(0); //TODO : Verifier si ya 3 participants
-                Participant deuxieme = compet.getPlacement().get(1);
-                Participant troisieme = compet.getPlacement().get(2);
+
+
+                placement = compet.getPlacement();
+
+
+                Participant premier = placement.get(0);
                 Label premierLabel = new Label(premier.obtenirNom());
                 premierLabel.setAlignment(Pos.CENTER);
                 premierLabel.setStyle("-fx-font-size: 12;");
-                Label deuxiemeLabel = new Label(deuxieme.obtenirNom());
-                deuxiemeLabel.setAlignment(Pos.CENTER);
-                deuxiemeLabel.setStyle("-fx-font-size: 12;");
-                Label troisiemeLabel = new Label(troisieme.obtenirNom());
-                troisiemeLabel.setAlignment(Pos.CENTER);
-                troisiemeLabel.setStyle("-fx-font-size: 12;");
-
                 grid.add(premierLabel, 1, rowI);
-                grid.add(deuxiemeLabel, 2, rowI);
-                grid.add(troisiemeLabel, 3, rowI);
+
+                if(placement.size() > 1){
+                    Participant deuxieme = placement.get(1);
+                    Label deuxiemeLabel = new Label(deuxieme.obtenirNom());
+                    deuxiemeLabel.setAlignment(Pos.CENTER);
+                    deuxiemeLabel.setStyle("-fx-font-size: 12;");
+                    grid.add(deuxiemeLabel, 2, rowI);
+                }
+                if(placement.size() > 2){
+                    Participant troisieme = placement.get(2);
+                    Label troisiemeLabel = new Label(troisieme.obtenirNom());
+                    troisiemeLabel.setAlignment(Pos.CENTER);
+                    troisiemeLabel.setStyle("-fx-font-size: 12;");
+                    grid.add(troisiemeLabel, 3, rowI);
+                }
+            
             } catch (IllegalStateException e) {
                 grid.add(new Label("N'est pas jouée"), 1, rowI);
             }
