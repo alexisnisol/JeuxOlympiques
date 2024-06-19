@@ -35,6 +35,13 @@ public class Main extends Application {
 
     public void accueil() {
 
+
+        System.out.println("aaaa");
+        RequetesJDBC.laConnexion = this.loginBD.getConnexionMySQL();
+        List<List<String>> liste = JeuxOlympiques.fromCsv("src/donnees.csv");
+        this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
+
+
         Label titre = new Label("Bienvenue dans les Jeux IUT’Olympiques");
         titre.setAlignment(Pos.CENTER);
         titre.setStyle("-fx-font-size: 30px;");
@@ -80,6 +87,7 @@ public class Main extends Application {
 
     public void afficherlogin() {
         this.scene.setRoot(this.loginPane);
+
     }
 
     public void afficherInscription() {
@@ -91,18 +99,14 @@ public class Main extends Application {
         this.stage = stage;
         this.root = new BorderPane();
 
-        this.modele = new JeuxOlympiques(2024, 0);
+        this.loginBD = new LoginBD(this);
 
-        List<List<String>> liste = JeuxOlympiques.fromCsv("src/big_data.csv");
-        this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
+
 
         this.scene = new Scene(root, 900, 550);
 
         this.loginPane = new Login(this, this.modele);
         this.registerPane = new Register(this);
-        this.loginBD = new LoginBD(this);
-
-        this.requetesJDBC = new RequetesJDBC(this.loginBD.getConnexionMySQL());
 
         scene.getStylesheets().add("file:assets/css/styles.css");
 
@@ -111,10 +115,6 @@ public class Main extends Application {
         stage.show();
         afficherLoginBD();
 
-    }
-
-    public RequetesJDBC getRequetesJDBC() {
-        return this.requetesJDBC;
     }
 
     public JeuxOlympiques getModele() {
@@ -147,11 +147,4 @@ public class Main extends Application {
         return this.scene;
     }
 
-    public List<Competition> getCompetitions() throws Exception {
-        try {
-            return this.requetesJDBC.getCompetitions();
-        } catch (Exception e) {
-            throw e;
-        }
-    }
 }

@@ -1,8 +1,9 @@
 package controller;
 
-import vue.accueil.accueilbase.principale;
+import vue.accueil.accueilbase.Actualite;
 import java.sql.SQLException;
 import BD.RequetesJDBC.RoleConnexion;
+import BD.RequetesJDBC;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -12,9 +13,9 @@ import vue.accueil.Main;
 public class ControleurLoginJDBC implements EventHandler<ActionEvent> {
 
     private Login login;
-    private principale accueil;
+    private Actualite accueil;
 
-    public ControleurLoginJDBC(Login login, principale accueil) {
+    public ControleurLoginJDBC(Login login, Actualite accueil) {
         this.login = login;
         this.accueil = accueil;
     }
@@ -23,7 +24,7 @@ public class ControleurLoginJDBC implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         Main main = login.getMain();
         try {
-            RoleConnexion connexion = main.getRequetesJDBC().connexion(login.getPseudo().getText(),
+            RoleConnexion connexion = RequetesJDBC.connexion(login.getPseudo().getText(),
                     login.getMdp().getText());
 
             if (connexion == RoleConnexion.INVALIDE) {

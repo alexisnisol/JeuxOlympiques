@@ -7,6 +7,7 @@ import vue.accueil.Main;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import BD.RequetesJDBC;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert.AlertType;
@@ -25,7 +26,7 @@ public class ControleurActionRecherche implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         try {
-            Pair<TypeRecherche, List<String>> pairTypeData = main.getRequetesJDBC().search(
+            Pair<TypeRecherche, List<String>> pairTypeData = RequetesJDBC.search(
                     rechercher.getRecherche(),
                     main.getModele());
 

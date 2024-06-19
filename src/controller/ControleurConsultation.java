@@ -1,7 +1,7 @@
 package controller;
 
 import vue.accueil.Navigation.NavAction;
-import vue.accueil.accueilbase.principale;
+import vue.accueil.accueilbase.Actualite;
 import vue.administrateur.Ajouter;
 import vue.journaliste.ConsulterPane;
 import vue.journaliste.ConsulterPane.ConsultAction;

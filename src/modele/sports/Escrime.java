@@ -23,4 +23,9 @@ public class Escrime extends Sport{
     public float calculerPerformance(Participant participant) {
         return ((participant.getAgilite()*2) + (participant.getEndurance()*2) + (participant.getForce()*5));
     }
+
+    @Override
+    public String getTypeSport() {
+        return "Escrime";
+    }
 }

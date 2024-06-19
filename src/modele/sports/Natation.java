@@ -23,5 +23,10 @@ public class Natation extends Sport{
     public float calculerPerformance(Participant participant) {
         return ((participant.getAgilite()*3) + (participant.getEndurance()*3) + participant.getForce());
     }
+
+    @Override
+    public String getTypeSport() {
+        return "Natation";
+    }
     
 }

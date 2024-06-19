@@ -10,16 +10,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import modele.JeuxOlympiques;
-import vue.accueil.accueilbase.principale;
+import vue.accueil.accueilbase.Actualite;
 
 public class Navigation extends BorderPane {
 
-    private principale accueil;
+    private Actualite accueil;
     private JeuxOlympiques modele;
 
     private HBox menu;
 
-    public Navigation(principale accueil, JeuxOlympiques modele) {
+    public Navigation(Actualite accueil, JeuxOlympiques modele) {
         this.accueil = accueil;
         this.modele = modele;
         ImageView logo_img1 = new ImageView(new Image("file:assets/img/jo_paris.png"));

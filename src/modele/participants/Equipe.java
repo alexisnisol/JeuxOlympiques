@@ -3,6 +3,7 @@ package modele.participants;
 import java.util.ArrayList;
 import java.util.List;
 
+import BD.RequetesJDBC;
 import modele.Classement;
 import modele.Pays;
 import modele.Sexe;
@@ -16,24 +17,33 @@ public class Equipe implements Participant {
     private String nomEquipe;
     private int tailleMax;
     private Sport sport;
-    private boolean enRelais;
     private Classement classement;
     private List<Athlete> listeAthletes;
     private Pays pays;
     private Competition competitionActuelle;
     private float performanceActuelle;
 
-    public Equipe(String nomEquipe, Sport sport, int tailleMax, boolean enRelais, Pays pays) {
+    public Equipe(String nomEquipe, Sport sport, int tailleMax, Pays pays) {
         this.nomEquipe = nomEquipe;
         this.tailleMax = tailleMax;
         this.sport = sport;
-        this.enRelais = enRelais;
         this.pays = pays;
         this.listeAthletes = new ArrayList<>();
         this.competitionActuelle = null;
         this.classement = new Classement();
         this.pays.addEquipe(this);
+
+        saveToBd();
     }
+
+    public void saveToBd(){
+        try{
+            RequetesJDBC.creerEquipe(this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Retourne la taille maximale de l'équipe.
@@ -69,24 +79,6 @@ public class Equipe implements Participant {
      */
     public Sport getSport() {
         return this.sport;
-    }
-
-    /**
-     * Retourne si l'équipe est une équipe relais.
-     * 
-     * @return l'attribut enRelais
-     */
-    public boolean isEnRelais() {
-        return enRelais;
-    }
-
-    /**
-     * Définie une équipe comme une équipe relais.
-     * 
-     * @param enRelais l'attribut enRelais
-     */
-    public void setEnRelais(boolean enRelais) {
-        this.enRelais = enRelais;
     }
 
     /**
@@ -156,6 +148,12 @@ public class Equipe implements Participant {
     @Override
     public void setCompetitionActuelle(Competition competition) {
         this.competitionActuelle = competition;
+
+        try{
+            RequetesJDBC.setCompetEquipe(this, competition);
+        }catch(Exception exception){
+            exception.printStackTrace();
+        }
     }
 
     /**
@@ -286,7 +284,6 @@ public class Equipe implements Participant {
         return this.nomEquipe.equals(equipe.nomEquipe) &&
                 this.sport.equals(equipe.sport) &&
                 this.tailleMax == equipe.tailleMax &&
-                this.enRelais == equipe.enRelais &&
                 this.pays.equals(equipe.pays);
     }
 
@@ -304,19 +301,23 @@ public class Equipe implements Participant {
 
     @Override
     public int hashCode() {
-        return this.nomEquipe.hashCode() + this.tailleMax + (this.enRelais ? 34 : 17) + this.pays.hashCode();
+        return this.nomEquipe.hashCode() + this.tailleMax + this.pays.hashCode();
     }
 
-    @Override
-    public String toString() {
+    public String afficherEquipe(){
         return "Equipe : " + this.nomEquipe + " (" + this.pays + ")" + " Elle contient " + this.listeAthletes.size()
                 + " athlètes" + " et participe à la compétition : "
                 + this.competitionActuelle + " avec une performance de " + this.performanceActuelle + " points"
                 + " et  " + this.classement + "."
-                + " Elle est composée de : " + athletesToString() + " Est-Elle en relais : " + this.enRelais + "."
+                + " Elle est composée de : " + athletesToString()
                 + " Taille maximale : " + this.tailleMax + "."
                 + " Force totale : " + this.getForce() + "." + " Agilité totale : " + this.getAgilite() + "."
                 + " Endurance totale : " + this.getEndurance() + ".";
+    }
+
+    @Override
+    public String toString() {
+        return this.nomEquipe; //Pour le combobox de la vue
     }
 
 }

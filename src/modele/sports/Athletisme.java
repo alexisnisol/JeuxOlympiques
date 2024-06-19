@@ -23,5 +23,10 @@ public class Athletisme extends Sport{
     public float calculerPerformance(Participant participant) {
         return ((participant.getAgilite()*2) + (participant.getEndurance()*5) + participant.getForce());
     }
+
+    @Override
+    public String getTypeSport() {
+        return "Athletisme";
+    }
     
 }

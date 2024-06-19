@@ -3,6 +3,7 @@ package controller.admin;
 import java.util.Arrays;
 import java.util.List;
 
+import BD.RequetesJDBC;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -38,98 +39,97 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
 
         switch (typeAjout) {
             case AjoutAthlete:
-                Athlete athlete = new Athlete(
-                        ajout.getNom().getText(),
-                        ajout.getPrenom().getText(),
-                        ajout.getSexe(),
-                        ajout.getForce(),
-                        ajout.getEndurance(),
-                        ajout.getAgilite(),
-                        ajout.getPays());
 
-                Competition competition = ajout.getEpreuveBox().getValue();
+                Pays pays = this.modele.getPaysFromString(this.ajout.getPays().getText());
+                
 
                 try {
-                    for (Competition compet : ajout.getMain().getCompetitions()){
-                        if (compet.getSport() == competition.getSport()){
-                            compet.enregistrerParticipant(athlete);
+                    Athlete athlete = new Athlete(
+                            ajout.getNom().getText(),
+                            ajout.getPrenom().getText(),
+                            ajout.getSexe(),
+                            ajout.getForce(),
+                            ajout.getEndurance(),
+                            ajout.getAgilite(),
+                            pays);
+
+                    if(!this.ajout.athleteDansUneEquipe()){
+
+                        Competition competition = ajout.getEpreuvesAthletesBox().getValue();
+                        try {
+                            competition.enregistrerParticipant(athlete);
+                            this.ajout.addPopup("L'athlète " + athlete.obtenirNom() + " a bien été ajouté.").showAndWait();
+                            this.ajout.resetTF();
+
+                        } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException exception) {
+                            exception.printStackTrace();
+                            Alert alert = new Alert(AlertType.ERROR);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText("Erreur dans la compétition");
+                            alert.setContentText(exception.getMessage());
+                            alert.showAndWait();
+                        }
+                    }else{
+
+                        if(this.ajout.getEquipesBox().getValue() == null){
+                            Alert alert = new Alert(AlertType.ERROR);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText("Erreur lors de la récupération des données");
+                            alert.setContentText("L'équipe n'existe pas");
+                            alert.showAndWait();
+                            return;
+                        }
+
+                        Equipe equipe = this.ajout.getEquipesBox().getValue();
+
+                        if(equipe.obtenirPays().equals(pays)){
+                            athlete.rejoindreEquipe(equipe);
+                            this.ajout.addPopup("L'athlète " + athlete.obtenirNom() + " a rejoint l'équipe.").showAndWait();
+                            this.ajout.resetTF();                            
+                        }else{
+                            Alert alert = new Alert(AlertType.ERROR);
+                            alert.setTitle("Erreur");
+                            alert.setHeaderText("Erreur lors de la récupération des données");
+                            alert.setContentText("Erreur dans le pays");
+                            alert.showAndWait();
+                        }
+
                     }
-                    
-                } catch (SexeCompetitionException e) {
-                    e.printStackTrace();
+                } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erreur");
-                    alert.setHeaderText("Erreur de sexe dans la compétition");
+                    alert.setHeaderText("Erreur lors de la récupération des données");
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
-                } catch (ParticipantDejaPresentException e) {
-                    e.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Participant déjà présent dans la compétition");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (ParticipantOccupeException e) {
-                    e.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Participant déjà occupé dans une autre compétition");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (MauvaisParticipantException e) {
-                    e.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Mauvais type de participant pour la compétition");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
                 break;
             case AjoutEquipe:
-                Equipe equipe = new Equipe(ajout.getNomEquipe().getText(),
-                        JeuxOlympiques.getSportFromName(ajout.getSport()),
-                        ajout.getTailleMax(), ajout.getEnRelais(),
-                        ajout.getPaysEquipe());
 
+                Competition competition = ajout.getEpreuveEquipes();
+                
+                Pays paysEquipe = this.modele.getPaysFromString(this.ajout.getPaysEquipe().getText());
+                
+                Equipe equipe = new Equipe(ajout.getNomEquipe().getText(),
+                        competition.getSport(),
+                        competition.getSport().getTaille(),
+                        paysEquipe);
+    
                 try {
-                    for (Competition compet : ajout.getMain().getCompetitions()){
-                        compet.inscrireParticipant(equipe);
-                    }
-                    System.out.println("Equipe enregistrée");
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    alert.setHeaderText("Equipe enregistrée");
-                    alert.showAndWait();
-                    alert.close();
-                } catch (SexeCompetitionException e) {
-                    e.printStackTrace();
+                    competition.enregistrerParticipant(equipe);
+                    this.ajout.addPopup("L'équipe " + equipe.obtenirNom() + " a bien été ajouté.").showAndWait();
+                    this.ajout.resetTF();
+
+                    /*for (Competition compet : ajout.getMain().getCompetitions()){
+                        if (compet.getSport() == competition.getSport()){
+                            compet.enregistrerParticipant(athlete);
+                        }
+                    }*/
+                } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException exception) {
+                    exception.printStackTrace();
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erreur");
-                    alert.setHeaderText("Erreur de sexe dans la compétition");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (ParticipantDejaPresentException e) {
-                    e.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Participant déjà présent dans la compétition");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (ParticipantOccupeException e) {
-                    e.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Participant déjà occupé dans une autre compétition");
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                } catch (MauvaisParticipantException e) {
-                    e.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Mauvais type de participant pour la compétition");
-                    alert.setContentText(e.getMessage());
+                    alert.setHeaderText("Erreur dans la compétition");
+                    alert.setContentText(exception.getMessage());
                     alert.showAndWait();
                 }
         }

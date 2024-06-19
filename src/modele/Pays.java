@@ -1,7 +1,9 @@
 package modele;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import BD.RequetesJDBC;
 import modele.participants.Athlete;
 import modele.participants.Equipe;
 
@@ -14,6 +16,16 @@ public class Pays {
         this.nom = nom;
         this.listAthletes = new ArrayList<>();
         this.listEquipes = new ArrayList<>();
+
+        saveToBd();
+    }
+
+    public void saveToBd(){
+        try {
+            RequetesJDBC.creerPays(this.nom);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

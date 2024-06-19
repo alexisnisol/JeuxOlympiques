@@ -19,6 +19,7 @@ public abstract class Sport {
     public String getNom() {
         return nom;
     }
+    public abstract String getTypeSport();
 
     public boolean isEnEquipe() {
         return enEquipe;

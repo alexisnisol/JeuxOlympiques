@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import modele.Classement;
 import modele.Pays;
 import vue.accueil.Navigation;
-import vue.accueil.accueilbase.principale;
+import vue.accueil.accueilbase.Actualite;
 import javafx.scene.layout.GridPane;
 
 import org.json.JSONObject;

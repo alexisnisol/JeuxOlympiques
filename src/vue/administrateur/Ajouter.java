@@ -3,28 +3,36 @@ package vue.administrateur;
 import vue.accueil.*;
 import modele.*;
 import modele.competitions.Competition;
+import modele.competitions.CompetitionCollective;
+import modele.participants.Equipe;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
 import controller.admin.ControleurAjouter;
+import controller.admin.ControleurBonnesEquipes;
 import controller.admin.ObservableAjoutAthlete;
 import controller.admin.ControleurCheckBoxAddAthlete;
 
 public class Ajouter extends BorderPane {
 
-    private ComboBox<Competition> epreuve;
+    private ComboBox<Competition> epreuveAthlete;
+    private ComboBox<Competition> epreuveEquipes;
+    private ComboBox<Equipe> equipe;
     private TextField nom;
     private TextField prenom;
-    private TextField equipe;
     private ComboBox<Sexe> sexe;
     private TextField pays;
     private TextField force;
@@ -32,12 +40,10 @@ public class Ajouter extends BorderPane {
     private TextField agilite;
     private Button ajouter_athlete;
     private TextField nom_equipe;
-    private TextField taille_max;
-    private TextField sport_equipe;
-    private ComboBox<String> en_relais;
     private TextField pays_equipe;
     private Button ajouter_equipe;
 
+    private CheckBox dansEquipe;
     private HBox main;
 
     private Main mainPane;
@@ -83,21 +89,24 @@ public class Ajouter extends BorderPane {
 
         this.pays = new TextField();
         this.pays.setPromptText("Pays");
+        this.pays.textProperty().addListener(new ControleurBonnesEquipes(this));
 
-        this.epreuve = new ComboBox<>();
+        this.epreuveAthlete = new ComboBox<>();
+        this.epreuveAthlete.setPromptText("Aucune compétition");
 
-        CheckBox dansEquipe = new CheckBox("Dans une équipe");
-        dansEquipe.selectedProperty().addListener(new ControleurCheckBoxAddAthlete(this));
+        this.dansEquipe = new CheckBox("Dans une équipe");
+        this.dansEquipe.selectedProperty().addListener(new ControleurCheckBoxAddAthlete(this));
+        
 
-        this.epreuve.setPromptText("Aucune compétition");
+        this.equipe = new ComboBox<>();
 
-        this.equipe = new TextField();
         this.equipe.setPromptText("Equipe");
         this.equipe.setVisible(false);
 
         this.ajouter_athlete = new Button("Ajouter Athlete");
+        this.ajouter_athlete.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutAthlete));
         ajoutBox.getChildren().addAll(athletelabel, this.nom, this.prenom, this.sexe, this.force, this.endurance,
-                this.agilite, this.pays, this.epreuve, dansEquipe, this.equipe, this.ajouter_athlete);
+                this.agilite, this.pays, this.epreuveAthlete, dansEquipe, this.equipe, this.ajouter_athlete);
 
         ajoutBox.setSpacing(10);
         ajoutBox.setAlignment(javafx.geometry.Pos.CENTER);
@@ -116,20 +125,21 @@ public class Ajouter extends BorderPane {
         ajoutBox.setStyle("-fx-background-color: #FFFFFF;");
         this.nom_equipe = new TextField();
         this.nom_equipe.setPromptText("Nom de l'equipe");
-        this.taille_max = new TextField();
-        this.taille_max.setPromptText("Taille max");
-        this.sport_equipe = new TextField();
-        this.sport_equipe.setPromptText("Sport");
-        this.en_relais = new ComboBox<>();
-        this.en_relais.getItems().addAll("Oui", "Non");
-        this.en_relais.setPromptText("En relais");
+
+        this.epreuveEquipes = new ComboBox<>();
+        for(Competition compet : this.modele.getLesCompetitions()){
+            if(compet instanceof CompetitionCollective){
+                this.epreuveEquipes.getItems().add(compet);
+            }
+        }
+        this.epreuveEquipes.setPromptText("Aucune compétition");
+
         this.pays_equipe = new TextField();
         this.pays_equipe.setPromptText("Pays");
         this.ajouter_equipe = new Button("Ajouter Equipe");
-        this.ajouter_athlete.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutAthlete));
-        ajoutBox.getChildren().addAll(equipeLabel, this.nom_equipe, this.taille_max, this.sport_equipe,
-                this.en_relais,
-                this.pays_equipe,
+        this.ajouter_equipe.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutEquipe));
+        ajoutBox.getChildren().addAll(equipeLabel, this.nom_equipe,
+                this.pays_equipe, this.epreuveEquipes,
                 this.ajouter_equipe);
         ajoutBox.setSpacing(10);
 
@@ -142,6 +152,33 @@ public class Ajouter extends BorderPane {
         main.getChildren().add(separator);
     }
 
+
+    public boolean athleteDansUneEquipe() {
+        return this.dansEquipe.isSelected();
+    }
+
+    public void resetTF(){
+        this.nom.setText("");
+        this.prenom.setText("");
+        this.epreuveAthlete.setValue(null);
+        this.epreuveEquipes.setValue(null);
+        this.equipe.setValue(null);
+        this.sexe.setValue(null);
+        this.pays.setText("");
+        this.force.setText("");
+        this.endurance.setText("");
+        this.agilite.setText("");
+        this.nom_equipe.setText("");
+        this.pays_equipe.setText("");
+    }
+
+    public Alert addPopup(String content){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Administration");
+        alert.setContentText(content);
+        return alert;
+    }
+
     public enum TypeAjout {
         AjoutAthlete,
         AjoutEquipe
@@ -151,12 +188,24 @@ public class Ajouter extends BorderPane {
         return this.modele;
     }
 
-    public ComboBox<Competition> getEpreuveBox() {
-        return this.epreuve;
+    public ComboBox<Equipe> getEquipesBox() {
+        return this.equipe;
     }
 
-    public Competition getEpreuve() {
-        return this.epreuve.getValue();
+    public ComboBox<Competition> getEpreuvesAthletesBox() {
+        return this.epreuveAthlete;
+    }
+
+    public Competition getEpreuveAthlete() {
+        return this.epreuveAthlete.getValue();
+    }
+    
+    public ComboBox<Competition> getEpreuvesEquipesBox() {
+        return this.epreuveEquipes;
+    }
+
+    public Competition getEpreuveEquipes() {
+        return this.epreuveEquipes.getValue();
     }
 
     public TextField getNom() {
@@ -167,16 +216,12 @@ public class Ajouter extends BorderPane {
         return prenom;
     }
 
-    public TextField getEquipe() {
-        return equipe;
-    }
-
     public Sexe getSexe() {
         return sexe.getValue();
     }
 
-    public Pays getPays() {
-        return Pays.valueOf(pays.getText());
+    public TextField getPays() {
+        return this.pays;
     }
 
     public int getForce() {
@@ -199,20 +244,8 @@ public class Ajouter extends BorderPane {
         return nom_equipe;
     }
 
-    public int getTailleMax() {
-        return Integer.parseInt(taille_max.getText());
-    }
-
-    public String getSport() {
-        return sport_equipe.getText();
-    }
-
-    public boolean getEnRelais() {
-        return en_relais.getValue().equals("Oui");
-    }
-
-    public Pays getPaysEquipe() {
-        return Pays.valueOf(pays_equipe.getText());
+    public TextField getPaysEquipe() {
+        return pays_equipe;
     }
 
     public Button getAjouterEquipe() {

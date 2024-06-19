@@ -24,14 +24,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
-public class principale extends BorderPane {
+public class Actualite extends BorderPane {
 
     private Login login;
     private JeuxOlympiques modele;
     private Navigation navigation;
     private RoleConnexion userRole;
 
-    public principale(Login login, JeuxOlympiques modele) {
+    public Actualite(Login login, JeuxOlympiques modele) {
 
         this.login = login;
         this.modele = this.login.getMain().getModele();

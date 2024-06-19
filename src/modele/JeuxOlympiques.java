@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import BD.RequetesJDBC;
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
@@ -37,6 +38,11 @@ public class JeuxOlympiques {
         this.annee = annee;
         this.nbEpreuves = nbEpreuves;
         this.lesCompetitions = new ArrayList<>();
+        try{
+            RequetesJDBC.creerSport();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -156,6 +162,19 @@ public class JeuxOlympiques {
         return listeParticipants;
     }
 
+
+    public List<Equipe> obtenirEquipes(){
+        List<Equipe> liste = new ArrayList<>();
+        for (Competition competition : lesCompetitions) {
+            for (Participant participant : competition.getParticipants()) {
+                if (participant instanceof Equipe) {
+                    liste.add((Equipe)participant);
+                }
+            }
+        }
+        return liste;
+    }
+
     /**
      * Cette fonction permet de retourner le classement des pays par les
      * médailles d'or
@@ -228,7 +247,7 @@ public class JeuxOlympiques {
                     // Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et
                     // l'athlète rejoint l'équipe.
                     if (equipe == null) {
-                        equipe = new Equipe(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(), false,
+                        equipe = new Equipe(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(),
                                 paysJoueur);
 
                         athlete.rejoindreEquipe(equipe);
@@ -326,6 +345,22 @@ public class JeuxOlympiques {
     }
 
     /**
+     * Renvoie le pays à partir d'une chaine de caractère, si aucun pays n'est trouvé, alors il est créé
+     * @param pays
+     * @return le pays
+     */
+    public Pays getPaysFromString(String pays){
+        for(Competition compet : this.lesCompetitions){
+            for(Participant part : compet.getParticipants()){
+                if(part.obtenirPays().getNom().equalsIgnoreCase(pays)){
+                    return part.obtenirPays();
+                }
+            }
+        }
+        return new Pays(pays);
+    }
+
+    /**
      * Cette fonction permet de retourner un sport en fonction de son nom
      * 
      * @param sport : le nom du sport
@@ -334,7 +369,7 @@ public class JeuxOlympiques {
     public static Sport getSportFromName(String sport) throws NoSuchElementException {
         switch (sport) {
             case "Athletisme 110 haies":
-                return new Athletisme(sport, false, 100, -1);
+                return new Athletisme(sport, false, 110, -1);
             case "Natation relais libre":
                 return new Natation(sport, true, 400, 4);
             case "Natation 100 brasse":

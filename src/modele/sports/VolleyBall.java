@@ -13,4 +13,8 @@ public class VolleyBall extends Sport{
         return ((participant.getAgilite()*5) + (participant.getEndurance()*2) + participant.getForce()*2);
     }
     
+    @Override
+    public String getTypeSport() {
+        return "Volley-Ball";
+    }
 }

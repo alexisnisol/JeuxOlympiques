@@ -7,6 +7,7 @@ import vue.accueil.Main;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import BD.RequetesJDBC;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
@@ -28,7 +29,7 @@ public class ControleurKeyEventRecherche implements EventHandler<KeyEvent> {
         if (event.getCode() == KeyCode.ENTER) {
 
             try {
-                Pair<TypeRecherche, List<String>> pairTypeData = main.getRequetesJDBC().search(
+                Pair<TypeRecherche, List<String>> pairTypeData = RequetesJDBC.search(
                         rechercher.getRecherche(),
                         main.getModele());
 

@@ -98,7 +98,7 @@ public class CompetitionsPane extends BorderPane {
             grid.add(nomCompet, 0, rowI);
 
             try {
-                Participant premier = compet.getPlacement().get(0);
+                Participant premier = compet.getPlacement().get(0); //TODO : Verifier si ya 3 participants
                 Participant deuxieme = compet.getPlacement().get(1);
                 Participant troisieme = compet.getPlacement().get(2);
                 Label premierLabel = new Label(premier.obtenirNom());

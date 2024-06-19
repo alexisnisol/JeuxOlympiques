@@ -12,4 +12,9 @@ public class HandBall extends Sport{
     public float calculerPerformance(Participant participant) {
         return ((participant.getAgilite()*5) + (participant.getEndurance()*2) + participant.getForce()*2);
     }
+
+    @Override
+    public String getTypeSport() {
+        return "Handball";
+    }
 }

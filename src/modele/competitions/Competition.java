@@ -1,9 +1,11 @@
 package modele.competitions;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import BD.RequetesJDBC;
 import modele.ComparePerformance;
 import modele.Sexe;
 import modele.exceptions.MauvaisParticipantException;
@@ -25,6 +27,16 @@ public abstract class Competition {
         this.lesParticipants = new ArrayList<>();
         this.sport = sport;
         this.estJouee = false;
+
+        saveToBd();
+    }
+
+    public void saveToBd(){
+        try {
+            RequetesJDBC.creerCompet(this);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -86,7 +98,7 @@ public abstract class Competition {
         // }
 
         this.lesParticipants.add(participant);
-    }
+    }   
 
     /**
      * Joue la compétition, détermine les gagnants et termine la compétition.

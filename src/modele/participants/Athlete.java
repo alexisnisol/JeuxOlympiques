@@ -1,5 +1,8 @@
 package modele.participants;
 
+import java.sql.SQLException;
+
+import BD.RequetesJDBC;
 import modele.Classement;
 import modele.Pays;
 import modele.Sexe;
@@ -46,6 +49,16 @@ public class Athlete implements Participant {
         this.equipe = null;
         this.classement = new Classement();
         this.pays.addAthlete(this);
+
+        saveToBd();
+    }
+
+    public void saveToBd(){
+        try{
+            RequetesJDBC.creerAthlete(this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -56,13 +69,25 @@ public class Athlete implements Participant {
      */
     public boolean rejoindreEquipe(Equipe equipe) {
         try {
-            this.equipe = equipe;
-            this.equipe.addAthlete(this);
+            
+            try {
+                this.equipe = equipe;
+                this.equipe.addAthlete(this);
+                RequetesJDBC.setEquipeAthlete(this, equipe);
+            
+            
+            //bdd -> update athlète avec l'id équipe
             return true;
         } catch (EquipePleineException e) {
             e.printStackTrace();
         } catch (ParticipantDejaPresentException e) {
             e.printStackTrace();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        } catch (Exception e) {
+                e.printStackTrace();
         }
         return false;
     }
@@ -143,6 +168,14 @@ public class Athlete implements Participant {
     @Override
     public void setCompetitionActuelle(Competition competition) {
         this.competitionActuelle = competition;
+        try {
+            RequetesJDBC.setCompetAthlete(this, competition);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //bdd -> update athlète avec l'id compet
     }
 
     /**

@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modele.JeuxOlympiques;
 import vue.accueil.Main.ButtonAction;
-import vue.accueil.accueilbase.principale;
+import vue.accueil.accueilbase.Actualite;
 
 public class Login extends BorderPane {
 
@@ -100,7 +100,7 @@ public class Login extends BorderPane {
     public void showBottom() {
         Button bottom = new Button("Connexion");
 
-        principale actualite = new principale(this, this.modele);
+        Actualite actualite = new Actualite(this, this.modele);
 
         bottom.setOnAction(new ControleurLoginJDBC(this, actualite));
 

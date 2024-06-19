@@ -17,10 +17,10 @@ public class ObservableAjoutAthlete implements ChangeListener<Sexe> {
     @Override
     public void changed(ObservableValue<? extends Sexe> observable, Sexe oldValue, Sexe newValue) {
         if (oldValue == null || !oldValue.equals(newValue)) {
-            this.pane.getEpreuveBox().getItems().clear();
+            this.pane.getEpreuvesAthletesBox().getItems().clear();
             for (Competition c : pane.getModele().getLesCompetitions()) {
                 if (c instanceof CompetitionIndividuelle && c.getSexe() == pane.getSexe()) {
-                    this.pane.getEpreuveBox().getItems().add(c);
+                    this.pane.getEpreuvesAthletesBox().getItems().add(c);
                 }
             }
         }

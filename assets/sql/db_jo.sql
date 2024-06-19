@@ -26,51 +26,51 @@ CREATE TABLE UTILISATEURS (
 
 
 CREATE TABLE PAYS (
-    idPays int primary key,
-    nomPays varchar(23) NOT NULL
+    nomPays varchar(23) primary key
 );
 
 CREATE TABLE SPORT (
-    idSport int primary key,
-    nomSport varchar(16) NOT NULL,
+    nomSport varchar(16) primary key,
     typeSport varchar(16) NOT NULL,
-    coeffSport decimal(6,0) DEFAULT NULL);
+    coeffAgilite decimal(6,0) DEFAULT NULL, 
+    coeffEndurance decimal(6,0) DEFAULT NULL,
+    coeffForce decimal(6,0) DEFAULT NULL);
+
 
 
 CREATE TABLE COMPETITIONS (
-  idCompetition int primary key,
-  nom varchar(16) DEFAULT NULL,
+  idCompetition int primary key AUTO_INCREMENT,
+  nom varchar(32) DEFAULT NULL,
   nbParticipants int DEFAULT NULL,
   sexeCompetition varchar(5) DEFAULT NULL,
   estIndividuelle varchar(5) DEFAULT NULL,
-  idSport int DEFAULT NULL,
-  CONSTRAINT FKSportC FOREIGN KEY (idSport) REFERENCES SPORT(idSport)
+  nomSport varchar(16),
+  CONSTRAINT FKSportC FOREIGN KEY (nomSport) REFERENCES SPORT(nomSport)
 );
 
 CREATE TABLE EQUIPES (
-    idEquipe int primary key,
-    nomEquipe varchar(16) NOT NULL,
+    idEquipe int primary key AUTO_INCREMENT,
+    nomEquipe varchar(32) NOT NULL,
     tailleMax int DEFAULT NULL,
-    enRelais varchar(5) DEFAULT NULL,
-    idPays int DEFAULT NULL,
+    nomPays varchar(16) DEFAULT NULL,
     idCompetition int DEFAULT NULL,
-    CONSTRAINT FKPaysE FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
+    CONSTRAINT FKPaysE FOREIGN KEY (nomPays) REFERENCES PAYS(nomPays),
     CONSTRAINT FKCompetitionE FOREIGN KEY (idCompetition) REFERENCES COMPETITIONS(idCompetition)
 );
 
 
 CREATE TABLE ATHLETES (
-  idAthletes int primary key,
+  idAthletes int primary key AUTO_INCREMENT,
   nom varchar(16) NOT NULL,
   prenom varchar(16) NOT NULL,
   sexe varchar(5) NOT NULL,
   `force` int DEFAULT NULL,
   endurance int DEFAULT NULL,
   agilite int DEFAULT NULL,
-  idPays int DEFAULT NULL,
-  competitionActuelle int DEFAULT NULL,
+  nomPays varchar(16) DEFAULT NULL,
+  idCompetition int DEFAULT NULL,
   idEquipe int DEFAULT NULL,
-  CONSTRAINT FKCompetitionA FOREIGN KEY (competitionActuelle) REFERENCES COMPETITIONS(idCompetition),
-  CONSTRAINT FKPaysA FOREIGN KEY (idPays) REFERENCES PAYS(idPays),
+  CONSTRAINT FKCompetitionA FOREIGN KEY (idCompetition) REFERENCES COMPETITIONS(idCompetition),
+  CONSTRAINT FKPaysA FOREIGN KEY (nomPays) REFERENCES PAYS(nomPays),
   CONSTRAINT FKEquipeA FOREIGN KEY (idEquipe) REFERENCES EQUIPES(idEquipe)
 );

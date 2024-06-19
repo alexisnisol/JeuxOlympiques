@@ -1,113 +1,76 @@
-INSERT INTO PAYS VALUES 
-(1, 'France'),
-(2, 'Italie'),
-(3, 'Espagne'),
-(4, 'Allemagne'),
-(5, 'Royaume-Uni'),
-(6, 'Russie'),
-(7, 'Chine'),
-(8, 'Japon'),
-(9, 'Australie'),
-(10, 'Canada'),
-(11, 'Etats-Unis'),
-(12, 'Mexique'),
-(13, 'Argentine'),
-(14, 'Bresil'),
-(15, 'Afrique du Sud'),
-(16, 'Egypte'),
-(17, 'Maroc'),
-(18, 'Tunisie'),
-(19, 'Algerie'),
-(20, 'Nigeria');
+INSERT INTO PAYS (nomPays) VALUES 
+('France'), 
+('Allemagne'), 
+('Espagne'),
+('Italie'),
+('Royaume-Uni'),
+('Belgique'),
+('Suisse'),
+('Pays-Bas'),
+('Portugal'),
+('Luxembourg');
 
-INSERT INTO SPORT VALUES 
-(1, 'Natation', 'Individuel', 1),
-(2, 'Natation', 'Relais', 2),
-(3, 'Athletisme', 'Individuel', 3),
-(4, 'Athletisme', 'Relais', 1),
-(5, 'Gymnastique', 'Individuel', 4),
-(6, 'Gymnastique', 'Equipe', 1),
-(7, 'Tennis', 'Individuel', 5),
-(8, 'Tennis', 'Equipe', 6),
-(9, 'Football', 'Equipe', 2),
-(10, 'Basketball', 'Equipe', 1),
-(11, 'Volleyball', 'Equipe', 7),
-(12, 'Handball', 'Equipe', 2),
-(13, 'Rugby', 'Equipe', 1),
-(14, 'Cyclisme', 'Individuel', 3),
-(15, 'Cyclisme', 'Equipe', 2),
-(16, 'Boxe', 'Individuel', 5),
-(17, 'Boxe', 'Equipe', 5),
-(18, 'Judo', 'Individuel', 4),
-(19, 'Judo', 'Equipe', 4),
-(20, 'Escalade', 'Individuel', 2);
+INSERT INTO SPORT (nomSport, typeSport, coeffAgilite, coeffEndurance, coeffForce) VALUES 
+('Natation', 'Individuel', 6, 9, 7),
+('Athletisme', 'Individuel', 7, 8, 6),
+('Escrime', 'Individuel', 8, 7, 6),
+('Volley-Ball', 'Collectif', 8, 6, 5),
+('Handball', 'Collectif', 8, 7, 6);
 
 INSERT INTO COMPETITIONS VALUES 
-(1, 'Athletisme 110 haies', 'Homme', 'Oui', 1),
-(2, 'Athletisme 110 haies', 'Femme', 'Oui', 2),
-(3, 'Natation 100 brasse', 'Homme', 'Oui', 3),
-(4, 'Natation 100 brasse', 'Femme', 'Oui', 4),
-(5, 'Escrime fleuret', 'Homme', 'Oui', 5),
-(6, 'Escrime epee', 'Homme', 'Oui', 6),
-(7, 'Escrime epee', 'Femme', 'Oui', 7),
-(8, 'Escrime fleuret', 'Femme', 'Oui', 8),
-(9, 'Natation relais libre', 'Homme', 'Non', 9),
-(10, 'Natation relais libre', 'Femme', 'Non', 10),
-(11, 'Athletisme relais 400m', 'Homme', 'Non', 11),
-(12, 'Athletisme relais 400m', 'Femme', 'Non', 12),
-(13, 'Volley-Ball', 'Homme', 'Non', 13),
-(14, 'Volley-Ball', 'Femme', 'Non', 14),
-(15, 'Handball', 'Homme', 'Non', 15),
-(16, 'Handball', 'Femme', 'Non', 16);
+('Athletisme 110 haies', 0, 'Homme', 'Oui', 'Athletisme'),
+('Athletisme 110 haies',  0, 'Femme', 'Oui', 'Athletisme'),
+('Natation 100 brasse',  0, 'Homme', 'Oui', 'Natation'),
+('Natation 100 brasse',  0, 'Femme', 'Oui', 'Natation'),
+('Escrime fleuret',  0, 'Homme', 'Oui', 'Escrime'),
+('Escrime epee',  0, 'Homme', 'Oui', 'Escrime'),
+('Escrime epee',  0, 'Femme', 'Oui', 'Escrime'),
+('Escrime fleuret',  0, 'Femme', 'Oui', 'Escrime'),
+('Natation relais libre',  0, 'Homme', 'Non', 'Natation'),
+('Natation relais libre',  0, 'Femme', 'Non', 'Natation'),
+('Athletisme relais 400m',  0, 'Homme', 'Non', 'Athletisme'),
+('Athletisme relais 400m',  0, 'Femme', 'Non', 'Athletisme'),
+('Volley-Ball',  0, 'Homme', 'Non', 'Volley-Ball'),
+('Volley-Ball',  0, 'Femme', 'Non', 'Volley-Ball'),
+('Handball', 0,  'Homme', 'Non', 'Handball'),
+('Handball',  0, 'Femme', 'Non', 'Handball');
+
+  nom varchar(32) DEFAULT NULL,
+  nbParticipants int DEFAULT NULL,
+  sexeCompetition varchar(5) DEFAULT NULL,
+  estIndividuelle varchar(5) DEFAULT NULL,
+  nomSport varchar(16) DEFAULT NULL,
 
 
-INSERT INTO EQUIPES VALUES 
-(1, 'France', 8, 'Oui', 1, null),
-(2, 'Italie', 8, 'Oui', 1, null),
-(3, 'Espagne', 8, 'Oui',  1, null),
-(4, 'Allemagne', 8, 'Oui', 1, null),
-(5, 'Royaume-Uni', 8, 'Oui', 1, null),
-(6, 'Russie', 8, 'Oui', 1, null),
-(7, 'Chine', 8, 'Oui', 1, null),
-(8, 'Japon', 8, 'Oui', 1, null),
-(9, 'Australie', 8, 'Oui', 1, null),
-(10, 'Canada', 8, 'Oui', 1, null),
-(11, 'USA', 8, 'Oui', 1, null),
-(12, 'Mexique', 8, 'Oui', 1, null),
-(13, 'Argentine', 8, 'Oui', 1, null),
-(14, 'Bresil', 8, 'Oui', 1, null),
-(15, 'Afrique du Sud', 8, 'Oui', 1, null),
-(16, 'Egypte', 8, 'Oui', 1, null),
-(17, 'Maroc', 8, 'Oui', 1, null),
-(18, 'Tunisie', 8, 'Oui', 18, null);
+INSERT INTO EQUIPES (nomEquipe, tailleMax, enRelais, nomPays, idCompetition) VALUES 
+('Equipe France', 23, 'Non', 'France', 1), 
+('Equipe Allemagne', 23, 'Non', 'Allemagne', 1),
+('Equipe Espagne', 23, 'Non', 'Espagne', 1),
+('Equipe Italie', 23, 'Non', 'Italie', 1),
+('Equipe Royaume-Uni', 23, 'Non', 'Royaume-Uni', 1),
+('Equipe Belgique', 23, 'Non', 'Belgique', 1),
+('Equipe Suisse', 23, 'Non', 'Suisse', 1),
+('Equipe Pays-Bas', 23, 'Non', 'Pays-Bas', 1),
+('Equipe Portugal', 23, 'Non', 'Portugal', 1),
+('Equipe Luxembourg', 23, 'Non', 'Luxembourg', 1);
 
-INSERT INTO ATHLETES VALUES 
-(1, 'Dupont', 'Jean', 'Homme', 10, 10, 10, 1, 1, 1),
-(2, 'Durand', 'Marie', 'Femme', 8, 8, 8, 2, 1, 2),
-(3, 'Martin', 'Pierre', 'Homme', 9, 9, 9, 3, 1, 3),
-(4, 'Bernard', 'Sophie', 'Femme', 7, 7, 7, 4, 1, 4),
-(5, 'Lefevre', 'Paul', 'Homme', 6, 6, 6, 5, 1, 5),
-(6, 'Leroy', 'Julie', 'Femme', 5, 5, 5, 6, 1, 6),
-(7, 'Moreau', 'Jacques', 'Homme', 4, 4, 4, 7, 1, 7),
-(8, 'Lefevre', 'Marie', 'Femme', 3, 3, 3, 8, 1, 8),
-(9, 'Leroy', 'Pierre', 'Homme', 2, 2, 2, 9, 1, 9),
-(10, 'Moreau', 'Sophie', 'Femme', 1, 1, 1, 10, 1, 10),
-(11, 'Dupont', 'Paul', 'Homme', 10, 10, 10, 11, 1, 11),
-(12, 'Durand', 'Julie', 'Femme', 8, 8, 8, 12, 1, 12),
-(13, 'Martin', 'Jacques', 'Homme', 9, 9, 9, 13, 1, 13),
-(14, 'Bernard', 'Marie', 'Femme', 7, 7, 7, 14, 1, 14),
-(15, 'Lefevre', 'Pierre', 'Homme', 6, 6, 6, 15, 1, 15),
-(16, 'Leroy', 'Sophie', 'Femme', 5, 5, 5, 16, 1, 16),
-(17, 'Moreau', 'Paul', 'Homme', 4, 4, 4, 17, 1, 17),
-(18, 'Lefevre', 'Julie', 'Femme', 3, 3, 3, 18, 1, 18);
+INSERT INTO ATHLETES (nom, prenom, sexe, `force`, endurance, agilite, nomPays, idCompetition, idEquipe) VALUES 
+('Mbappe', 'Kylian', 'Homme', 8, 9, 9, 'France', 1, 1), 
+('Nadal', 'Rafael', 'Homme', 7, 9, 8, 'Espagne', 2, NULL),
+('James', 'LeBron', 'Homme', 8, 8, 8, 'Etats-Unis', 3, NULL),
+('Farrell', 'Owen', 'Homme', 7, 8, 7, 'Royaume-Uni', 4, NULL),
+('Karabatic', 'Nikola', 'Homme', 7, 8, 7, 'France', 5, NULL),
+('Ngapeth', 'Earvin', 'Homme', 7, 7, 8, 'France', 6, NULL),
+('Long', 'Ma', 'Homme', 8, 7, 9, 'Chine', 8, NULL),
+('Johnson', 'Dustin', 'Homme', 6, 7, 5, 'Etats-Unis', 9, NULL),
+('Phelps', 'Michael', 'Homme', 7, 9, 8, 'Etats-Unis', 10, NULL),
+('Griezmann', 'Antoine', 'Homme', 7, 8, 9, 'France', 1, 1);
 
 --Select * from PAYS;
 --Select * from SPORT;
 --Select * from COMPETITIONS;
 --Select * from EQUIPES;
 --Select * from ATHLETES;
-
-
 
 
 INSERT INTO ROLES VALUES 

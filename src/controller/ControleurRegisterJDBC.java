@@ -1,6 +1,8 @@
 package controller;
 
 import java.sql.SQLException;
+
+import BD.RequetesJDBC;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -19,7 +21,7 @@ public class ControleurRegisterJDBC implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         Main main = register.getMain();
         try {
-            boolean inscription = main.getRequetesJDBC().inscription(register.getNom().getText(),
+            boolean inscription = RequetesJDBC.inscription(register.getNom().getText(),
                     register.getPrenom().getText(), register.getPseudo().getText(), register.getMdp().getText());
             if (inscription) {
                 this.register.resetTF();
