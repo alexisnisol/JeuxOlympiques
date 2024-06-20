@@ -26,7 +26,6 @@ public class ControleurConsultation implements EventHandler<ActionEvent> {
                 break;
 
             case COMPETITIONS:
-                this.modele.lancerJeuxOlympiques();// TODO: A Enlever
                 this.pane.afficherCompetitions(this.modele.getLesCompetitions());
                 break;
 

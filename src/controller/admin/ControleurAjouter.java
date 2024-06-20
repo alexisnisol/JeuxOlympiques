@@ -35,10 +35,12 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
             case AjoutAthlete:
 
                 Pays pays = this.modele.getPaysFromString(this.ajout.getPays().getText());
-                
 
-                try{
-                    if (this.ajout.getNom().getText().isEmpty() || this.ajout.getPrenom().getText().isEmpty() || this.ajout.getPays().getText().isEmpty() || (this.ajout.getEpreuvesAthletesBox().getValue() == null && !this.ajout.athleteDansUneEquipe())) {
+                try {
+                    if (this.ajout.getNom().getText().isEmpty() || this.ajout.getPrenom().getText().isEmpty()
+                            || this.ajout.getPays().getText().isEmpty()
+                            || (this.ajout.getEpreuvesAthletesBox().getValue() == null
+                                    && !this.ajout.athleteDansUneEquipe())) {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setTitle("Erreur");
                         alert.setHeaderText("Erreur lors de la récupération des données");
@@ -46,7 +48,7 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         alert.showAndWait();
                         return;
                     }
-                }catch(NumberFormatException e){
+                } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erreur");
                     alert.setHeaderText("Erreur lors de la récupération des données");
@@ -55,7 +57,6 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                     return;
                 }
 
-            
                 Athlete athlete = new Athlete(
                         ajout.getNom().getText(),
                         ajout.getPrenom().getText(),
@@ -65,7 +66,7 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         ajout.getAgilite(),
                         pays);
 
-                if(!this.ajout.athleteDansUneEquipe()){
+                if (!this.ajout.athleteDansUneEquipe()) {
 
                     Competition competition = ajout.getEpreuvesAthletesBox().getValue();
                     try {
@@ -73,7 +74,8 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         this.ajout.addPopup("L'athlète " + athlete.obtenirNom() + " a bien été ajouté.").showAndWait();
                         this.ajout.resetTF();
 
-                    } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException exception) {
+                    } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException
+                            | MauvaisParticipantException exception) {
                         exception.printStackTrace();
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setTitle("Erreur");
@@ -81,9 +83,9 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         alert.setContentText(exception.getMessage());
                         alert.showAndWait();
                     }
-                }else{
+                } else {
 
-                    if(this.ajout.getEquipesBox().getValue() == null){
+                    if (this.ajout.getEquipesBox().getValue() == null) {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setTitle("Erreur");
                         alert.setHeaderText("Erreur lors de la récupération des données");
@@ -94,11 +96,11 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
 
                     Equipe equipe = this.ajout.getEquipesBox().getValue();
 
-                    if(equipe.obtenirPays().equals(pays)){
+                    if (equipe.obtenirPays().equals(pays)) {
                         athlete.rejoindreEquipe(equipe);
                         this.ajout.addPopup("L'athlète " + athlete.obtenirNom() + " a rejoint l'équipe.").showAndWait();
-                        this.ajout.resetTF();                            
-                    }else{
+                        this.ajout.resetTF();
+                    } else {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setTitle("Erreur");
                         alert.setHeaderText("Erreur lors de la récupération des données");
@@ -107,12 +109,13 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                     }
 
                 }
-                
+
                 break;
             case AjoutEquipe:
 
                 Competition competition = ajout.getEpreuveEquipes();
-                if(competition == null || this.ajout.getNomEquipe().getText().isEmpty() || this.ajout.getPaysEquipe().getText().isEmpty()){
+                if (competition == null || this.ajout.getNomEquipe().getText().isEmpty()
+                        || this.ajout.getPaysEquipe().getText().isEmpty()) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erreur");
                     alert.setHeaderText("Erreur lors de la récupération des données");
@@ -120,20 +123,22 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                     alert.showAndWait();
                     return;
                 }
-                
+
                 Pays paysEquipe = this.modele.getPaysFromString(this.ajout.getPaysEquipe().getText());
-                
+
                 Equipe equipe = new Equipe(ajout.getNomEquipe().getText(),
+                        competition.getSexe(),
                         competition.getSport(),
                         competition.getSport().getTaille(),
                         paysEquipe);
-    
+
                 try {
                     competition.enregistrerParticipant(equipe);
                     this.ajout.addPopup("L'équipe " + equipe.obtenirNom() + " a bien été ajouté.").showAndWait();
                     this.ajout.resetTF();
 
-                } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException | MauvaisParticipantException exception) {
+                } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException
+                        | MauvaisParticipantException exception) {
                     exception.printStackTrace();
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erreur");

@@ -8,8 +8,14 @@ import java.util.NoSuchElementException;
 import javafx.util.Pair;
 import modele.JeuxOlympiques;
 import modele.Pays;
+import modele.Sexe;
 import modele.competitions.Competition;
+import modele.competitions.CompetitionCollective;
 import modele.competitions.CompetitionIndividuelle;
+import modele.exceptions.MauvaisParticipantException;
+import modele.exceptions.ParticipantDejaPresentException;
+import modele.exceptions.ParticipantOccupeException;
+import modele.exceptions.SexeCompetitionException;
 import modele.participants.Athlete;
 import modele.participants.Equipe;
 import modele.participants.Participant;
@@ -19,9 +25,8 @@ public class RequetesJDBC {
 	public static ConnexionMySQL laConnexion = null;
 	Statement st;
 
+	public RequetesJDBC() {
 
-	public RequetesJDBC(){
-		
 	}
 
 	public enum RoleConnexion {
@@ -58,7 +63,8 @@ public class RequetesJDBC {
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
 			String role = rs.getString("nomRole").toUpperCase();
-			return new Utilisateur(rs.getString("nom"), rs.getString("prenom"), rs.getString("pseudo"), rs.getString("mdp"), RoleConnexion.valueOf(role));
+			return new Utilisateur(rs.getString("nom"), rs.getString("prenom"), rs.getString("pseudo"),
+					rs.getString("mdp"), RoleConnexion.valueOf(role));
 		}
 		ps.close();
 
@@ -96,7 +102,6 @@ public class RequetesJDBC {
 		return true;
 	}
 
-
 	public static List<Utilisateur> getUtilisateurs() throws SQLException {
 		List<Utilisateur> liste = new ArrayList<>();
 		PreparedStatement ps = laConnexion.prepareStatement("select * from UTILISATEURS natural join ROLES");
@@ -109,19 +114,13 @@ public class RequetesJDBC {
 		return liste;
 	}
 
-
-	public static void updateUserRole(Utilisateur user, RoleConnexion role) throws SQLException{
+	public static void updateUserRole(Utilisateur user, RoleConnexion role) throws SQLException {
 		PreparedStatement ps = laConnexion.prepareStatement("UPDATE `UTILISATEURS` SET idRole = ? WHERE pseudo = ?");
 		ps.setInt(1, role.getId());
 		ps.setString(2, user.getPseudo());
 		ps.executeUpdate();
 		ps.close();
 	}
-
-
-
-
-
 
 	public static int getNbRows(String table) throws SQLException {
 		PreparedStatement ps = laConnexion.prepareStatement("select count(*) from " + table);
@@ -132,10 +131,10 @@ public class RequetesJDBC {
 		return nb;
 	}
 
-
 	// ATHLETES
 	public static void creerAthlete(Athlete athlete) throws SQLException {
-		PreparedStatement ps2 = laConnexion.prepareStatement("select * from ATHLETES where nom = ? and prenom = ? and sexe = ? and `force` = ? and endurance = ? and agilite = ? and nomPays = ?");
+		PreparedStatement ps2 = laConnexion.prepareStatement(
+				"select * from ATHLETES where nom = ? and prenom = ? and sexe = ? and `force` = ? and endurance = ? and agilite = ? and nomPays = ?");
 		ps2.setString(1, athlete.getNom());
 		ps2.setString(2, athlete.getPrenom());
 		ps2.setString(3, athlete.obtenirSexe().name());
@@ -143,11 +142,12 @@ public class RequetesJDBC {
 		ps2.setInt(5, athlete.getEndurance());
 		ps2.setInt(6, athlete.getAgilite());
 		ps2.setString(7, athlete.obtenirPays().getNom());
-		
+
 		ResultSet rs = ps2.executeQuery();
 		if (!rs.next()) {
-			
-			PreparedStatement ps = laConnexion.prepareStatement("INSERT INTO `ATHLETES`(nom,prenom,sexe,`force`,endurance,agilite,nomPays) VALUES (?,?,?,?,?,?,?)");
+
+			PreparedStatement ps = laConnexion.prepareStatement(
+					"INSERT INTO `ATHLETES`(nom,prenom,sexe,`force`,endurance,agilite,nomPays) VALUES (?,?,?,?,?,?,?)");
 			ps.setString(1, athlete.getNom());
 			ps.setString(2, athlete.getPrenom());
 			ps.setString(3, athlete.obtenirSexe().name());
@@ -157,12 +157,13 @@ public class RequetesJDBC {
 			ps.setString(7, athlete.obtenirPays().getNom());
 			ps.executeUpdate();
 			ps.close();
-			}
+		}
 	}
 
-	public static int getAthlete(Athlete athlete) throws SQLException, NoSuchElementException{
+	public static int getAthlete(Athlete athlete) throws SQLException, NoSuchElementException {
 		try {
-			PreparedStatement ps = laConnexion.prepareStatement("select * from ATHLETES where nom = ? and prenom = ? and sexe = ? and `force` = ? and endurance = ? and agilite = ? and nomPays = ?");
+			PreparedStatement ps = laConnexion.prepareStatement(
+					"select * from ATHLETES where nom = ? and prenom = ? and sexe = ? and `force` = ? and endurance = ? and agilite = ? and nomPays = ?");
 			ps.setString(1, athlete.getNom());
 			ps.setString(2, athlete.getPrenom());
 			ps.setString(3, athlete.obtenirSexe().name());
@@ -181,7 +182,7 @@ public class RequetesJDBC {
 		throw new NoSuchElementException();
 	}
 
-	//Appelé par le modèle (rejoindreEquipe)
+	// Appelé par le modèle (rejoindreEquipe)
 	public static void setEquipeAthlete(Athlete athlete, Equipe equipe) throws SQLException {
 		PreparedStatement ps = laConnexion.prepareStatement("UPDATE `ATHLETES` SET idEquipe = ? WHERE idAthletes = ?");
 		ps.setInt(1, getEquipe(equipe));
@@ -190,26 +191,27 @@ public class RequetesJDBC {
 		ps.close();
 	}
 
-	//Appelé par le modèle (setCompetitionActuelle)
-	public static void setCompetAthlete(Athlete athlete, Competition competition) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("UPDATE `ATHLETES` SET idCompetition = ? WHERE idAthletes = ?");
+	// Appelé par le modèle (setCompetitionActuelle)
+	public static void setCompetAthlete(Athlete athlete, Competition competition) throws SQLException {
+		PreparedStatement ps = laConnexion
+				.prepareStatement("UPDATE `ATHLETES` SET idCompetition = ? WHERE idAthletes = ?");
 		ps.setInt(1, getCompetition(competition));
 		ps.setInt(2, getAthlete(athlete));
 		ps.executeUpdate();
 		ps.close();
 	}
 
-
-
 	// EQUIPES
 	public static void creerEquipe(Equipe equipe) throws SQLException {
-		PreparedStatement ps2 = laConnexion.prepareStatement("select * from EQUIPES where nomEquipe = ? and tailleMax = ? and nomPays = ?");
+		PreparedStatement ps2 = laConnexion
+				.prepareStatement("select * from EQUIPES where nomEquipe = ? and tailleMax = ? and nomPays = ?");
 		ps2.setString(1, equipe.getNom());
 		ps2.setInt(2, equipe.getTailleMax());
 		ps2.setString(3, equipe.obtenirPays().getNom());
 		ResultSet rs = ps2.executeQuery();
 		if (!rs.next()) {
-			PreparedStatement ps = laConnexion.prepareStatement("INSERT INTO `EQUIPES`(nomEquipe, tailleMax, nomPays) VALUES (?,?,?)");
+			PreparedStatement ps = laConnexion
+					.prepareStatement("INSERT INTO `EQUIPES`(nomEquipe, tailleMax, nomPays) VALUES (?,?,?)");
 			ps.setString(1, equipe.getNom());
 			ps.setInt(2, equipe.getTailleMax());
 			ps.setString(3, equipe.obtenirPays().getNom());
@@ -218,18 +220,20 @@ public class RequetesJDBC {
 		}
 	}
 
-	//Appelé par le modèle (setCompetitionActuelle)
-	public static void setCompetEquipe(Equipe equipe, Competition competition) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("UPDATE `EQUIPES` SET idCompetition = ? WHERE idEquipe = ?");
+	// Appelé par le modèle (setCompetitionActuelle)
+	public static void setCompetEquipe(Equipe equipe, Competition competition) throws SQLException {
+		PreparedStatement ps = laConnexion
+				.prepareStatement("UPDATE `EQUIPES` SET idCompetition = ? WHERE idEquipe = ?");
 		ps.setInt(1, getCompetition(competition));
 		ps.setInt(2, getEquipe(equipe));
 		ps.executeUpdate();
 		ps.close();
 	}
 
-	public static int getEquipe(Equipe equipe) throws SQLException, NoSuchElementException{
+	public static int getEquipe(Equipe equipe) throws SQLException, NoSuchElementException {
 		try {
-			PreparedStatement ps = laConnexion.prepareStatement("select * from EQUIPES where nomEquipe = ? and tailleMax = ? and nomPays = ?");
+			PreparedStatement ps = laConnexion
+					.prepareStatement("select * from EQUIPES where nomEquipe = ? and tailleMax = ? and nomPays = ?");
 			ps.setString(1, equipe.getNom());
 			ps.setInt(2, equipe.getTailleMax());
 			ps.setString(3, equipe.obtenirPays().getNom());
@@ -243,40 +247,41 @@ public class RequetesJDBC {
 		}
 		throw new NoSuchElementException();
 	}
-	
-	public static void creerSport() throws SQLException{
-		if(getNbRows("SPORT") != 5){
-			String requetes = "INSERT INTO SPORT (nomSport, coeffAgilite, coeffEndurance, coeffForce) VALUES "+
-			"('Natation', 6, 9, 7),"+
-			"('Athletisme', 7, 8, 6),"+
-			"('Escrime', 8, 7, 6),"+
-			"('Volley-Ball', 8, 6, 5),"+
-			"('Handball', 8, 7, 6)";
+
+	public static void creerSport() throws SQLException {
+		if (getNbRows("SPORT") != 5) {
+			String requetes = "INSERT INTO SPORT (nomSport, coeffAgilite, coeffEndurance, coeffForce) VALUES " +
+					"('Natation', 6, 9, 7)," +
+					"('Athletisme', 7, 8, 6)," +
+					"('Escrime', 8, 7, 6)," +
+					"('Volley-Ball', 8, 6, 5)," +
+					"('Handball', 8, 7, 6)";
 			Statement ps = laConnexion.createStatement();
 			ps.executeUpdate(requetes);
 			ps.close();
 		}
 	}
 
-	public static boolean creerCompetitions() throws SQLException{
-		if(getNbRows("COMPETITIONS") != 16){
-			String requetes = "INSERT INTO COMPETITIONS (nom, sexeCompetition, estIndividuelle, nomSport) VALUES "+
-			"('Athletisme 110 haies', 'HOMME', 'Oui', 'Athletisme')," +
-			"('Athletisme 110 haies', 'FEMME', 'Oui', 'Athletisme')," + 
-			"('Natation 100 brasse', 'HOMME', 'Oui', 'Natation')," + 
-			"('Natation 100 brasse', 'FEMME', 'Oui', 'Natation')," + 
-			"('Escrime fleuret', 'HOMME', 'Oui', 'Escrime')," + 
-			"('Escrime epee', 'HOMME', 'Oui', 'Escrime')," + 
-			"('Escrime epee', 'FEMME', 'Oui', 'Escrime')," + 
-			"('Escrime fleuret', 'FEMME', 'Oui', 'Escrime')," + 
-			"('Natation relais libre', 'HOMME', 'Non', 'Natation')," + 
-			"('Natation relais libre', 'FEMME', 'Non', 'Natation')," + 
-			"('Athletisme relais 400m', 'HOMME', 'Non', 'Athletisme')," + 
-			"('Athletisme relais 400m', 'FEMME', 'Non', 'Athletisme')," + 
-			"('Volley-Ball', 'HOMME', 'Non', 'Volley-Ball')," + 
-			"('Volley-Ball', 'FEMME', 'Non', 'Volley-Ball')," +
-			"('Handball', 'HOMME', 'Non', 'Handball')," +
-			"('Handball', 'FEMME', 'Non', 'Handball')";
+	public static boolean creerCompetitions() throws SQLException {
+		if (getNbRows("COMPETITIONS") < 16) {
+
+			String requetes = "INSERT INTO COMPETITIONS (nom, sexeCompetition, estIndividuelle, nomSport) VALUES " +
+					"('Athletisme 110 haies', 'HOMME', 'Oui', 'Athletisme')," +
+					"('Athletisme 110 haies', 'FEMME', 'Oui', 'Athletisme')," +
+					"('Natation 100 brasse', 'HOMME', 'Oui', 'Natation')," +
+					"('Natation 100 brasse', 'FEMME', 'Oui', 'Natation')," +
+					"('Escrime fleuret', 'HOMME', 'Oui', 'Escrime')," +
+					"('Escrime epee', 'HOMME', 'Oui', 'Escrime')," +
+					"('Escrime epee', 'FEMME', 'Oui', 'Escrime')," +
+					"('Escrime fleuret', 'FEMME', 'Oui', 'Escrime')," +
+					"('Natation relais libre', 'HOMME', 'Non', 'Natation')," +
+					"('Natation relais libre', 'FEMME', 'Non', 'Natation')," +
+					"('Athletisme relais 400m', 'HOMME', 'Non', 'Athletisme')," +
+					"('Athletisme relais 400m', 'FEMME', 'Non', 'Athletisme')," +
+					"('Volley-Ball', 'HOMME', 'Non', 'Volley-Ball')," +
+					"('Volley-Ball', 'FEMME', 'Non', 'Volley-Ball')," +
+					"('Handball', 'HOMME', 'Non', 'Handball')," +
+					"('Handball', 'FEMME', 'Non', 'Handball')";
 			Statement ps = laConnexion.createStatement();
 			ps.executeUpdate(requetes);
 			ps.close();
@@ -286,36 +291,39 @@ public class RequetesJDBC {
 		return false;
 	}
 
-
-	//---
-
+	// ---
 
 	public static void creerCompet(Competition competition) throws SQLException {
-		PreparedStatement ps2 = laConnexion.prepareStatement("select * from COMPETITIONS where nom = ? and sexeCompetition = ? and estIndividuelle = ?");
+		PreparedStatement ps2 = laConnexion.prepareStatement(
+				"select count(*) from COMPETITIONS where nom = ? and sexeCompetition = ? and estIndividuelle = ?");
 		ps2.setString(1, competition.getSport().getNom());
 		ps2.setString(2, competition.getSexe().name());
-		ps2.setString(3, (competition instanceof CompetitionIndividuelle == true ? "Oui" : "Non"));
+		ps2.setString(3, competition.getSport().isEnEquipe() ? "Non" : "Oui");
 		ResultSet rs = ps2.executeQuery();
-		if (!rs.next()) {
-			PreparedStatement ps = laConnexion.prepareStatement("INSERT INTO `COMPETITIONS`(nom, sexeCompetition, estIndividuelle, nomSport) VALUES (?, ?, ?, ?)");
+		if (rs.next() && rs.getInt(1) == 0) {
+			System.out.println("Aucune correspondance -> Création de " + competition.getSport().getNom() + " "
+					+ competition.getSexe().name() + " "
+					+ (competition.getSport().isEnEquipe() ? "Non" : "Oui"));
+			PreparedStatement ps = laConnexion.prepareStatement(
+					"INSERT INTO `COMPETITIONS`(nom, sexeCompetition, estIndividuelle, nomSport) VALUES (?, ?, ?, ?)");
 
 			ps.setString(1, competition.getSport().getNom());
 			ps.setString(2, competition.getSexe().name());
-			ps.setString(3, (competition instanceof CompetitionIndividuelle == true ? "Oui" : "Non"));
+			ps.setString(3, competition.getSport().isEnEquipe() ? "Non" : "Oui");
 			ps.setString(4, competition.getSport().getTypeSport());
 			ps.executeUpdate();
 			ps.close();
 		}
 		ps2.close();
 	}
-	
 
-	public static int getCompetition(Competition competition) throws SQLException, NoSuchElementException{
+	public static int getCompetition(Competition competition) throws SQLException, NoSuchElementException {
 		try {
-			PreparedStatement ps = laConnexion.prepareStatement("select * from COMPETITIONS where nom = ? and sexeCompetition = ? and estIndividuelle = ?");
+			PreparedStatement ps = laConnexion.prepareStatement(
+					"select * from COMPETITIONS where nom = ? and sexeCompetition = ? and estIndividuelle = ?");
 			ps.setString(1, competition.getSport().getNom());
 			ps.setString(2, competition.getSexe().name());
-			ps.setString(3, (competition instanceof CompetitionIndividuelle == true ? "Oui" : "Non"));
+			ps.setString(3, competition.getSport().isEnEquipe() ? "Non" : "Oui");
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt("idCompetition");
@@ -341,7 +349,6 @@ public class RequetesJDBC {
 		}
 		ps2.close();
 	}
-
 
 	public static Pair<TypeRecherche, List<String>> search(String search, JeuxOlympiques modele)
 			throws NoSuchElementException {
@@ -416,6 +423,138 @@ public class RequetesJDBC {
 
 		}
 		throw new NoSuchElementException("Aucune donnée trouvée");
+	}
+
+	public static List<Competition> loadCompetitions() throws SQLException {
+		List<Competition> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("select * from COMPETITIONS");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			if (rs.getString("estIndividuelle").equals("Oui")) { // CompetitionIndividuelle
+				try {
+					liste.add(new CompetitionIndividuelle(Sexe.valueOf(rs.getString("sexeCompetition")),
+							JeuxOlympiques.getSportFromName(rs.getString("nom"))));
+				} catch (NoSuchElementException exception) {
+					System.out.println("Le sport est invalide");
+				}
+			} else { // CompetitionCollective
+				try {
+					liste.add(new CompetitionCollective(Sexe.valueOf(rs.getString("sexeCompetition")),
+							JeuxOlympiques.getSportFromName(rs.getString("nom"))));
+				} catch (NoSuchElementException exception) {
+					System.out.println("Le sport est invalide");
+				}
+			}
+		}
+		ps.close();
+		return liste;
+	}
+
+	public static List<Pays> getPays() throws SQLException {
+		List<Pays> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("select * from PAYS");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			liste.add(new Pays(rs.getString("nomPays")));
+		}
+		ps.close();
+		return liste;
+	}
+
+	public static Pays getUnPays(List<Pays> listePays, String nomPays) {
+		for (Pays pays : listePays) {
+			if (pays.getNom().equals(nomPays)) {
+				return pays;
+			}
+		}
+		return null;
+
+	}
+
+	public static List<Athlete> loadAthletes(List<Pays> listePays, List<Equipe> listeEquipes,
+			List<Competition> listeCompetitions) throws SQLException {
+		List<Athlete> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement(
+				"select ATHLETES.nom, prenom, sexe, `force`, endurance, agilite, ATHLETES.nomPays, IFNULL(ATHLETES.idCompetition, -1) as idCompetitionAth, IFNULL(ATHLETES.idEquipe, -1) as idEquipeAth, EQUIPES.*, COMPETITIONS.*, COMPETATH.* from ATHLETES left join EQUIPES on ATHLETES.idEquipe = EQUIPES.idEquipe left join COMPETITIONS on EQUIPES.idCompetition = COMPETITIONS.idCompetition left join COMPETITIONS as COMPETATH on ATHLETES.idCompetition = COMPETATH.idCompetition");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Athlete athlete = new Athlete(rs.getString("nom"), rs.getString("prenom"),
+					Sexe.valueOf(rs.getString("sexe")),
+					rs.getInt("force"), rs.getInt("endurance"), rs.getInt("agilite"),
+					getUnPays(listePays, rs.getString("nomPays")));
+
+			if (rs.getInt("idEquipeAth") != -1) { // Athlète a une équipe, donc n'a pas de compétition
+
+				for (Equipe equipe : listeEquipes) {
+					if (equipe.getNom().equals(rs.getString("nomEquipe")) &&
+							equipe.getTailleMax() == rs.getInt("tailleMax") &&
+							equipe.obtenirPays().getNom().equals(rs.getString("EQUIPES.nomPays")) &&
+							equipe.getSport().getNom().equals(rs.getString("COMPETITIONS.nom"))) {
+						athlete.rejoindreEquipe(equipe);
+						break;
+					}
+				}
+
+			} else { // Athlète n'a pas d'équipe, donc il a une compétition
+
+				for (Competition competition : listeCompetitions) {
+					if (competition.getSport().getNom().equals(rs.getString("COMPETATH.nom")) &&
+							competition.getSexe().name().equals(rs.getString("COMPETATH.sexeCompetition"))) {
+						try {
+							competition.enregistrerParticipant(athlete);
+						} catch (SexeCompetitionException e) {
+							e.printStackTrace();
+						} catch (ParticipantDejaPresentException e) {
+							e.printStackTrace();
+						} catch (ParticipantOccupeException e) {
+							e.printStackTrace();
+						} catch (MauvaisParticipantException e) {
+							e.printStackTrace();
+						}
+						break;
+					}
+				}
+			}
+			liste.add(athlete);
+		}
+		ps.close();
+		return liste;
+	}
+
+	public static List<Equipe> loadEquipes(List<Pays> pays, List<Competition> listeCompetitions) throws SQLException {
+		List<Equipe> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement(
+				"select * from EQUIPES left join COMPETITIONS on EQUIPES.idCompetition = COMPETITIONS.idCompetition");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Equipe equipe = new Equipe(rs.getString("nomEquipe"), Sexe.valueOf(rs.getString("sexeCompetition")),
+					JeuxOlympiques.getSportFromName(rs.getString("nom")),
+					rs.getInt("tailleMax"), getUnPays(pays, rs.getString("nomPays")));
+
+			// rejoindre équipe dans Compétition
+			for (Competition competition : listeCompetitions) {
+				if (competition.getSport().getNom().equals(rs.getString("nom")) &&
+						competition.getSexe().name().equals(rs.getString("sexeCompetition"))) {
+
+					try {
+						competition.enregistrerParticipant(equipe);
+					} catch (SexeCompetitionException e) {
+						e.printStackTrace();
+					} catch (ParticipantDejaPresentException e) {
+						e.printStackTrace();
+					} catch (ParticipantOccupeException e) {
+						e.printStackTrace();
+					} catch (MauvaisParticipantException e) {
+						e.printStackTrace();
+					}
+					break;
+				}
+			}
+
+			liste.add(equipe);
+		}
+		ps.close();
+		return liste;
 	}
 
 }

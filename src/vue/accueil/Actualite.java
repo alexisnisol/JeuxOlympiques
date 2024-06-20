@@ -2,7 +2,11 @@ package vue.accueil;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import vue.organisateur.Lancer;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import modele.JeuxOlympiques;
 import vue.administrateur.Ajouter;
@@ -34,29 +38,82 @@ public class Actualite extends BorderPane {
         this.setTop(navigation);
 
         // centre de la fenetre
+        BorderPane main = new BorderPane();
+        main.setPrefHeight(400);
+        main.setPadding(new Insets(20));
+        BorderPane.setMargin(main, new Insets(20));
 
+        // premiere article
+        ImageView J = new ImageView(new Image("file:assets/img/J.jpg"));
+        J.setFitHeight(100);
+        J.setFitWidth(150);
+        VBox vboxJ = new VBox();
+        vboxJ.setPadding(new Insets(10));
+        vboxJ.setSpacing(10);
+        vboxJ.setStyle("-fx-background-color: #D9D9D9; -fx-border-color: #D9D9D9; -fx-border-radius: 20;");
+        vboxJ.setAlignment(Pos.CENTER);
+        vboxJ.setPrefSize(150, 300);
+        String TextJ = "La flamme olympique, qui était partie le 27 avril du port du Pirée à bord du Belem, a débarqué ce mercredi sur le sol français. Jul, rappeur marseillais au succès incontestable, a allumé le chaudron placé sur le Vieux-Port de Marseille.";
+        TextFlow textJ = new TextFlow(new Text(TextJ));
+        textJ.setTextAlignment(TextAlignment.CENTER);
+        textJ.setStyle(
+                "-fx-background-color: transparent;  -fx-border-color: transparent transparent transparent transparent;");
+        textJ.setPrefSize(300, 100);
+        vboxJ.getChildren().addAll(J, textJ);
+
+        // deuxieme article
+        VBox vboxVolley = new VBox();
         ImageView volley = new ImageView(new Image("file:assets/img/volley.jpg"));
-        volley.setFitHeight(300);
-        volley.setFitWidth(450);
-        BorderPane.setAlignment(volley, Pos.CENTER);
-        BorderPane.setMargin(volley, new Insets(10, 0, 0, 50));
-        this.setLeft(volley);
+        volley.setFitHeight(100);
+        volley.setFitWidth(150);
         String longText = "Une performance encourageante pour les Bleus à l'approche des Jeux Olympiques de Paris 2024. Les Tricolores, médaillés d'or à Tokyo, ont vaincu l'Italie, champion du monde";
         TextFlow text = new TextFlow(new Text(longText));
-        BorderPane.setMargin(text, new Insets(10));
         text.setStyle(
                 "-fx-background-color: transparent;  -fx-border-color: transparent transparent transparent transparent;");
         text.setPrefSize(300, 100);
-        BorderPane.setMargin(text, new Insets(50, 50, 0, 0));
-        BorderPane.setAlignment(text, Pos.CENTER);
-        this.setRight(text);
+        text.setTextAlignment(TextAlignment.CENTER);
+        vboxVolley.setPadding(new Insets(10));
+        vboxVolley.setSpacing(10);
+        vboxVolley.setStyle("-fx-background-color: #D9D9D9; -fx-border-color: #D9D9D9; -fx-border-radius: 20;");
+        vboxVolley.setAlignment(Pos.CENTER);
+        vboxVolley.setPrefSize(150, 300);
+        vboxVolley.getChildren().addAll(volley, text);
+
+        // troisieme article
+        VBox vboxNatation = new VBox();
+        ImageView natation = new ImageView(new Image("file:assets/img/natation.jpg"));
+        natation.setFitHeight(100);
+        natation.setFitWidth(150);
+        String longTextNatation = "Les nageurs français ont réalisé une performance exceptionnelle lors des championnats d'Europe de natation. Les Bleus ont remporté 10 médailles dont 4 en or.";
+        TextFlow textNatation = new TextFlow(new Text(longTextNatation));
+        textNatation.setStyle(
+                "-fx-background-color: transparent;  -fx-border-color: transparent transparent transparent transparent;");
+        textNatation.setPrefSize(300, 100);
+        textNatation.setTextAlignment(TextAlignment.CENTER);
+        vboxNatation.setPadding(new Insets(10));
+
+        vboxNatation.setSpacing(10);
+        vboxNatation.setStyle("-fx-background-color: #D9D9D9; -fx-border-color: #D9D9D9; -fx-border-radius: 20;");
+        vboxNatation.setAlignment(Pos.CENTER);
+        vboxNatation.setPrefSize(150, 300);
+        vboxNatation.getChildren().addAll(natation, textNatation);
+        VBox.setMargin(vboxNatation, new Insets(10, 10, 10, 10));
+        VBox.setMargin(vboxJ, new Insets(10, 10, 10, 10));
+        VBox.setMargin(vboxVolley, new Insets(10, 10, 10, 10));
+
+        main.setCenter(vboxVolley);
+        main.setLeft(vboxJ);
+        main.setRight(vboxNatation);
+
+        this.setCenter(main);
+
     }
 
     public JeuxOlympiques getModele() {
         return this.modele;
     }
 
-    public Utilisateur getUtilisateur(){
+    public Utilisateur getUtilisateur() {
         return this.user;
     }
 
@@ -66,7 +123,7 @@ public class Actualite extends BorderPane {
 
     public void afficheAccueil() {
         this.login.getMain().getScene().setRoot(this);
-        
+
         navigation = new Navigation(this, this.modele);
         this.setTop(navigation);
     }
@@ -92,9 +149,8 @@ public class Actualite extends BorderPane {
         this.login.getMain().afficherAccueil();
     }
 
-    public void afficherRole() {
-        // this.login.getMain().getScene().setRoot(new Role(this.navigation,
-        // this.login.getMain()));
+    public void afficherLancer() {
+        this.login.getMain().getScene().setRoot(new Lancer(this.navigation, this.login.getMain()));
     }
 
 }

@@ -1,5 +1,9 @@
 package vue.journaliste;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -90,7 +94,17 @@ public class Medailles extends BorderPane {
         ImageView paysImage;
         Pays paysData;
         Classement classementData;
-        for (Map.Entry<Pays, Classement> data : classementMedailles.entrySet()) {
+
+        // TRIER LE CLASSEMENT
+
+        List<Map.Entry<Pays, Classement>> list = new ArrayList<>(classementMedailles.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Pays, Classement>>() {
+            public int compare(Map.Entry<Pays, Classement> o1, Map.Entry<Pays, Classement> o2) {
+                return Integer.compare(o2.getValue().getTotal(), o1.getValue().getTotal());
+            }
+        });
+
+        for (Map.Entry<Pays, Classement> data : list) {
             paysData = data.getKey();
             classementData = data.getValue();
             String paysNom = paysData.getNom();
@@ -102,7 +116,7 @@ public class Medailles extends BorderPane {
             paysBox.getChildren().add(place);
 
             try {
-                String url = getUrlFlag(paysNom);
+                String url = CompetitionsPane.getUrlFlag(paysNom);
                 paysImage = new ImageView(url);
                 paysImage.setFitHeight(28);
                 paysImage.setFitWidth(34);
@@ -110,6 +124,7 @@ public class Medailles extends BorderPane {
             } catch (NoSuchFieldException e) {
                 System.out.println(e);
             }
+
             paysBox.getChildren().add(new Label(paysNom));
 
             GridPane.setValignment(place, VPos.BOTTOM);
@@ -147,21 +162,5 @@ public class Medailles extends BorderPane {
         scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
         scrollPane.setPannable(true);
         this.setCenter(scrollPane);
-    }
-
-    public static String getUrlFlag(String pays) throws NoSuchFieldException {
-        String codePays = "fr";
-        try {
-            // Lire le contenu du fichier codes.json
-            byte[] bytes = Files.readAllBytes(Paths.get("assets/file/codes.json"));
-            String content = new String(bytes);
-            // Convertir la chaîne de caractères en objet JSON
-            JSONObject jsonObject = new JSONObject(content);
-            // Extraire le code du pays
-            codePays = jsonObject.getString(pays);
-        } catch (Exception e) {
-            throw new NoSuchFieldException("Pays non trouvé");
-        }
-        return "https://flagcdn.com/64x48/" + codePays + ".png";
     }
 }

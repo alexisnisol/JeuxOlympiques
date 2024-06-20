@@ -72,3 +72,14 @@ CREATE TABLE ATHLETES (
   CONSTRAINT FKPaysA FOREIGN KEY (nomPays) REFERENCES PAYS(nomPays),
   CONSTRAINT FKEquipeA FOREIGN KEY (idEquipe) REFERENCES EQUIPES(idEquipe)
 );
+
+
+
+INSERT INTO ROLES VALUES 
+(1, "administrateur"),
+(2, "organisateur"),
+(3, "journaliste");
+
+INSERT INTO UTILISATEURS VALUES (1, "a", "a", "a", "a", 1),
+(2, "orga", "orga", "orga", "orga", 2),
+(3, "aa", "aa", "aa", "aa", 3);

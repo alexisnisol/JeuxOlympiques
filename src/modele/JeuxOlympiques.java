@@ -2,12 +2,16 @@ package modele;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+
+import bd.server.ConnexionMySQL;
+import bd.server.RequetesJDBC;
 import modele.sports.Athletisme;
 import modele.sports.VolleyBall;
 import modele.sports.Sport;
@@ -86,6 +90,7 @@ public class JeuxOlympiques {
         for (Competition competition : lesCompetitions) {
             competition.jouer();
         }
+        System.out.println("Les jeux olympiques de " + this.annee + " sont terminés"); // A enlever
     }
 
     /**
@@ -156,13 +161,12 @@ public class JeuxOlympiques {
         return listeParticipants;
     }
 
-
-    public List<Equipe> obtenirEquipes(){
+    public List<Equipe> obtenirEquipes() {
         List<Equipe> liste = new ArrayList<>();
         for (Competition competition : lesCompetitions) {
             for (Participant participant : competition.getParticipants()) {
                 if (participant instanceof Equipe) {
-                    liste.add((Equipe)participant);
+                    liste.add((Equipe) participant);
                 }
             }
         }
@@ -241,7 +245,8 @@ public class JeuxOlympiques {
                     // Si aucune équipe n'est disponible, on ajoute une nouvelle équipe, et
                     // l'athlète rejoint l'équipe.
                     if (equipe == null) {
-                        equipe = new Equipe(athlete.getNom() + athlete.getPrenom(), sport, sport.getTaille(),
+                        equipe = new Equipe(athlete.getNom() + athlete.getPrenom(), athlete.obtenirSexe(), sport,
+                                sport.getTaille(),
                                 paysJoueur);
 
                         athlete.rejoindreEquipe(equipe);
@@ -290,6 +295,38 @@ public class JeuxOlympiques {
     }
 
     /**
+     * Cette fonction permet de convertir les valeurs de la base de données en Jeux
+     * Olympiques
+     * 
+     * @param annee
+     * @return les jeux olympiques
+     */
+    public static JeuxOlympiques convertFromBD() throws SQLException {
+
+        try {// On crée les tables si elles n'existent pas (La liste des sports et des
+             // compétitions sont connues à l'avance)
+            RequetesJDBC.creerSport();
+            RequetesJDBC.creerCompetitions();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<Competition> competitions = RequetesJDBC.loadCompetitions();
+        System.out.println(competitions.size());
+
+        List<Pays> listePays = RequetesJDBC.getPays(); // FINI
+
+        List<Equipe> listeEquipes = RequetesJDBC.loadEquipes(listePays, competitions); // FINI
+
+        RequetesJDBC.loadAthletes(listePays, listeEquipes, competitions); // FINI
+
+        JeuxOlympiques jeuxOlympiques = new JeuxOlympiques(2024, 16);
+        jeuxOlympiques.lesCompetitions = competitions;
+
+        return jeuxOlympiques;
+    }
+
+    /**
      * Cette fonction permet de générer une compétition en fonction d'un participant
      * 
      * @param competition  : la compétition à générer
@@ -331,7 +368,8 @@ public class JeuxOlympiques {
         pays = listePays.get(indexPays);
         List<Equipe> equipes = pays.getEquipes();
         for (Equipe equipe : equipes) {
-            if (equipe.getSport().equals(sport) && !equipe.estPleine()) {
+            if (athlete.obtenirSexe() == equipe.obtenirSexe() && equipe.getSport().equals(sport)
+                    && !equipe.estPleine()) {
                 return equipe;
             }
         }
@@ -339,14 +377,16 @@ public class JeuxOlympiques {
     }
 
     /**
-     * Renvoie le pays à partir d'une chaine de caractère, si aucun pays n'est trouvé, alors il est créé
+     * Renvoie le pays à partir d'une chaine de caractère, si aucun pays n'est
+     * trouvé, alors il est créé
+     * 
      * @param pays
      * @return le pays
      */
-    public Pays getPaysFromString(String pays){
-        for(Competition compet : this.lesCompetitions){
-            for(Participant part : compet.getParticipants()){
-                if(part.obtenirPays().getNom().equalsIgnoreCase(pays)){
+    public Pays getPaysFromString(String pays) {
+        for (Competition compet : this.lesCompetitions) {
+            for (Participant part : compet.getParticipants()) {
+                if (part.obtenirPays().getNom().equalsIgnoreCase(pays)) {
                     return part.obtenirPays();
                 }
             }
@@ -423,10 +463,6 @@ public class JeuxOlympiques {
             System.err.println(e);
         }
         return records;
-    }
-
-    public static void main(String[] args) {
-        convertFromArrayCsv(2024, fromCsv("src/big_data.csv"));
     }
 
     @Override

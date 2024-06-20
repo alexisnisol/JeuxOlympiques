@@ -91,31 +91,31 @@ public class CompetitionsPane extends BorderPane {
             grid.add(nomCompet, 0, rowI);
             try {
 
-
                 placement = compet.getPlacement();
 
+                if (placement.size() > 0) {
+                    Participant premier = placement.get(0);
+                    Label premierLabel = new Label(premier.obtenirNom());
+                    premierLabel.setAlignment(Pos.CENTER);
+                    premierLabel.setStyle("-fx-font-size: 12;");
+                    grid.add(premierLabel, 1, rowI);
+                }
 
-                Participant premier = placement.get(0);
-                Label premierLabel = new Label(premier.obtenirNom());
-                premierLabel.setAlignment(Pos.CENTER);
-                premierLabel.setStyle("-fx-font-size: 12;");
-                grid.add(premierLabel, 1, rowI);
-
-                if(placement.size() > 1){
+                if (placement.size() > 1) {
                     Participant deuxieme = placement.get(1);
                     Label deuxiemeLabel = new Label(deuxieme.obtenirNom());
                     deuxiemeLabel.setAlignment(Pos.CENTER);
                     deuxiemeLabel.setStyle("-fx-font-size: 12;");
                     grid.add(deuxiemeLabel, 2, rowI);
                 }
-                if(placement.size() > 2){
+                if (placement.size() > 2) {
                     Participant troisieme = placement.get(2);
                     Label troisiemeLabel = new Label(troisieme.obtenirNom());
                     troisiemeLabel.setAlignment(Pos.CENTER);
                     troisiemeLabel.setStyle("-fx-font-size: 12;");
                     grid.add(troisiemeLabel, 3, rowI);
                 }
-            
+
             } catch (IllegalStateException e) {
                 grid.add(new Label("N'est pas jouée"), 1, rowI);
             }

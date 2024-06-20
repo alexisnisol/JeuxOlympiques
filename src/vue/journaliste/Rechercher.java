@@ -46,7 +46,6 @@ public class Rechercher extends BorderPane {
 
         this.center = new BorderPane();
 
-
         VBox infoGenerales = new VBox(20);
         infoGenerales.setPadding(new Insets(20, 20, 20, 20));
         infoGenerales.setAlignment(Pos.CENTER);
@@ -78,7 +77,6 @@ public class Rechercher extends BorderPane {
         hbox.setPadding(new Insets(0, 20, 0, 20));
         center.setCenter(hbox);
 
-        
         this.setCenter(center);
 
         // bas de la fenêtre

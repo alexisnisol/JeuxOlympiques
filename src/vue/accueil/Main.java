@@ -1,5 +1,6 @@
 package vue.accueil;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import bd.server.RequetesJDBC;
@@ -19,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import modele.JeuxOlympiques;
+
 public class Main extends Application {
 
     private Scene scene;
@@ -33,16 +35,14 @@ public class Main extends Application {
     public void accueil() {
         RequetesJDBC.laConnexion = this.loginBD.getConnexionMySQL();
 
-        try{
-            RequetesJDBC.creerSport();
-            RequetesJDBC.creerCompetitions();
-        }catch(Exception e){
+        // List<List<String>> liste = JeuxOlympiques.fromCsv("src/donnees.csv");
+        // this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
+
+        try {
+            this.modele = JeuxOlympiques.convertFromBD();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        List<List<String>> liste = JeuxOlympiques.fromCsv("src/donnees.csv");
-        this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
-
 
         Label titre = new Label("Bienvenue dans les Jeux IUT’Olympiques");
         titre.setAlignment(Pos.CENTER);
@@ -104,8 +104,6 @@ public class Main extends Application {
         this.root = new BorderPane();
 
         this.loginBD = new LoginBD(this);
-
-
 
         this.scene = new Scene(root, 900, 550);
         this.stage.getIcons().add(new ImageView("file:assets/img/jo_paris.png").getImage());
