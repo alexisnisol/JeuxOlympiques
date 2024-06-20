@@ -22,7 +22,7 @@ public class TestParticipants {
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipe("Équipe de test", sport, 6, pays);
+        equipe = new Equipe("Équipe de test", Sexe.HOMME, sport, 6, pays);
         athlete1 = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete2 = new Athlete("Test", "Test", Sexe.FEMME, 30, 35, 40, pays);
         athlete3 = new Athlete("Test2", "Test2", Sexe.FEMME, 30, 35, 40, pays);
@@ -37,7 +37,7 @@ public class TestParticipants {
     public void testObtenirSexe() {
         assertEquals(Sexe.HOMME, equipe.obtenirSexe());
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        Equipe equipeFemme = new Equipe("Équipe de test2", sport, 6, pays);
+        Equipe equipeFemme = new Equipe("Équipe de test2", Sexe.FEMME, sport, 6, pays);
 
         athlete1.rejoindreEquipe(equipeFemme); // HOMME
         assertEquals(Sexe.HOMME, equipeFemme.obtenirSexe());

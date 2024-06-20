@@ -12,8 +12,6 @@ import modele.sports.VolleyBall;
 
 import static org.junit.Assert.*;
 
-
-
 public class TestAthletes {
     private Athlete athlete;
     private Pays pays;
@@ -23,7 +21,7 @@ public class TestAthletes {
     public void setUp() {
         pays = new Pays("France");
         VolleyBall sport = new VolleyBall("Volley-Ball", true, 6);
-        equipe = new Equipe("Équipe de test", sport, 5, pays);
+        equipe = new Equipe("Équipe de test", Sexe.HOMME, sport, 5, pays);
         athlete = new Athlete("Doe", "John", Sexe.HOMME, 50, 60, 70, pays);
         athlete.rejoindreEquipe(equipe);
     }
@@ -60,12 +58,14 @@ public class TestAthletes {
 
     @Test
     public void testGetPays() {
-        assertEquals(pays, athlete.obtenirPays()); // Vérifie si la méthode obtenirPays() retourne l'objet Pays créé précédemment
+        assertEquals(pays, athlete.obtenirPays()); // Vérifie si la méthode obtenirPays() retourne l'objet Pays créé
+                                                   // précédemment
     }
 
     @Test
     public void testGetEquipes() {
-        assertEquals(equipe, athlete.obtenirEquipes()); // Vérifie si la méthode obtenirEquipes() retourne l'objet Equipes créé précédemment
+        assertEquals(equipe, athlete.obtenirEquipes()); // Vérifie si la méthode obtenirEquipes() retourne l'objet
+                                                        // Equipes créé précédemment
     }
 
     @Test

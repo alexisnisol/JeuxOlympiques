@@ -22,11 +22,13 @@ public class Equipe implements Participant {
     private Pays pays;
     private Competition competitionActuelle;
     private float performanceActuelle;
+    private Sexe sexe;
 
-    public Equipe(String nomEquipe, Sport sport, int tailleMax, Pays pays) {
+    public Equipe(String nomEquipe, Sexe sexe, Sport sport, int tailleMax, Pays pays) {
         this.nomEquipe = nomEquipe;
         this.tailleMax = tailleMax;
         this.sport = sport;
+        this.sexe = sexe;
         this.pays = pays;
         this.listeAthletes = new ArrayList<>();
         this.competitionActuelle = null;
@@ -36,14 +38,13 @@ public class Equipe implements Participant {
         saveToBd();
     }
 
-    public void saveToBd(){
-        try{
+    public void saveToBd() {
+        try {
             RequetesJDBC.creerEquipe(this);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Retourne la taille maximale de l'équipe.
@@ -149,9 +150,9 @@ public class Equipe implements Participant {
     public void setCompetitionActuelle(Competition competition) {
         this.competitionActuelle = competition;
 
-        try{
+        try {
             RequetesJDBC.setCompetEquipe(this, competition);
-        }catch(Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
@@ -229,18 +230,7 @@ public class Equipe implements Participant {
 
     @Override
     public Sexe obtenirSexe() {
-        int nbHomme = 0;
-        for (Athlete athetes : this.listeAthletes) {
-            if (athetes.obtenirSexe() == Sexe.HOMME) {
-                ++nbHomme;
-            } else {
-                --nbHomme;
-            }
-        }
-        if (nbHomme >= 0) {
-            return Sexe.HOMME;
-        }
-        return Sexe.FEMME;
+        return this.sexe;
     }
 
     /**
@@ -304,7 +294,7 @@ public class Equipe implements Participant {
         return this.nomEquipe.hashCode() + this.tailleMax + this.pays.hashCode();
     }
 
-    public String afficherEquipe(){
+    public String afficherEquipe() {
         return "Equipe : " + this.nomEquipe + " (" + this.pays + ")" + " Elle contient " + this.listeAthletes.size()
                 + " athlètes" + " et participe à la compétition : "
                 + this.competitionActuelle + " avec une performance de " + this.performanceActuelle + " points"
@@ -317,7 +307,7 @@ public class Equipe implements Participant {
 
     @Override
     public String toString() {
-        return this.nomEquipe; //Pour le combobox de la vue
+        return this.nomEquipe; // Pour le combobox de la vue
     }
 
 }
