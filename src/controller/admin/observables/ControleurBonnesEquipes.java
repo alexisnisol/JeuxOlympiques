@@ -13,6 +13,10 @@ public class ControleurBonnesEquipes implements ChangeListener<String> {
         this.pane = pane;
     }
     
+    /**
+     * Observable qui permet de mettre à jour la liste des équipes en fonction du pays saisie, 
+     * et de désactiver le bouton d'ajout d'athlète si le pays n'a pas d'équipe
+     */
     @Override
     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
     {   

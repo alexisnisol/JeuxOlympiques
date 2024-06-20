@@ -14,6 +14,14 @@ public class ObservableAjoutAthlete implements ChangeListener<Sexe> {
         this.pane = pane;
     }
 
+    /**
+     * Observable qui permet de changer l'affichage des ComboBox en fonction du Sexe sélectionné
+     * Si le Sexe est sélectionné, on affiche les ComboBox pour les épreuves individuelles pour l'athlète à ajouter
+     * Sinon, on cache les ComboBox pour les épreuves individuelles
+     * @param observable ObservableValue<Sexe> : la valeur du Sexe
+     * @param oldValue Sexe : le Sexe précédent
+     * @param newValue Sexe : le Sexe sélectionné
+     */
     @Override
     public void changed(ObservableValue<? extends Sexe> observable, Sexe oldValue, Sexe newValue) {
         if (oldValue == null || !oldValue.equals(newValue)) {

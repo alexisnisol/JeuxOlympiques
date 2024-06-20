@@ -118,7 +118,7 @@ public class Ajouter extends BorderPane {
         this.ajouterAthlete.setOnAction(new ControleurAjouter(modele, this, TypeAjout.AjoutAthlete));
         
         Button genererCSV = new Button("Générer depuis CSV");
-        genererCSV.setOnAction(new ControleurAddCsv(modele, this));
+        genererCSV.setOnAction(new ControleurAddCsv(this));
 
         btnAthletes.getChildren().addAll(this.ajouterAthlete, genererCSV);
 
@@ -190,6 +190,14 @@ public class Ajouter extends BorderPane {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Administration");
         alert.setHeaderText(content);
+        return alert;
+    }
+
+    public Alert errorPopupMissingData(String content){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Erreur lors de la récupération des données");
+        alert.setContentText(content);
         return alert;
     }
 

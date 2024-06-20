@@ -16,6 +16,9 @@ public class ControleurChangeRole implements ChangeListener<RoleConnexion> {
         this.user = user;
     }
     
+    /**
+     * Observable qui permet de mettre à jour le rôle de l'utilisateur du ComboBox pour la gestion des rôles par l'administrateur
+     */
     @Override
     public void changed(ObservableValue<? extends RoleConnexion> observable, RoleConnexion oldValue, RoleConnexion newValue)
     {   

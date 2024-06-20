@@ -2,8 +2,6 @@ package controller.admin;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import modele.JeuxOlympiques;
 import modele.competitions.Competition;
 import modele.exceptions.MauvaisParticipantException;
@@ -34,28 +32,20 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
         switch (typeAjout) {
             case AjoutAthlete:
 
-                Pays pays = this.modele.getPaysFromString(this.ajout.getPays().getText());
-
                 try {
-                    if (this.ajout.getNom().getText().isEmpty() || this.ajout.getPrenom().getText().isEmpty()
-                            || this.ajout.getPays().getText().isEmpty()
-                            || (this.ajout.getEpreuvesAthletesBox().getValue() == null
-                                    && !this.ajout.athleteDansUneEquipe())) {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setTitle("Erreur");
-                        alert.setHeaderText("Erreur lors de la récupération des données");
-                        alert.setContentText("Une donnée est manquante");
-                        alert.showAndWait();
-                        return;
+                    if (this.ajout.getNom().getText().isEmpty() || 
+                    this.ajout.getPrenom().getText().isEmpty() || 
+                    this.ajout.getPays().getText().isEmpty() ||
+                    (this.ajout.getEpreuvesAthletesBox().getValue() == null && !this.ajout.athleteDansUneEquipe())) {
+                        this.ajout.errorPopupMissingData("Une donnée est manquante").showAndWait();
+                        return; //Si un des champs est vide, on arrête la méthode
                     }
                 } catch (NumberFormatException e) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Erreur lors de la récupération des données");
-                    alert.setContentText("Les champs force, endurance et agilité doivent être des nombres entiers.");
-                    alert.showAndWait();
+                    this.ajout.errorPopupMissingData("Les champs force, endurance et agilité doivent être des nombres entiers.").showAndWait();
                     return;
                 }
+                
+                Pays pays = this.modele.getPaysFromString(this.ajout.getPays().getText());
 
                 Athlete athlete = new Athlete(
                         ajout.getNom().getText(),
@@ -66,8 +56,11 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         ajout.getAgilite(),
                         pays);
 
+                //Si on met la checkbox pour ajouter un athlète dans une équipe à false
+                //Alors on ajoute l'athlète à une épreuve individuelle
                 if (!this.ajout.athleteDansUneEquipe()) {
 
+                    //On récupère la compétition sélectionnée dans la ComboBox
                     Competition competition = ajout.getEpreuvesAthletesBox().getValue();
                     try {
                         competition.enregistrerParticipant(athlete);
@@ -76,21 +69,12 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
 
                     } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException
                             | MauvaisParticipantException exception) {
-                        exception.printStackTrace();
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setTitle("Erreur");
-                        alert.setHeaderText("Erreur dans la compétition");
-                        alert.setContentText(exception.getMessage());
-                        alert.showAndWait();
+                        this.ajout.errorPopupMissingData(exception.getMessage()).showAndWait();
                     }
-                } else {
+                } else { //Sinon on ajoute l'athlète à une équipe
 
                     if (this.ajout.getEquipesBox().getValue() == null) {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setTitle("Erreur");
-                        alert.setHeaderText("Erreur lors de la récupération des données");
-                        alert.setContentText("L'équipe n'existe pas");
-                        alert.showAndWait();
+                        this.ajout.errorPopupMissingData("Une équipe doit être sélectionnée").showAndWait();
                         return;
                     }
 
@@ -101,26 +85,21 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                         this.ajout.addPopup("L'athlète " + athlete.obtenirNom() + " a rejoint l'équipe.").showAndWait();
                         this.ajout.resetTF();
                     } else {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        alert.setTitle("Erreur");
-                        alert.setHeaderText("Erreur lors de la récupération des données");
-                        alert.setContentText("Erreur dans le pays");
-                        alert.showAndWait();
+                        this.ajout.errorPopupMissingData("L'athlète et l'équipe doivent être du même pays").showAndWait();
                     }
 
                 }
 
                 break;
+
+
             case AjoutEquipe:
 
                 Competition competition = ajout.getEpreuveEquipes();
-                if (competition == null || this.ajout.getNomEquipe().getText().isEmpty()
-                        || this.ajout.getPaysEquipe().getText().isEmpty()) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Erreur lors de la récupération des données");
-                    alert.setContentText("Une donnée est manquante");
-                    alert.showAndWait();
+                if (competition == null ||
+                this.ajout.getNomEquipe().getText().isEmpty() ||
+                this.ajout.getPaysEquipe().getText().isEmpty()) {
+                    this.ajout.errorPopupMissingData("Une donnée est manquante").showAndWait();
                     return;
                 }
 
@@ -139,12 +118,7 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
 
                 } catch (SexeCompetitionException | ParticipantDejaPresentException | ParticipantOccupeException
                         | MauvaisParticipantException exception) {
-                    exception.printStackTrace();
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Erreur dans la compétition");
-                    alert.setContentText(exception.getMessage());
-                    alert.showAndWait();
+                    this.ajout.errorPopupMissingData(exception.getMessage()).showAndWait();
                 }
         }
     }

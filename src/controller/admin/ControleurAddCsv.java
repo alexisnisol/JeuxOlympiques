@@ -4,7 +4,6 @@ import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import modele.JeuxOlympiques;
@@ -12,14 +11,15 @@ import vue.administrateur.Ajouter;
 
 public class ControleurAddCsv implements EventHandler<ActionEvent> {
 
-    private JeuxOlympiques modele;
     private Ajouter ajout;
 
-    public ControleurAddCsv(JeuxOlympiques modele, Ajouter ajout) {
-        this.modele = modele;
+    public ControleurAddCsv(Ajouter ajout) {
         this.ajout = ajout;
     }
 
+    /**
+     * Ouvre une fenêtre de dialogue pour choisir un fichier csv, puis crée les JO correspondants
+     */
     @Override
     public void handle(ActionEvent event) {
 
@@ -33,7 +33,6 @@ public class ControleurAddCsv implements EventHandler<ActionEvent> {
         
             ajout.addPopup("Création des JO via csv effectué !").show();
             ajout.getMain().setModele(JeuxOlympiques.convertFromArrayCsv(2024, JeuxOlympiques.fromCsv(selectedFile.getPath())));
-            ajout.getMain().getScene().setCursor(Cursor.DEFAULT);
         }
     }
 }
