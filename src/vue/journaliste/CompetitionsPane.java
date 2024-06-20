@@ -117,7 +117,9 @@ public class CompetitionsPane extends BorderPane {
                 }
 
             } catch (IllegalStateException e) {
-                grid.add(new Label("N'est pas jouée"), 1, rowI);
+                Label labelPasJouee = new Label("N'est pas jouée");
+                labelPasJouee.setStyle("-fx-font-size: 14;");
+                grid.add(labelPasJouee, 1, rowI);
             }
 
             Label participants = new Label(compet.getParticipants().size() + "");
