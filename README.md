@@ -10,7 +10,8 @@ FAMILIAR Enzo
 javadoc -d doc -charset utf8 -noqualifier all --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml src/*.java
 
 ### Compilation
-javac -cp ./src/ -d bin --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml src/*.java
+javac -cp lib/json-20240303.jar:./src/ -d bin --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml src/*.java
+
 
 ### Exécution
 java -cp .:bin:img --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml Executable
