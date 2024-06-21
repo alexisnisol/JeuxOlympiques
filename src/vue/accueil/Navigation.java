@@ -72,6 +72,7 @@ public class Navigation extends BorderPane {
         deco.setTooltip(new Tooltip("Déconnexion"));
         deco.setGraphic(decoimg);
         deco.setOnAction(new ControleurNavigation(accueil, NavAction.DECONNEXION));
+        deco.setText("Déconnexion");
         deco.setId("nav-loupe");
 
         // Création d'une HBox pour regrouper le bouton de recherche et le bouton de
