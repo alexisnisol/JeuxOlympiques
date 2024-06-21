@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Jeux IUT'Olympiques
+Comment=Lancer l'application Java avec JavaFX
+Exec= java --module-path /usr/share/openjfx/lib --add-modules javafx.controls,javafx.fxml -cp .:bin:assets:/usr/share/java/mariadb-java-client.jar vue.accueil.Main
+Icon=./assets/jo_paris.png
+Terminal=true
