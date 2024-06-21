@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import modele.JeuxOlympiques;
 
 /**
  * La classe Navigation représente la barre de navigation de l'application.
@@ -18,7 +17,6 @@ import modele.JeuxOlympiques;
 public class Navigation extends BorderPane {
 
     private Actualite accueil;
-    private JeuxOlympiques modele;
 
     private HBox menu;
 
@@ -29,9 +27,8 @@ public class Navigation extends BorderPane {
      * @param modele  L'objet JeuxOlympiques représentant le modèle de
      *                l'application.
      */
-    public Navigation(Actualite accueil, JeuxOlympiques modele) {
+    public Navigation(Actualite accueil) {
         this.accueil = accueil;
-        this.modele = modele;
 
         // Création des images pour les boutons de recherche et d'accueil
         ImageView logo_img1 = new ImageView(new Image("file:assets/img/jo_paris.png"));

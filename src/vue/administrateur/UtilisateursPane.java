@@ -26,6 +26,13 @@ public class UtilisateursPane extends BorderPane {
     private Utilisateur user;
     private ComboBox<RoleConnexion> roleUser;
 
+    /**
+     * Constructeur de la classe UtilisateursPane, 
+     * qui affiche la liste des utilisateurs de l'application et leur rôle, 
+     * et permet de changer le rôle des utilisateurs en tant qu'administrateur
+     * @param navigation
+     * @param user
+     */
     public UtilisateursPane(Navigation navigation, Utilisateur user) {
 
         this.user = user;
@@ -139,10 +146,18 @@ public class UtilisateursPane extends BorderPane {
         this.setCenter(scrollPane);
     }
 
+    /**
+     * Méthode permettant de récupérer l'utilisateur
+     * @return l'utilisateur
+     */
     public Utilisateur getUtilisateur(){
         return this.user;
     }
 
+    /**
+     * Méthode permettant de récupérer le rôle de l'utilisateur
+     * @return le rôle de l'utilisateur
+     */
     public ComboBox<RoleConnexion> getRoleUser(){
         return this.roleUser;
     }

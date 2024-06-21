@@ -18,26 +18,50 @@ public class Utilisateur {
         this.role = role;
     }
 
+    /**
+     * Permet de récupérer le nom de l'utilisateur
+     * @return le nom de l'utilisateur
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     *  Permet de récupérer le prénom de l'utilisateur
+     * @return le prénom de l'utilisateur
+     */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     *  Permet de récupérer le pseudo de l'utilisateur
+     * @return le pseudo de l'utilisateur
+     */
     public String getPseudo() {
         return pseudo;
     }
-
+    
+    /**
+     * Permet de récupérer le mot de passe de l'utilisateur
+     * @return le mot de passe de l'utilisateur
+     */
     public String getMdp() {
         return mdp;
     }
 
+    /**
+     * Permet de changer le mot de passe de l'utilisateur
+     * @return le mot de passe de l'utilisateur
+     */
     public RequetesJDBC.RoleConnexion getRole() {
         return role;
     }
 
+    /**
+     * Permet de changer le rôle de l'utilisateur, et de le mettre à jour dans la base de données
+     * @param role le rôle de l'utilisateur
+     */
     public void setRole(RequetesJDBC.RoleConnexion role) {
         try {
             RequetesJDBC.updateUserRole(this, role);
@@ -61,6 +85,11 @@ public class Utilisateur {
             return u.getPseudo().equals(this.getPseudo()) && u.getMdp().equals(this.getMdp()) && u.getRole().equals(this.getRole());
         }
         return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getPseudo().hashCode()*17 + this.getMdp().hashCode() + this.getRole().hashCode() * 31;
     }
 
 }

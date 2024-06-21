@@ -23,6 +23,7 @@ public class ControleurAddCsv implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 
+        //Affichage d'un fileChooser pour choisir un fichier csv, et remplie le modèle avec celui-ci
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.csv"));

@@ -21,6 +21,11 @@ import java.nio.file.Paths;
 
 public class CompetitionsPane extends BorderPane {
 
+    /**
+     * Constructeur de la classe CompetitionsPane, qui affiche les compétitions, leur nombre de participants et les trois premiers gagants
+     * @param navigation la barre de navigation
+     * @param competitions la liste des compétitions du modèle
+     */
     public CompetitionsPane(Navigation navigation, List<Competition> competitions) {
         this.setStyle("-fx-background-color: #FFFFFF;");
         // TOP
@@ -147,10 +152,26 @@ public class CompetitionsPane extends BorderPane {
         this.setCenter(scrollPane);
     }
 
+    /**
+     * Récupère l'url du drapeau du pays
+     * @param width la longueur du drapeau
+     * @param height la hauteur du drapeau
+     * @param pays le nom du pays
+     * @return l'url du drapeau
+     * @throws NoSuchFieldException
+     */
     public static String getUrlFlag(String pays) throws NoSuchFieldException {
         return getUrlFlag(64, 48, pays);
     }
 
+    /**
+     * Récupère l'url du drapeau du pays
+     * @param width la longueur du drapeau
+     * @param height la hauteur du drapeau
+     * @param pays le nom du pays
+     * @return l'url du drapeau
+     * @throws NoSuchFieldException
+     */
     public static String getUrlFlag(int width, int height, String pays) throws NoSuchFieldException {
         String codePays = "fr";
         try {

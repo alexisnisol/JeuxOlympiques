@@ -33,17 +33,20 @@ public class Rechercher extends BorderPane {
     private Text text4;
     private TextField recherche;
 
+    /**
+     * Constructeur de la classe Rechercher, qui permet de rechercher des informations sur les JeuxOlympiques, sur un athlète ou un pays
+     * @param navigation la barre de navigation
+     * @param main la fenêtre principale
+     */
     public Rechercher(Navigation navigation, Main main) {
 
         this.setOnKeyPressed(new ControleurKeyEventRecherche(this, main));
 
         this.setStyle("-fx-background-color: #FFFFFF;");
         // haut de la fenêtre
-
         this.setTop(navigation);
 
         // centre de la fenêtre
-
         this.center = new BorderPane();
 
         VBox infoGenerales = new VBox(20);
@@ -79,7 +82,10 @@ public class Rechercher extends BorderPane {
 
         this.setCenter(center);
 
-        // bas de la fenêtre
+        afficherFooter();
+    }
+
+    public void afficherFooter(){
         ImageView iut = new ImageView(new Image("file:assets/img/iut.png"));
         iut.setFitHeight(100);
         iut.setFitWidth(200);
@@ -109,6 +115,11 @@ public class Rechercher extends BorderPane {
         return this.recherche.getText();
     }
 
+    /**
+     * Met à jour la vue en fonction des données de l'athlète recherché
+     * 
+     * @param listeData
+     */
     public void majParAthlete(List<String> listeData) {
         this.center.setCenter(null);
         this.center.setTop(hbox);
@@ -133,11 +144,7 @@ public class Rechercher extends BorderPane {
     }
 
     /**
-     * Met à jour la vue en fonction des données de la compétition
-     * 
-     * Affiche : - le type de la compétition (individuelle/collective), - le sport
-     * de la compétition, - le sexe de la compétition, - le nb de participant, -est
-     * jouee,
+     * Met à jour la vue en fonction des données du pays recherché
      * 
      * @param listeData
      * 

@@ -14,18 +14,27 @@ import javafx.animation.Timeline;
 public class Lancer extends BorderPane {
 
     private Main mainPane;
-    private Navigation navigation;
 
     private Button buttonLancer;
     private BorderPane borderPane;
 
+    /**
+     * Page de lancement des jeux olympiques pour l'organisateur
+     * @param navigation la barre de navigation
+     * @param mainPane le menu principal de l'application
+     */
     public Lancer(Navigation navigation, Main mainPane) {
         this.mainPane = mainPane;
+        // TOP
         this.setTop(navigation);
+
+        //CENTER
         this.borderPane = new BorderPane();
         this.setStyle("-fx-background-color: #FFFFFF;");
         Label label = new Label("Lancer les jeux olympiques");
         label.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+
+        // Bouton pour lancer les jeux olympiques
         this.buttonLancer = new Button();
         buttonLancer.setStyle("-fx-font-size: 20px; -fx-background-color: lightblue; -fx-text-fill: #000000;");
         buttonLancer.setPrefSize(200, 50);
@@ -40,10 +49,18 @@ public class Lancer extends BorderPane {
 
     }
 
-    public void lancerJeuxOlympiques() {
-        mainPane.getModele().lancerJeuxOlympiques();
+    /**
+     * Retourne le Main
+     * @return Main
+     */
+    public Main getMain(){
+        return this.mainPane;
     }
 
+    /**
+     * Met à jour l'affichage après le lancement des jeux olympiques
+     * Affiche un rond de chargement pendant 3 secondes puis un message de confirmation
+     */
     public void majAffichage() {
         ProgressIndicator progressIndicator = new ProgressIndicator();
         this.borderPane.setCenter(progressIndicator);

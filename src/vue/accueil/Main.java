@@ -32,11 +32,20 @@ public class Main extends Application {
     private JeuxOlympiques modele;
     private Stage stage;
 
+    /**
+     * Constructeur de la classe Main
+     */
+
     public void accueil() {
+
+        // On initialise la connexion à la base de données
         RequetesJDBC.laConnexion = this.loginBD.getConnexionMySQL();
 
         // List<List<String>> liste = JeuxOlympiques.fromCsv("src/donnees.csv");
         // this.modele = JeuxOlympiques.convertFromArrayCsv(2024, liste);
+
+
+        // On récupère les données de la base de données
 
         try {
             this.modele = JeuxOlympiques.convertFromBD();
@@ -44,16 +53,19 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
+        // On affiche l'accueil
         Label titre = new Label("Bienvenue dans les Jeux IUT’Olympiques");
         titre.setAlignment(Pos.CENTER);
         titre.setStyle("-fx-font-size: 30px;");
-        BorderPane.setAlignment(titre, Pos.CENTER);
         titre.setPadding(new Insets(25, 0, 25, 0));
+        BorderPane.setAlignment(titre, Pos.CENTER);
         root.setTop(titre);
+
         ImageView image = new ImageView("./assets/img/accueil_iut.png");
         image.setFitHeight(250);
         image.setFitWidth(500);
         root.setCenter(image);
+
         HBox menu = new HBox();
         Button inscrire = new Button("S'inscrire");
         Button connexion = new Button("Se connecter");
@@ -77,23 +89,36 @@ public class Main extends Application {
         root.setStyle("-fx-background-color: #ffffff;");
     }
 
+    /**
+     * Affiche l'accueil
+     */
+
     public void afficherAccueil() {
         this.stage.setScene(scene);
         accueil();
         this.scene.setRoot(root);
     }
 
+    /**
+     * Affiche la page de connexion à la base de données
+     */
     public void afficherLoginBD() {
         Scene scene = new Scene(this.loginBD, 300, 400);
         this.stage.setScene(scene);
         scene.setRoot(loginBD);
     }
-
+    
+    /**
+     * Affiche la page de connexion
+     */
     public void afficherlogin() {
         this.scene.setRoot(this.loginPane);
 
     }
 
+    /**
+     * Affiche la page d'inscription
+     */
     public void afficherInscription() {
         this.scene.setRoot(this.registerPane);
     }
@@ -119,10 +144,20 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Permet de definir le modele
+     * 
+     * @param pane la page à afficher
+     */
     public void setModele(JeuxOlympiques modele) {
         this.modele = modele;
     }
 
+    /**
+     * Permet de récupérer le modèle
+     * 
+     * @return le modèle
+     */
     public JeuxOlympiques getModele() {
         return this.modele;
     }
@@ -142,6 +177,9 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Enumération des actions possibles pour les boutons de l'accueil.
+     */
     public enum ButtonAction {
         LOGIN_PANE,
         REGISTER_PANE,
@@ -149,6 +187,12 @@ public class Main extends Application {
         INSCRIPTION
     }
 
+
+    /**
+     * Permet de récupérer la scène
+     * 
+     * @return la scène
+     */
     public Scene getScene() {
         return this.scene;
     }

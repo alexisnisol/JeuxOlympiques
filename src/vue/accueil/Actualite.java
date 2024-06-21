@@ -2,7 +2,6 @@ package vue.accueil;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import vue.organisateur.Lancer;
@@ -19,22 +18,49 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 
+
+
+/**
+ * La classe Actualite représente la fenêtre d'accueil de l'application.
+ * Elle affiche les actualités liées aux Jeux Olympiques.
+ */
 public class Actualite extends BorderPane {
 
+    /**
+     * Le composant de connexion.
+     */
     private Login login;
+
+    /**
+     * Le modèle des Jeux Olympiques.
+     */
     private JeuxOlympiques modele;
+
+    /**
+     * La barre de navigation.
+     */
     private Navigation navigation;
+
+    /**
+     * L'utilisateur connecté.
+     */
     private Utilisateur user;
 
+    /**
+     * Constructeur de la classe Actualite.
+     * 
+     * @param login  Le composant de connexion.
+     * @param modele Le modèle des Jeux Olympiques.
+     * @param user   L'utilisateur connecté.
+     */
     public Actualite(Login login, JeuxOlympiques modele, Utilisateur user) {
-
         this.user = user;
         this.login = login;
         this.modele = this.login.getMain().getModele();
 
         this.setStyle("-fx-background-color: #FFFFFF;");
 
-        navigation = new Navigation(this, this.modele);
+        navigation = new Navigation(this);
         this.setTop(navigation);
 
         // centre de la fenetre
@@ -122,38 +148,69 @@ public class Actualite extends BorderPane {
 
     }
 
+    /**
+     * Retourne le modèle des Jeux Olympiques.
+     * 
+     * @return Le modèle des Jeux Olympiques.
+     */
     public JeuxOlympiques getModele() {
         return this.modele;
     }
 
+    /**
+     * Retourne l'utilisateur connecté.
+     * 
+     * @return L'utilisateur connecté.
+     */
     public Utilisateur getUtilisateur() {
         return this.user;
     }
 
+    /**
+     * Retourne le rôle de l'utilisateur connecté.
+     * 
+     * @return Le rôle de l'utilisateur connecté.
+     */
     public RoleConnexion getUserRole() {
         return this.user.getRole();
     }
 
+    /**
+     * Affiche la fenêtre d'accueil.
+     */
     public void afficheAccueil() {
         this.login.getMain().getScene().setRoot(this);
 
-        navigation = new Navigation(this, this.modele);
+        navigation = new Navigation(this);
         this.setTop(navigation);
     }
 
+    /**
+     * Affiche la fenêtre de recherche.
+     */
     public void afficheRecherche() {
         this.login.getMain().getScene().setRoot(new Rechercher(this.navigation, this.login.getMain()));
 
     }
 
+    /**
+     * Affiche la fenêtre de connexion.
+     */
     public void afficherAjout() {
         this.login.getMain().getScene().setRoot(new Ajouter(this.navigation, this.login.getMain()));
     }
+
+    /**
+     * Affiche la fenêtre des utilisateurs pour l'administrateur.
+     */
 
     public void afficherUsers() {
         this.login.getMain().getScene().setRoot(new UtilisateursPane(this.navigation, this.user));
     }
 
+    /**
+     * Affiche la fenêtre de consultation.
+     */
     public void afficherConsultation() {
         this.login.getMain().getScene().setRoot(new ConsulterPane(this.navigation, this.login.getMain()));
     }
@@ -162,6 +219,9 @@ public class Actualite extends BorderPane {
         this.login.getMain().afficherAccueil();
     }
 
+    /**
+     * Affiche la fenêtre de lancer pour l'organisateur.
+     */
     public void afficherLancer() {
         this.login.getMain().getScene().setRoot(new Lancer(this.navigation, this.login.getMain()));
     }

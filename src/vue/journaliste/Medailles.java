@@ -22,18 +22,19 @@ import modele.Pays;
 import vue.accueil.Navigation;
 import javafx.scene.layout.GridPane;
 
-import org.json.JSONObject;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 public class Medailles extends BorderPane {
 
+    /**
+     * Constructeur de la classe Medailles, qui affiche le classement des médailles des pays
+     * @param navigation la barre de navigation
+     * @param classementMedailles le classement des médailles des pays, du modèle
+     */
     public Medailles(Navigation navigation, Map<Pays, Classement> classementMedailles) {
         this.setStyle("-fx-background-color: #FFFFFF;");
         // TOP
         this.setTop(navigation);
-        // CENTER
 
+        // CENTER
         GridPane grid = new GridPane();
         // grid.setVgap(20);
         grid.setStyle("-fx-background-color: #D9D9D9;");
@@ -104,6 +105,7 @@ public class Medailles extends BorderPane {
             }
         });
 
+        //AFFICHER LES DONNEES
         for (Map.Entry<Pays, Classement> data : list) {
             paysData = data.getKey();
             classementData = data.getValue();

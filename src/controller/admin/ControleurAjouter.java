@@ -30,6 +30,7 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
 
         switch (typeAjout) {
+            //Ajout d'un Athlète
             case AjoutAthlete:
 
                 try {
@@ -93,8 +94,8 @@ public class ControleurAjouter implements EventHandler<ActionEvent> {
                 break;
 
 
+            //Ajout d'une équipe
             case AjoutEquipe:
-
                 Competition competition = ajout.getEpreuveEquipes();
                 if (competition == null ||
                 this.ajout.getNomEquipe().getText().isEmpty() ||

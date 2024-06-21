@@ -14,7 +14,8 @@ public class ControleurOrganisation implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
+        // affichage de la fenêtre de lancer
         lancer.majAffichage();
-        lancer.lancerJeuxOlympiques();
+        lancer.getMain().getModele().lancerJeuxOlympiques();
     }
 }

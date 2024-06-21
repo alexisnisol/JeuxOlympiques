@@ -20,6 +20,11 @@ public class ConsulterPane extends BorderPane {
 
     private Main main;
 
+    /**
+     * Constructeur de la classe ConsulterPane, qui affiche deux boutons : Consulter les médailles, Consulter les compétitions
+     * @param navigation
+     * @param main
+     */
     public ConsulterPane(Navigation navigation, Main main) {
         this.main = main;
         this.navigation = navigation;
@@ -28,10 +33,16 @@ public class ConsulterPane extends BorderPane {
         showCenter();
     }
 
+    /**
+     * Affiche le panel de navigation
+     */
     public void showTop() {
         this.setTop(this.navigation);
     }
 
+    /**
+     * Affiche le panel central de la page
+     */
     public void showCenter() {
         HBox boutons = new HBox(70);
         boutons.setAlignment(Pos.CENTER);
@@ -51,10 +62,18 @@ public class ConsulterPane extends BorderPane {
         this.setCenter(boutons);
     }
 
+    /**
+     * Affiche le panel du classement des pays
+     * @param medailles les medailles des pays
+     */
     public void afficherMedailles(Map<Pays, Classement> medailles) {
         this.main.getScene().setRoot(new Medailles(this.navigation, medailles));
     }
 
+    /**
+     * Affiche le panel des compétitions
+     * @param competitions les compétitions
+     */
     public void afficherCompetitions(List<Competition> competitions) {
 
         this.main.getScene().setRoot(new CompetitionsPane(this.navigation, competitions));
