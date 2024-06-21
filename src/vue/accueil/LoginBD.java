@@ -55,15 +55,14 @@ public class LoginBD extends GridPane {
         ls.setAlignment(Pos.BASELINE_RIGHT);
 
         this.motDePasse = new PasswordField();
-        motDePasse.setText("nisol");
         this.motDePasse.setAlignment(Pos.BASELINE_LEFT);
-        this.login = new TextField("nisol");
+        this.login = new TextField();
         this.login.setAlignment(Pos.BASELINE_LEFT);
         this.login.focusedProperty().addListener(new EcouteurLogin());
 
         this.nomServeur = new TextField("servinfo-maria");
         this.nomServeur.setAlignment(Pos.BASELINE_LEFT);
-        this.nomBD = new TextField("DBnisol");
+        this.nomBD = new TextField();
         this.nomBD.setAlignment(Pos.BASELINE_LEFT);
         Button b = new Button("Valider");
         b.setAlignment(Pos.CENTER);

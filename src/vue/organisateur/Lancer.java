@@ -23,10 +23,12 @@ public class Lancer extends BorderPane {
         this.mainPane = mainPane;
         this.setTop(navigation);
         this.borderPane = new BorderPane();
-
+        this.setStyle("-fx-background-color: #FFFFFF;");
         Label label = new Label("Lancer les jeux olympiques");
         label.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
         this.buttonLancer = new Button();
+        buttonLancer.setStyle("-fx-font-size: 20px; -fx-background-color: lightblue; -fx-text-fill: #000000;");
+        buttonLancer.setPrefSize(200, 50);
         buttonLancer.setText("GO !");
         buttonLancer.setId("nav-loupe");
         buttonLancer.setOnAction(new ControleurOrganisation(this));
